@@ -471,6 +471,13 @@
     <script type="text/javascript" src="/dist/APlayer.min.js"></script>
     <script type="text/javascript" src="/dist/music.js"></script>
 
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
+    <script>
+        // 对所有链接跳转事件绑定pjax容器container
+        // #container是跳转后需要替换的内容
+ 	    $(document).pjax('a[target!=_blank]', '#container', {fragment:'#container', timeout:8000})
+    </script>
 
     <div class="container row center-align"
          style="margin-bottom: 0px !important;">
@@ -548,13 +555,7 @@
         
 <div class="progress-bar"></div>
 
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
-<script>
-    // 对所有链接跳转事件绑定pjax容器container
-    // #container是跳转后需要替换的内容
- 	$(document).pjax('a[target!=_blank]', '#container', {fragment:'#container', timeout:8000})
-</script>
+
 
     <!-- 搜索遮罩框 -->
 <div id="searchModal" class="modal">
