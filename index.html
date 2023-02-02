@@ -97,14 +97,6 @@
 
 <body>
     <header class="navbar-fixed">
-    
-    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
-    <script>
-        // 对所有链接跳转事件绑定pjax容器container
-        // #container是跳转后需要替换的内容
- 	    $(document).pjax('a[target!=_blank]', '#container', {fragment:'#container', timeout:8000})
-    </script>
 
     <nav id="headNav" class="bg-color nav-transparent">
         <div id="navContainer" class="nav-wrapper container">
@@ -995,6 +987,4 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-</body>
-
-</html>
+<script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
