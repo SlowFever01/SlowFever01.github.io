@@ -3,11 +3,11 @@
   <title>Slow Fever</title>
   
   <subtitle>璀璨的烟火</subtitle>
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="https://www.slowfever.xyz/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
-  <updated>2023-02-08T04:16:48.917Z</updated>
-  <id>http://example.com/</id>
+  <link href="https://www.slowfever.xyz/"/>
+  <updated>2023-02-08T04:19:00.212Z</updated>
+  <id>https://www.slowfever.xyz/</id>
   
   <author>
     <name>Mr.Han</name>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>数据结构知识点概括</title>
-    <link href="http://example.com/2023/02082.html"/>
-    <id>http://example.com/2023/02082.html</id>
+    <link href="https://www.slowfever.xyz/2023/02082.html"/>
+    <id>https://www.slowfever.xyz/2023/02082.html</id>
     <published>2023-02-08T04:25:00.000Z</published>
-    <updated>2023-02-08T04:16:48.917Z</updated>
+    <updated>2023-02-08T04:19:00.212Z</updated>
     
     
       
@@ -39,8 +39,8 @@
   
   <entry>
     <title>markdown使用说明</title>
-    <link href="http://example.com/2023/01032.html"/>
-    <id>http://example.com/2023/01032.html</id>
+    <link href="https://www.slowfever.xyz/2023/01032.html"/>
+    <id>https://www.slowfever.xyz/2023/01032.html</id>
     <published>2023-01-03T06:25:00.000Z</published>
     <updated>2023-02-08T02:34:49.732Z</updated>
     
