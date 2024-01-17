@@ -421,10 +421,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2024/01/08/SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702/" rel="prev" title="SpringCloud day2">
+                  <i class="fa fa-angle-left"></i> SpringCloud day2
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/01/08/SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702/" rel="next" title="SpringCloud day2">
-                  SpringCloud day2 <i class="fa fa-angle-right"></i>
+                <a href="/2024/01/08/SpringCloud01/" rel="next" title="SpringCloud day1">
+                  SpringCloud day1 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -521,15 +524,6 @@ document.addEventListener('page:loaded', () => {
     });
 });
 </script>
-{# 鼠标点击特效 #}
-{% if theme.cursor_effect == "fireworks" %}
-  <script async src="/js/fireworks.js"></script>
-{% elseif theme.cursor_effect == "explosion" %}
-  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas>
-  <script src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
-  <script async src="/js/explosion.min.js"></script>
-{% elseif theme.cursor_effect == "love" %}
-  <script async src="/js/love.min.js"></script>
-{% endif %}
+
 </body>
 </html>
