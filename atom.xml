@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Smiling</title>
+  
+  
+  <link href="https://slowfever01.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://slowfever01.github.io/"/>
+  <updated>2024-01-20T04:38:23.918Z</updated>
+  <id>https://slowfever01.github.io/</id>
+  
+  <author>
+    <name>SlowFever</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RabbitMQ部署指南</title>
+    <link href="https://slowfever01.github.io/2024/01/20/RabbitMQ%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97/"/>
+    <id>https://slowfever01.github.io/2024/01/20/RabbitMQ%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97/</id>
+    <published>2024-01-20T12:49:19.000Z</published>
+    <updated>2024-01-20T04:38:23.918Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;RabbitMQ部署指南&quot;&gt;&lt;a href=&quot;#RabbitMQ部署指南&quot; class=&quot;headerlink&quot; title=&quot;RabbitMQ部署指南&quot;&gt;&lt;/a&gt;RabbitMQ部署指南&lt;/h1&gt;&lt;h1 id=&quot;1-单机部署&quot;&gt;&lt;a href=&quot;#1-单机部署&quot; class=&quot;headerlink&quot; title=&quot;1.单机部署&quot;&gt;&lt;/a&gt;1.单机部署&lt;/h1&gt;&lt;p&gt;我们在Centos7虚拟机中使用Docker来安装。&lt;/p&gt;
+&lt;h2 id=&quot;1-1-下载镜像&quot;&gt;&lt;a href=&quot;#1-1-下载镜像&quot; class=&quot;headerlink&quot; title=&quot;1.1.下载镜像&quot;&gt;&lt;/a&gt;1.1.下载镜像&lt;/h2&gt;&lt;p&gt;方式一：在线拉取&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="RabbitMQ" scheme="https://slowfever01.github.io/categories/RabbitMQ/"/>
+    
+    
+    <category term="RabbitMQ" scheme="https://slowfever01.github.io/tags/RabbitMQ/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RabbitMQ</title>
+    <link href="https://slowfever01.github.io/2024/01/20/RabbitMQ/"/>
+    <id>https://slowfever01.github.io/2024/01/20/RabbitMQ/</id>
+    <published>2024-01-20T04:22:15.000Z</published>
+    <updated>2024-01-20T04:38:42.571Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;RabbitMQ&quot;&gt;&lt;a href=&quot;#RabbitMQ&quot; class=&quot;headerlink&quot; title=&quot;RabbitMQ&quot;&gt;&lt;/a&gt;RabbitMQ&lt;/h1&gt;&lt;h1 id=&quot;1-初识MQ&quot;&gt;&lt;a href=&quot;#1-初识MQ&quot; class=&quot;headerlink&quot; title=&quot;1.初识MQ&quot;&gt;&lt;/a&gt;1.初识MQ&lt;/h1&gt;&lt;h2 id=&quot;1-1-同步和异步通讯&quot;&gt;&lt;a href=&quot;#1-1-同步和异步通讯&quot; class=&quot;headerlink&quot; title=&quot;1.1.同步和异步通讯&quot;&gt;&lt;/a&gt;1.1.同步和异步通讯&lt;/h2&gt;&lt;p&gt;微服务间通讯有同步和异步两种方式：&lt;/p&gt;
+&lt;p&gt;同步通讯：就像打电话，需要实时响应。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="RabbitMQ" scheme="https://slowfever01.github.io/categories/RabbitMQ/"/>
+    
+    
+    <category term="RabbitMQ" scheme="https://slowfever01.github.io/tags/RabbitMQ/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nacos安装指南</title>
+    <link href="https://slowfever01.github.io/2024/01/20/Centos7%E5%AE%89%E8%A3%85Docker/"/>
+    <id>https://slowfever01.github.io/2024/01/20/Centos7%E5%AE%89%E8%A3%85Docker/</id>
+    <published>2024-01-20T03:49:19.000Z</published>
+    <updated>2024-01-20T04:33:33.335Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;0-安装Docker&quot;&gt;&lt;a href=&quot;#0-安装Docker&quot; class=&quot;headerlink&quot; title=&quot;0.安装Docker&quot;&gt;&lt;/a&gt;0.安装Docker&lt;/h1&gt;&lt;p&gt;Docker 分为 CE 和 EE 两大版本。CE 即社区版（免费，支持周期 7 个月），EE 即企业版，强调安全，付费使用，支持周期 24 个月。&lt;/p&gt;
+&lt;p&gt;Docker CE 分为 &lt;code&gt;stable&lt;/code&gt; &lt;code&gt;test&lt;/code&gt; 和 &lt;code&gt;nightly&lt;/code&gt; 三个更新频道。&lt;/p&gt;
+&lt;p&gt;官方网站上有各种环境下的 &lt;a href=&quot;https://docs.docker.com/install/&quot;&gt;安装指南&lt;/a&gt;，这里主要介绍 Docker CE 在 CentOS上的安装。&lt;/p&gt;
+&lt;h1 id=&quot;1-CentOS安装Docker&quot;&gt;&lt;a href=&quot;#1-CentOS安装Docker&quot; class=&quot;headerlink&quot; title=&quot;1.CentOS安装Docker&quot;&gt;&lt;/a&gt;1.CentOS安装Docker&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="Docker" scheme="https://slowfever01.github.io/categories/Docker/"/>
+    
+    
+    <category term="Docker" scheme="https://slowfever01.github.io/tags/Docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Docker实用篇</title>
+    <link href="https://slowfever01.github.io/2024/01/20/Docker%E5%AE%9E%E7%94%A8%E7%AF%87/"/>
+    <id>https://slowfever01.github.io/2024/01/20/Docker%E5%AE%9E%E7%94%A8%E7%AF%87/</id>
+    <published>2024-01-20T03:49:19.000Z</published>
+    <updated>2024-01-20T04:33:40.131Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;Docker实用篇&quot;&gt;&lt;a href=&quot;#Docker实用篇&quot; class=&quot;headerlink&quot; title=&quot;Docker实用篇&quot;&gt;&lt;/a&gt;Docker实用篇&lt;/h1&gt;&lt;h1 id=&quot;0-学习目标&quot;&gt;&lt;a href=&quot;#0-学习目标&quot; class=&quot;headerlink&quot; title=&quot;0.学习目标&quot;&gt;&lt;/a&gt;0.学习目标&lt;/h1&gt;&lt;h1 id=&quot;1-初识Docker&quot;&gt;&lt;a href=&quot;#1-初识Docker&quot; class=&quot;headerlink&quot; title=&quot;1.初识Docker&quot;&gt;&lt;/a&gt;1.初识Docker&lt;/h1&gt;&lt;h2 id=&quot;1-1-什么是Docker&quot;&gt;&lt;a href=&quot;#1-1-什么是Docker&quot; class=&quot;headerlink&quot; title=&quot;1.1.什么是Docker&quot;&gt;&lt;/a&gt;1.1.什么是Docker&lt;/h2&gt;&lt;p&gt;微服务虽然具备各种各样的优势，但服务的拆分通用给部署带来了很大的麻烦。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Docker" scheme="https://slowfever01.github.io/categories/Docker/"/>
+    
+    
+    <category term="Docker" scheme="https://slowfever01.github.io/tags/Docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nacos安装指南</title>
+    <link href="https://slowfever01.github.io/2024/01/08/Nacos%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97/"/>
+    <id>https://slowfever01.github.io/2024/01/08/Nacos%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97/</id>
+    <published>2024-01-08T12:49:19.000Z</published>
+    <updated>2024-01-20T04:38:51.610Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;Nacos安装指南&quot;&gt;&lt;a href=&quot;#Nacos安装指南&quot; class=&quot;headerlink&quot; title=&quot;Nacos安装指南&quot;&gt;&lt;/a&gt;Nacos安装指南&lt;/h1&gt;&lt;h1 id=&quot;1-Windows安装&quot;&gt;&lt;a href=&quot;#1-Windows安装&quot; class=&quot;headerlink&quot; title=&quot;1.Windows安装&quot;&gt;&lt;/a&gt;1.Windows安装&lt;/h1&gt;&lt;p&gt;开发阶段采用单机安装即可。&lt;/p&gt;
+&lt;h2 id=&quot;1-1-下载安装包&quot;&gt;&lt;a href=&quot;#1-1-下载安装包&quot; class=&quot;headerlink&quot; title=&quot;1.1.下载安装包&quot;&gt;&lt;/a&gt;1.1.下载安装包&lt;/h2&gt;&lt;p&gt;在Nacos的GitHub页面，提供有下载链接，可以下载编译好的Nacos服务端或者源代码：&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Nacos" scheme="https://slowfever01.github.io/categories/Nacos/"/>
+    
+    
+    <category term="Nacos" scheme="https://slowfever01.github.io/tags/Nacos/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringCloud day1</title>
+    <link href="https://slowfever01.github.io/2024/01/08/SpringCloud01/"/>
+    <id>https://slowfever01.github.io/2024/01/08/SpringCloud01/</id>
+    <published>2024-01-08T12:49:19.000Z</published>
+    <updated>2024-01-14T13:58:33.398Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;SpringCloud-day1&quot;&gt;&lt;a href=&quot;#SpringCloud-day1&quot; class=&quot;headerlink&quot; title=&quot;SpringCloud day1&quot;&gt;&lt;/a&gt;SpringCloud day1&lt;/h1&gt;&lt;h1 id=&quot;1-认识微服务&quot;&gt;&lt;a href=&quot;#1-认识微服务&quot; class=&quot;headerlink&quot; title=&quot;1.认识微服务&quot;&gt;&lt;/a&gt;1.认识微服务&lt;/h1&gt;&lt;p&gt;随着互联网行业的发展，对服务的要求也越来越高，服务架构也从单体架构逐渐演变为现在流行的微服务架构。这些架构之间有怎样的差别呢？&lt;/p&gt;
+&lt;h2 id=&quot;1-0-学习目标&quot;&gt;&lt;a href=&quot;#1-0-学习目标&quot; class=&quot;headerlink&quot; title=&quot;1.0.学习目标&quot;&gt;&lt;/a&gt;1.0.学习目标&lt;/h2&gt;&lt;p&gt;了解微服务架构的优缺点&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="SpringCloud" scheme="https://slowfever01.github.io/categories/SpringCloud/"/>
+    
+    
+    <category term="SpringCloud" scheme="https://slowfever01.github.io/tags/SpringCloud/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringCloud day2</title>
+    <link href="https://slowfever01.github.io/2024/01/08/SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702/"/>
+    <id>https://slowfever01.github.io/2024/01/08/SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702/</id>
+    <published>2024-01-08T12:49:19.000Z</published>
+    <updated>2024-01-14T13:59:12.376Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;SpringCloud-day2&quot;&gt;&lt;a href=&quot;#SpringCloud-day2&quot; class=&quot;headerlink&quot; title=&quot;SpringCloud day2&quot;&gt;&lt;/a&gt;SpringCloud day2&lt;/h1&gt;&lt;h1 id=&quot;0-学习目标&quot;&gt;&lt;a href=&quot;#0-学习目标&quot; class=&quot;headerlink&quot; title=&quot;0.学习目标&quot;&gt;&lt;/a&gt;0.学习目标&lt;/h1&gt;&lt;h1 id=&quot;1-Nacos配置管理&quot;&gt;&lt;a href=&quot;#1-Nacos配置管理&quot; class=&quot;headerlink&quot; title=&quot;1.Nacos配置管理&quot;&gt;&lt;/a&gt;1.Nacos配置管理&lt;/h1&gt;&lt;p&gt;Nacos除了可以做注册中心，同样可以做配置管理来使用。&lt;/p&gt;
+&lt;h2 id=&quot;1-1-统一配置管理&quot;&gt;&lt;a href=&quot;#1-1-统一配置管理&quot; class=&quot;headerlink&quot; title=&quot;1.1.统一配置管理&quot;&gt;&lt;/a&gt;1.1.统一配置管理&lt;/h2&gt;</summary>
+    
+    
+    
+    <category term="SpringCloud" scheme="https://slowfever01.github.io/categories/SpringCloud/"/>
+    
+    
+    <category term="SpringCloud" scheme="https://slowfever01.github.io/tags/SpringCloud/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nacos集群搭建</title>
+    <link href="https://slowfever01.github.io/2024/01/08/nacos%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/"/>
+    <id>https://slowfever01.github.io/2024/01/08/nacos%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</id>
+    <published>2024-01-08T12:49:19.000Z</published>
+    <updated>2024-01-14T13:57:30.616Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;Nacos集群搭建&quot;&gt;&lt;a href=&quot;#Nacos集群搭建&quot; class=&quot;headerlink&quot; title=&quot;Nacos集群搭建&quot;&gt;&lt;/a&gt;Nacos集群搭建&lt;/h1&gt;&lt;h1 id=&quot;1-集群结构图&quot;&gt;&lt;a href=&quot;#1-集群结构图&quot; class=&quot;headerlink&quot; title=&quot;1.集群结构图&quot;&gt;&lt;/a&gt;1.集群结构图&lt;/h1&gt;&lt;p&gt;官方给出的Nacos集群图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/image-20210409210621117.png&quot; alt=&quot;image-20210409210621117&quot;&gt;&lt;/p&gt;
+&lt;p&gt;其中包含3个nacos节点，然后一个负载均衡器代理3个Nacos。这里负载均衡器可以使用nginx。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Nacos" scheme="https://slowfever01.github.io/categories/Nacos/"/>
+    
+    
+    <category term="Nacos" scheme="https://slowfever01.github.io/tags/Nacos/"/>
+    
+  </entry>
+  
+</feed>
