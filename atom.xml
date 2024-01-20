@@ -57,17 +57,14 @@
   </entry>
   
   <entry>
-    <title>Nacos安装指南</title>
-    <link href="https://slowfever01.github.io/2024/01/20/Centos7%E5%AE%89%E8%A3%85Docker/"/>
-    <id>https://slowfever01.github.io/2024/01/20/Centos7%E5%AE%89%E8%A3%85Docker/</id>
+    <title>Docker实用篇</title>
+    <link href="https://slowfever01.github.io/2024/01/20/Docker%E5%AE%9E%E7%94%A8%E7%AF%87/"/>
+    <id>https://slowfever01.github.io/2024/01/20/Docker%E5%AE%9E%E7%94%A8%E7%AF%87/</id>
     <published>2024-01-20T03:49:19.000Z</published>
-    <updated>2024-01-20T04:33:33.335Z</updated>
+    <updated>2024-01-20T04:33:40.131Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;0-安装Docker&quot;&gt;&lt;a href=&quot;#0-安装Docker&quot; class=&quot;headerlink&quot; title=&quot;0.安装Docker&quot;&gt;&lt;/a&gt;0.安装Docker&lt;/h1&gt;&lt;p&gt;Docker 分为 CE 和 EE 两大版本。CE 即社区版（免费，支持周期 7 个月），EE 即企业版，强调安全，付费使用，支持周期 24 个月。&lt;/p&gt;
-&lt;p&gt;Docker CE 分为 &lt;code&gt;stable&lt;/code&gt; &lt;code&gt;test&lt;/code&gt; 和 &lt;code&gt;nightly&lt;/code&gt; 三个更新频道。&lt;/p&gt;
-&lt;p&gt;官方网站上有各种环境下的 &lt;a href=&quot;https://docs.docker.com/install/&quot;&gt;安装指南&lt;/a&gt;，这里主要介绍 Docker CE 在 CentOS上的安装。&lt;/p&gt;
-&lt;h1 id=&quot;1-CentOS安装Docker&quot;&gt;&lt;a href=&quot;#1-CentOS安装Docker&quot; class=&quot;headerlink&quot; title=&quot;1.CentOS安装Docker&quot;&gt;&lt;/a&gt;1.CentOS安装Docker&lt;/h1&gt;</summary>
+    <summary type="html">&lt;h1 id=&quot;Docker实用篇&quot;&gt;&lt;a href=&quot;#Docker实用篇&quot; class=&quot;headerlink&quot; title=&quot;Docker实用篇&quot;&gt;&lt;/a&gt;Docker实用篇&lt;/h1&gt;&lt;h1 id=&quot;0-学习目标&quot;&gt;&lt;a href=&quot;#0-学习目标&quot; class=&quot;headerlink&quot; title=&quot;0.学习目标&quot;&gt;&lt;/a&gt;0.学习目标&lt;/h1&gt;&lt;h1 id=&quot;1-初识Docker&quot;&gt;&lt;a href=&quot;#1-初识Docker&quot; class=&quot;headerlink&quot; title=&quot;1.初识Docker&quot;&gt;&lt;/a&gt;1.初识Docker&lt;/h1&gt;&lt;h2 id=&quot;1-1-什么是Docker&quot;&gt;&lt;a href=&quot;#1-1-什么是Docker&quot; class=&quot;headerlink&quot; title=&quot;1.1.什么是Docker&quot;&gt;&lt;/a&gt;1.1.什么是Docker&lt;/h2&gt;&lt;p&gt;微服务虽然具备各种各样的优势，但服务的拆分通用给部署带来了很大的麻烦。&lt;/p&gt;</summary>
     
     
     
@@ -79,14 +76,17 @@
   </entry>
   
   <entry>
-    <title>Docker实用篇</title>
-    <link href="https://slowfever01.github.io/2024/01/20/Docker%E5%AE%9E%E7%94%A8%E7%AF%87/"/>
-    <id>https://slowfever01.github.io/2024/01/20/Docker%E5%AE%9E%E7%94%A8%E7%AF%87/</id>
+    <title>Nacos安装指南</title>
+    <link href="https://slowfever01.github.io/2024/01/20/Centos7%E5%AE%89%E8%A3%85Docker/"/>
+    <id>https://slowfever01.github.io/2024/01/20/Centos7%E5%AE%89%E8%A3%85Docker/</id>
     <published>2024-01-20T03:49:19.000Z</published>
-    <updated>2024-01-20T04:33:40.131Z</updated>
+    <updated>2024-01-20T04:33:33.335Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;Docker实用篇&quot;&gt;&lt;a href=&quot;#Docker实用篇&quot; class=&quot;headerlink&quot; title=&quot;Docker实用篇&quot;&gt;&lt;/a&gt;Docker实用篇&lt;/h1&gt;&lt;h1 id=&quot;0-学习目标&quot;&gt;&lt;a href=&quot;#0-学习目标&quot; class=&quot;headerlink&quot; title=&quot;0.学习目标&quot;&gt;&lt;/a&gt;0.学习目标&lt;/h1&gt;&lt;h1 id=&quot;1-初识Docker&quot;&gt;&lt;a href=&quot;#1-初识Docker&quot; class=&quot;headerlink&quot; title=&quot;1.初识Docker&quot;&gt;&lt;/a&gt;1.初识Docker&lt;/h1&gt;&lt;h2 id=&quot;1-1-什么是Docker&quot;&gt;&lt;a href=&quot;#1-1-什么是Docker&quot; class=&quot;headerlink&quot; title=&quot;1.1.什么是Docker&quot;&gt;&lt;/a&gt;1.1.什么是Docker&lt;/h2&gt;&lt;p&gt;微服务虽然具备各种各样的优势，但服务的拆分通用给部署带来了很大的麻烦。&lt;/p&gt;</summary>
+    <summary type="html">&lt;h1 id=&quot;0-安装Docker&quot;&gt;&lt;a href=&quot;#0-安装Docker&quot; class=&quot;headerlink&quot; title=&quot;0.安装Docker&quot;&gt;&lt;/a&gt;0.安装Docker&lt;/h1&gt;&lt;p&gt;Docker 分为 CE 和 EE 两大版本。CE 即社区版（免费，支持周期 7 个月），EE 即企业版，强调安全，付费使用，支持周期 24 个月。&lt;/p&gt;
+&lt;p&gt;Docker CE 分为 &lt;code&gt;stable&lt;/code&gt; &lt;code&gt;test&lt;/code&gt; 和 &lt;code&gt;nightly&lt;/code&gt; 三个更新频道。&lt;/p&gt;
+&lt;p&gt;官方网站上有各种环境下的 &lt;a href=&quot;https://docs.docker.com/install/&quot;&gt;安装指南&lt;/a&gt;，这里主要介绍 Docker CE 在 CentOS上的安装。&lt;/p&gt;
+&lt;h1 id=&quot;1-CentOS安装Docker&quot;&gt;&lt;a href=&quot;#1-CentOS安装Docker&quot; class=&quot;headerlink&quot; title=&quot;1.CentOS安装Docker&quot;&gt;&lt;/a&gt;1.CentOS安装Docker&lt;/h1&gt;</summary>
     
     
     
@@ -138,26 +138,6 @@
   </entry>
   
   <entry>
-    <title>SpringCloud day2</title>
-    <link href="https://slowfever01.github.io/2024/01/08/SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702/"/>
-    <id>https://slowfever01.github.io/2024/01/08/SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702/</id>
-    <published>2024-01-08T12:49:19.000Z</published>
-    <updated>2024-01-14T13:59:12.376Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;SpringCloud-day2&quot;&gt;&lt;a href=&quot;#SpringCloud-day2&quot; class=&quot;headerlink&quot; title=&quot;SpringCloud day2&quot;&gt;&lt;/a&gt;SpringCloud day2&lt;/h1&gt;&lt;h1 id=&quot;0-学习目标&quot;&gt;&lt;a href=&quot;#0-学习目标&quot; class=&quot;headerlink&quot; title=&quot;0.学习目标&quot;&gt;&lt;/a&gt;0.学习目标&lt;/h1&gt;&lt;h1 id=&quot;1-Nacos配置管理&quot;&gt;&lt;a href=&quot;#1-Nacos配置管理&quot; class=&quot;headerlink&quot; title=&quot;1.Nacos配置管理&quot;&gt;&lt;/a&gt;1.Nacos配置管理&lt;/h1&gt;&lt;p&gt;Nacos除了可以做注册中心，同样可以做配置管理来使用。&lt;/p&gt;
-&lt;h2 id=&quot;1-1-统一配置管理&quot;&gt;&lt;a href=&quot;#1-1-统一配置管理&quot; class=&quot;headerlink&quot; title=&quot;1.1.统一配置管理&quot;&gt;&lt;/a&gt;1.1.统一配置管理&lt;/h2&gt;</summary>
-    
-    
-    
-    <category term="SpringCloud" scheme="https://slowfever01.github.io/categories/SpringCloud/"/>
-    
-    
-    <category term="SpringCloud" scheme="https://slowfever01.github.io/tags/SpringCloud/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Nacos集群搭建</title>
     <link href="https://slowfever01.github.io/2024/01/08/nacos%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/"/>
     <id>https://slowfever01.github.io/2024/01/08/nacos%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</id>
@@ -175,6 +155,26 @@
     
     
     <category term="Nacos" scheme="https://slowfever01.github.io/tags/Nacos/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringCloud day2</title>
+    <link href="https://slowfever01.github.io/2024/01/08/SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702/"/>
+    <id>https://slowfever01.github.io/2024/01/08/SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702/</id>
+    <published>2024-01-08T12:49:19.000Z</published>
+    <updated>2024-01-14T13:59:12.376Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;SpringCloud-day2&quot;&gt;&lt;a href=&quot;#SpringCloud-day2&quot; class=&quot;headerlink&quot; title=&quot;SpringCloud day2&quot;&gt;&lt;/a&gt;SpringCloud day2&lt;/h1&gt;&lt;h1 id=&quot;0-学习目标&quot;&gt;&lt;a href=&quot;#0-学习目标&quot; class=&quot;headerlink&quot; title=&quot;0.学习目标&quot;&gt;&lt;/a&gt;0.学习目标&lt;/h1&gt;&lt;h1 id=&quot;1-Nacos配置管理&quot;&gt;&lt;a href=&quot;#1-Nacos配置管理&quot; class=&quot;headerlink&quot; title=&quot;1.Nacos配置管理&quot;&gt;&lt;/a&gt;1.Nacos配置管理&lt;/h1&gt;&lt;p&gt;Nacos除了可以做注册中心，同样可以做配置管理来使用。&lt;/p&gt;
+&lt;h2 id=&quot;1-1-统一配置管理&quot;&gt;&lt;a href=&quot;#1-1-统一配置管理&quot; class=&quot;headerlink&quot; title=&quot;1.1.统一配置管理&quot;&gt;&lt;/a&gt;1.1.统一配置管理&lt;/h2&gt;</summary>
+    
+    
+    
+    <category term="SpringCloud" scheme="https://slowfever01.github.io/categories/SpringCloud/"/>
+    
+    
+    <category term="SpringCloud" scheme="https://slowfever01.github.io/tags/SpringCloud/"/>
     
   </entry>
   
