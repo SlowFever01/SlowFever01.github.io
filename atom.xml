@@ -41,11 +41,13 @@
     <link href="https://slowfever01.github.io/2024/01/20/RabbitMQ/"/>
     <id>https://slowfever01.github.io/2024/01/20/RabbitMQ/</id>
     <published>2024-01-20T04:22:15.000Z</published>
-    <updated>2024-01-20T04:38:42.571Z</updated>
+    <updated>2024-01-21T12:31:34.016Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;RabbitMQ&quot;&gt;&lt;a href=&quot;#RabbitMQ&quot; class=&quot;headerlink&quot; title=&quot;RabbitMQ&quot;&gt;&lt;/a&gt;RabbitMQ&lt;/h1&gt;&lt;h1 id=&quot;1-初识MQ&quot;&gt;&lt;a href=&quot;#1-初识MQ&quot; class=&quot;headerlink&quot; title=&quot;1.初识MQ&quot;&gt;&lt;/a&gt;1.初识MQ&lt;/h1&gt;&lt;h2 id=&quot;1-1-同步和异步通讯&quot;&gt;&lt;a href=&quot;#1-1-同步和异步通讯&quot; class=&quot;headerlink&quot; title=&quot;1.1.同步和异步通讯&quot;&gt;&lt;/a&gt;1.1.同步和异步通讯&lt;/h2&gt;&lt;p&gt;微服务间通讯有同步和异步两种方式：&lt;/p&gt;
-&lt;p&gt;同步通讯：就像打电话，需要实时响应。&lt;/p&gt;</summary>
+    <summary type="html">&lt;h1 id=&quot;RabbitMQ&quot;&gt;&lt;a href=&quot;#RabbitMQ&quot; class=&quot;headerlink&quot; title=&quot;RabbitMQ&quot;&gt;&lt;/a&gt;RabbitMQ&lt;/h1&gt;&lt;h1 id=&quot;1-初识MQ&quot;&gt;&lt;a href=&quot;#1-初识MQ&quot; class=&quot;headerlink&quot; title=&quot;1.初识MQ&quot;&gt;&lt;/a&gt;1.初识MQ&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;注：ctrl+p查看参数列表&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;1-1-同步和异步通讯&quot;&gt;&lt;a href=&quot;#1-1-同步和异步通讯&quot; class=&quot;headerlink&quot; title=&quot;1.1.同步和异步通讯&quot;&gt;&lt;/a&gt;1.1.同步和异步通讯&lt;/h2&gt;&lt;p&gt;微服务间通讯有同步和异步两种方式：&lt;/p&gt;</summary>
     
     
     
@@ -94,6 +96,91 @@
     
     
     <category term="Docker" scheme="https://slowfever01.github.io/tags/Docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>elasticsearch day1</title>
+    <link href="https://slowfever01.github.io/2024/01/20/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E01/"/>
+    <id>https://slowfever01.github.io/2024/01/20/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E01/</id>
+    <published>2024-01-20T03:49:19.000Z</published>
+    <updated>2024-01-21T12:52:01.703Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;分布式搜索引擎01&quot;&gt;&lt;a href=&quot;#分布式搜索引擎01&quot; class=&quot;headerlink&quot; title=&quot;分布式搜索引擎01&quot;&gt;&lt;/a&gt;分布式搜索引擎01&lt;/h1&gt;&lt;p&gt;– elasticsearch基础&lt;/p&gt;
+&lt;h1 id=&quot;0-学习目标&quot;&gt;&lt;a href=&quot;#0-学习目标&quot; class=&quot;headerlink&quot; title=&quot;0.学习目标&quot;&gt;&lt;/a&gt;0.学习目标&lt;/h1&gt;&lt;h1 id=&quot;1-初识elasticsearch&quot;&gt;&lt;a href=&quot;#1-初识elasticsearch&quot; class=&quot;headerlink&quot; title=&quot;1.初识elasticsearch&quot;&gt;&lt;/a&gt;1.初识elasticsearch&lt;/h1&gt;&lt;h2 id=&quot;1-1-了解ES&quot;&gt;&lt;a href=&quot;#1-1-了解ES&quot; class=&quot;headerlink&quot; title=&quot;1.1.了解ES&quot;&gt;&lt;/a&gt;1.1.了解ES&lt;/h2&gt;</summary>
+    
+    
+    
+    <category term="elasticsearch" scheme="https://slowfever01.github.io/categories/elasticsearch/"/>
+    
+    
+    <category term="elasticsearch" scheme="https://slowfever01.github.io/tags/elasticsearch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>elasticsearch day2</title>
+    <link href="https://slowfever01.github.io/2024/01/20/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E02/"/>
+    <id>https://slowfever01.github.io/2024/01/20/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E02/</id>
+    <published>2024-01-20T03:49:19.000Z</published>
+    <updated>2024-01-21T12:52:41.210Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;分布式搜索引擎02&quot;&gt;&lt;a href=&quot;#分布式搜索引擎02&quot; class=&quot;headerlink&quot; title=&quot;分布式搜索引擎02&quot;&gt;&lt;/a&gt;分布式搜索引擎02&lt;/h1&gt;&lt;p&gt;在昨天的学习中，我们已经导入了大量数据到elasticsearch中，实现了elasticsearch的数据存储功能。但elasticsearch最擅长的还是搜索和数据分析。&lt;/p&gt;
+&lt;p&gt;所以今天，我们研究下elasticsearch的数据搜索功能。我们会分别使用&lt;strong&gt;DSL&lt;/strong&gt;和&lt;strong&gt;RestClient&lt;/strong&gt;实现搜索。&lt;/p&gt;
+&lt;h1 id=&quot;0-学习目标&quot;&gt;&lt;a href=&quot;#0-学习目标&quot; class=&quot;headerlink&quot; title=&quot;0.学习目标&quot;&gt;&lt;/a&gt;0.学习目标&lt;/h1&gt;&lt;h1 id=&quot;1-DSL查询文档&quot;&gt;&lt;a href=&quot;#1-DSL查询文档&quot; class=&quot;headerlink&quot; title=&quot;1.DSL查询文档&quot;&gt;&lt;/a&gt;1.DSL查询文档&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="elasticsearch" scheme="https://slowfever01.github.io/categories/elasticsearch/"/>
+    
+    
+    <category term="elasticsearch" scheme="https://slowfever01.github.io/tags/elasticsearch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>安装elasticsearch</title>
+    <link href="https://slowfever01.github.io/2024/01/20/%E5%AE%89%E8%A3%85elasticsearch/"/>
+    <id>https://slowfever01.github.io/2024/01/20/%E5%AE%89%E8%A3%85elasticsearch/</id>
+    <published>2024-01-20T03:49:19.000Z</published>
+    <updated>2024-01-21T12:51:21.370Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;安装elasticsearch&quot;&gt;&lt;a href=&quot;#安装elasticsearch&quot; class=&quot;headerlink&quot; title=&quot;安装elasticsearch&quot;&gt;&lt;/a&gt;安装elasticsearch&lt;/h1&gt;&lt;h1 id=&quot;1-部署单点es&quot;&gt;&lt;a href=&quot;#1-部署单点es&quot; class=&quot;headerlink&quot; title=&quot;1.部署单点es&quot;&gt;&lt;/a&gt;1.部署单点es&lt;/h1&gt;&lt;h2 id=&quot;1-1-创建网络&quot;&gt;&lt;a href=&quot;#1-1-创建网络&quot; class=&quot;headerlink&quot; title=&quot;1.1.创建网络&quot;&gt;&lt;/a&gt;1.1.创建网络&lt;/h2&gt;&lt;p&gt;因为我们还需要部署kibana容器，因此需要让es和kibana容器互联。这里先创建一个网络：&lt;/p&gt;
+&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;docker network create es-net&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    <category term="elasticsearch" scheme="https://slowfever01.github.io/categories/elasticsearch/"/>
+    
+    
+    <category term="elasticsearch" scheme="https://slowfever01.github.io/tags/elasticsearch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>elasticsearch day3</title>
+    <link href="https://slowfever01.github.io/2024/01/20/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E03/"/>
+    <id>https://slowfever01.github.io/2024/01/20/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E03/</id>
+    <published>2024-01-20T03:49:19.000Z</published>
+    <updated>2024-01-21T12:52:35.029Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;分布式搜索引擎03&quot;&gt;&lt;a href=&quot;#分布式搜索引擎03&quot; class=&quot;headerlink&quot; title=&quot;分布式搜索引擎03&quot;&gt;&lt;/a&gt;分布式搜索引擎03&lt;/h1&gt;&lt;h1 id=&quot;0-学习目标&quot;&gt;&lt;a href=&quot;#0-学习目标&quot; class=&quot;headerlink&quot; title=&quot;0.学习目标&quot;&gt;&lt;/a&gt;0.学习目标&lt;/h1&gt;&lt;h1 id=&quot;1-数据聚合&quot;&gt;&lt;a href=&quot;#1-数据聚合&quot; class=&quot;headerlink&quot; title=&quot;1.数据聚合&quot;&gt;&lt;/a&gt;1.数据聚合&lt;/h1&gt;&lt;p&gt;**&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html&quot;&gt;聚合（&lt;/a&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html&quot;&gt;aggregations&lt;/a&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html&quot;&gt;）&lt;/a&gt;**可以让我们极其方便的实现对数据的统计、分析、运算。例如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;什么品牌的手机最受欢迎？&lt;/li&gt;
+&lt;li&gt;这些手机的平均价格、最高价格、最低价格？&lt;/li&gt;
+&lt;li&gt;这些手机每月的销售情况如何？&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="elasticsearch" scheme="https://slowfever01.github.io/categories/elasticsearch/"/>
+    
+    
+    <category term="elasticsearch" scheme="https://slowfever01.github.io/tags/elasticsearch/"/>
     
   </entry>
   
