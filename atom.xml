@@ -6,7 +6,7 @@
   <link href="https://slowfever01.github.io/atom.xml" rel="self"/>
   
   <link href="https://slowfever01.github.io/"/>
-  <updated>2024-01-20T04:38:23.918Z</updated>
+  <updated>2024-04-02T12:50:06.740Z</updated>
   <id>https://slowfever01.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>博客项目</title>
+    <link href="https://slowfever01.github.io/2024/04/02/%E5%9F%BA%E4%BA%8ESpringboot%E5%92%8CVue%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE/"/>
+    <id>https://slowfever01.github.io/2024/04/02/%E5%9F%BA%E4%BA%8ESpringboot%E5%92%8CVue%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE/</id>
+    <published>2024-04-02T12:49:19.000Z</published>
+    <updated>2024-04-02T12:50:06.740Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;基于Springboot和Vue的个人博客搭建项目&quot;&gt;&lt;a href=&quot;#基于Springboot和Vue的个人博客搭建项目&quot; class=&quot;headerlink&quot; title=&quot;基于Springboot和Vue的个人博客搭建项目&quot;&gt;&lt;/a&gt;基于Springboot和Vue的个人博客搭建项目&lt;/h1&gt;&lt;h1 id=&quot;技术栈&quot;&gt;&lt;a href=&quot;#技术栈&quot; class=&quot;headerlink&quot; title=&quot;技术栈&quot;&gt;&lt;/a&gt;技术栈&lt;/h1&gt;&lt;p&gt;Springboot  Mybatis mysql redis swagger2 EasyExcel SpringSecurity Vue ElementUI&lt;/p&gt;
+&lt;h1 id=&quot;项目介绍&quot;&gt;&lt;a href=&quot;#项目介绍&quot; class=&quot;headerlink&quot; title=&quot;项目介绍&quot;&gt;&lt;/a&gt;项目介绍&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;博客项目，分为前后端，前端有两个系统界面：前台系统负责博客页面，后台系统负责用户和页面管理。后端也有两个系统，分别是前端两个界面的具体实现。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;本项目创建了三个模块：博客模块(hth-blog）、管理模块(hth-admin)、公共模块(hth&amp;#x3D;framework)。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;将三个模块放到父模块下(hthBlog)。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="SpringBoot Vue" scheme="https://slowfever01.github.io/categories/SpringBoot-Vue/"/>
+    
+    
+    <category term="项目" scheme="https://slowfever01.github.io/tags/%E9%A1%B9%E7%9B%AE/"/>
+    
+  </entry>
   
   <entry>
     <title>RabbitMQ部署指南</title>
@@ -100,15 +127,19 @@
   </entry>
   
   <entry>
-    <title>elasticsearch day1</title>
-    <link href="https://slowfever01.github.io/2024/01/20/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E01/"/>
-    <id>https://slowfever01.github.io/2024/01/20/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E01/</id>
+    <title>elasticsearch day3</title>
+    <link href="https://slowfever01.github.io/2024/01/20/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E03/"/>
+    <id>https://slowfever01.github.io/2024/01/20/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E03/</id>
     <published>2024-01-20T03:49:19.000Z</published>
-    <updated>2024-01-21T12:52:01.703Z</updated>
+    <updated>2024-01-21T12:52:35.029Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;分布式搜索引擎01&quot;&gt;&lt;a href=&quot;#分布式搜索引擎01&quot; class=&quot;headerlink&quot; title=&quot;分布式搜索引擎01&quot;&gt;&lt;/a&gt;分布式搜索引擎01&lt;/h1&gt;&lt;p&gt;– elasticsearch基础&lt;/p&gt;
-&lt;h1 id=&quot;0-学习目标&quot;&gt;&lt;a href=&quot;#0-学习目标&quot; class=&quot;headerlink&quot; title=&quot;0.学习目标&quot;&gt;&lt;/a&gt;0.学习目标&lt;/h1&gt;&lt;h1 id=&quot;1-初识elasticsearch&quot;&gt;&lt;a href=&quot;#1-初识elasticsearch&quot; class=&quot;headerlink&quot; title=&quot;1.初识elasticsearch&quot;&gt;&lt;/a&gt;1.初识elasticsearch&lt;/h1&gt;&lt;h2 id=&quot;1-1-了解ES&quot;&gt;&lt;a href=&quot;#1-1-了解ES&quot; class=&quot;headerlink&quot; title=&quot;1.1.了解ES&quot;&gt;&lt;/a&gt;1.1.了解ES&lt;/h2&gt;</summary>
+    <summary type="html">&lt;h1 id=&quot;分布式搜索引擎03&quot;&gt;&lt;a href=&quot;#分布式搜索引擎03&quot; class=&quot;headerlink&quot; title=&quot;分布式搜索引擎03&quot;&gt;&lt;/a&gt;分布式搜索引擎03&lt;/h1&gt;&lt;h1 id=&quot;0-学习目标&quot;&gt;&lt;a href=&quot;#0-学习目标&quot; class=&quot;headerlink&quot; title=&quot;0.学习目标&quot;&gt;&lt;/a&gt;0.学习目标&lt;/h1&gt;&lt;h1 id=&quot;1-数据聚合&quot;&gt;&lt;a href=&quot;#1-数据聚合&quot; class=&quot;headerlink&quot; title=&quot;1.数据聚合&quot;&gt;&lt;/a&gt;1.数据聚合&lt;/h1&gt;&lt;p&gt;**&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html&quot;&gt;聚合（&lt;/a&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html&quot;&gt;aggregations&lt;/a&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html&quot;&gt;）&lt;/a&gt;**可以让我们极其方便的实现对数据的统计、分析、运算。例如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;什么品牌的手机最受欢迎？&lt;/li&gt;
+&lt;li&gt;这些手机的平均价格、最高价格、最低价格？&lt;/li&gt;
+&lt;li&gt;这些手机每月的销售情况如何？&lt;/li&gt;
+&lt;/ul&gt;</summary>
     
     
     
@@ -141,15 +172,15 @@
   </entry>
   
   <entry>
-    <title>安装elasticsearch</title>
-    <link href="https://slowfever01.github.io/2024/01/20/%E5%AE%89%E8%A3%85elasticsearch/"/>
-    <id>https://slowfever01.github.io/2024/01/20/%E5%AE%89%E8%A3%85elasticsearch/</id>
+    <title>elasticsearch day1</title>
+    <link href="https://slowfever01.github.io/2024/01/20/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E01/"/>
+    <id>https://slowfever01.github.io/2024/01/20/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E01/</id>
     <published>2024-01-20T03:49:19.000Z</published>
-    <updated>2024-01-21T12:51:21.370Z</updated>
+    <updated>2024-01-21T12:52:01.703Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;安装elasticsearch&quot;&gt;&lt;a href=&quot;#安装elasticsearch&quot; class=&quot;headerlink&quot; title=&quot;安装elasticsearch&quot;&gt;&lt;/a&gt;安装elasticsearch&lt;/h1&gt;&lt;h1 id=&quot;1-部署单点es&quot;&gt;&lt;a href=&quot;#1-部署单点es&quot; class=&quot;headerlink&quot; title=&quot;1.部署单点es&quot;&gt;&lt;/a&gt;1.部署单点es&lt;/h1&gt;&lt;h2 id=&quot;1-1-创建网络&quot;&gt;&lt;a href=&quot;#1-1-创建网络&quot; class=&quot;headerlink&quot; title=&quot;1.1.创建网络&quot;&gt;&lt;/a&gt;1.1.创建网络&lt;/h2&gt;&lt;p&gt;因为我们还需要部署kibana容器，因此需要让es和kibana容器互联。这里先创建一个网络：&lt;/p&gt;
-&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;docker network create es-net&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    <summary type="html">&lt;h1 id=&quot;分布式搜索引擎01&quot;&gt;&lt;a href=&quot;#分布式搜索引擎01&quot; class=&quot;headerlink&quot; title=&quot;分布式搜索引擎01&quot;&gt;&lt;/a&gt;分布式搜索引擎01&lt;/h1&gt;&lt;p&gt;– elasticsearch基础&lt;/p&gt;
+&lt;h1 id=&quot;0-学习目标&quot;&gt;&lt;a href=&quot;#0-学习目标&quot; class=&quot;headerlink&quot; title=&quot;0.学习目标&quot;&gt;&lt;/a&gt;0.学习目标&lt;/h1&gt;&lt;h1 id=&quot;1-初识elasticsearch&quot;&gt;&lt;a href=&quot;#1-初识elasticsearch&quot; class=&quot;headerlink&quot; title=&quot;1.初识elasticsearch&quot;&gt;&lt;/a&gt;1.初识elasticsearch&lt;/h1&gt;&lt;h2 id=&quot;1-1-了解ES&quot;&gt;&lt;a href=&quot;#1-1-了解ES&quot; class=&quot;headerlink&quot; title=&quot;1.1.了解ES&quot;&gt;&lt;/a&gt;1.1.了解ES&lt;/h2&gt;</summary>
     
     
     
@@ -161,19 +192,15 @@
   </entry>
   
   <entry>
-    <title>elasticsearch day3</title>
-    <link href="https://slowfever01.github.io/2024/01/20/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E03/"/>
-    <id>https://slowfever01.github.io/2024/01/20/%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E03/</id>
+    <title>安装elasticsearch</title>
+    <link href="https://slowfever01.github.io/2024/01/20/%E5%AE%89%E8%A3%85elasticsearch/"/>
+    <id>https://slowfever01.github.io/2024/01/20/%E5%AE%89%E8%A3%85elasticsearch/</id>
     <published>2024-01-20T03:49:19.000Z</published>
-    <updated>2024-01-21T12:52:35.029Z</updated>
+    <updated>2024-01-21T12:51:21.370Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;分布式搜索引擎03&quot;&gt;&lt;a href=&quot;#分布式搜索引擎03&quot; class=&quot;headerlink&quot; title=&quot;分布式搜索引擎03&quot;&gt;&lt;/a&gt;分布式搜索引擎03&lt;/h1&gt;&lt;h1 id=&quot;0-学习目标&quot;&gt;&lt;a href=&quot;#0-学习目标&quot; class=&quot;headerlink&quot; title=&quot;0.学习目标&quot;&gt;&lt;/a&gt;0.学习目标&lt;/h1&gt;&lt;h1 id=&quot;1-数据聚合&quot;&gt;&lt;a href=&quot;#1-数据聚合&quot; class=&quot;headerlink&quot; title=&quot;1.数据聚合&quot;&gt;&lt;/a&gt;1.数据聚合&lt;/h1&gt;&lt;p&gt;**&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html&quot;&gt;聚合（&lt;/a&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html&quot;&gt;aggregations&lt;/a&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html&quot;&gt;）&lt;/a&gt;**可以让我们极其方便的实现对数据的统计、分析、运算。例如：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;什么品牌的手机最受欢迎？&lt;/li&gt;
-&lt;li&gt;这些手机的平均价格、最高价格、最低价格？&lt;/li&gt;
-&lt;li&gt;这些手机每月的销售情况如何？&lt;/li&gt;
-&lt;/ul&gt;</summary>
+    <summary type="html">&lt;h1 id=&quot;安装elasticsearch&quot;&gt;&lt;a href=&quot;#安装elasticsearch&quot; class=&quot;headerlink&quot; title=&quot;安装elasticsearch&quot;&gt;&lt;/a&gt;安装elasticsearch&lt;/h1&gt;&lt;h1 id=&quot;1-部署单点es&quot;&gt;&lt;a href=&quot;#1-部署单点es&quot; class=&quot;headerlink&quot; title=&quot;1.部署单点es&quot;&gt;&lt;/a&gt;1.部署单点es&lt;/h1&gt;&lt;h2 id=&quot;1-1-创建网络&quot;&gt;&lt;a href=&quot;#1-1-创建网络&quot; class=&quot;headerlink&quot; title=&quot;1.1.创建网络&quot;&gt;&lt;/a&gt;1.1.创建网络&lt;/h2&gt;&lt;p&gt;因为我们还需要部署kibana容器，因此需要让es和kibana容器互联。这里先创建一个网络：&lt;/p&gt;
+&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;docker network create es-net&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
     
     
     
@@ -225,6 +252,26 @@
   </entry>
   
   <entry>
+    <title>SpringCloud day2</title>
+    <link href="https://slowfever01.github.io/2024/01/08/SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702/"/>
+    <id>https://slowfever01.github.io/2024/01/08/SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702/</id>
+    <published>2024-01-08T12:49:19.000Z</published>
+    <updated>2024-01-14T13:59:12.376Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;SpringCloud-day2&quot;&gt;&lt;a href=&quot;#SpringCloud-day2&quot; class=&quot;headerlink&quot; title=&quot;SpringCloud day2&quot;&gt;&lt;/a&gt;SpringCloud day2&lt;/h1&gt;&lt;h1 id=&quot;0-学习目标&quot;&gt;&lt;a href=&quot;#0-学习目标&quot; class=&quot;headerlink&quot; title=&quot;0.学习目标&quot;&gt;&lt;/a&gt;0.学习目标&lt;/h1&gt;&lt;h1 id=&quot;1-Nacos配置管理&quot;&gt;&lt;a href=&quot;#1-Nacos配置管理&quot; class=&quot;headerlink&quot; title=&quot;1.Nacos配置管理&quot;&gt;&lt;/a&gt;1.Nacos配置管理&lt;/h1&gt;&lt;p&gt;Nacos除了可以做注册中心，同样可以做配置管理来使用。&lt;/p&gt;
+&lt;h2 id=&quot;1-1-统一配置管理&quot;&gt;&lt;a href=&quot;#1-1-统一配置管理&quot; class=&quot;headerlink&quot; title=&quot;1.1.统一配置管理&quot;&gt;&lt;/a&gt;1.1.统一配置管理&lt;/h2&gt;</summary>
+    
+    
+    
+    <category term="SpringCloud" scheme="https://slowfever01.github.io/categories/SpringCloud/"/>
+    
+    
+    <category term="SpringCloud" scheme="https://slowfever01.github.io/tags/SpringCloud/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Nacos集群搭建</title>
     <link href="https://slowfever01.github.io/2024/01/08/nacos%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/"/>
     <id>https://slowfever01.github.io/2024/01/08/nacos%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</id>
@@ -242,26 +289,6 @@
     
     
     <category term="Nacos" scheme="https://slowfever01.github.io/tags/Nacos/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringCloud day2</title>
-    <link href="https://slowfever01.github.io/2024/01/08/SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702/"/>
-    <id>https://slowfever01.github.io/2024/01/08/SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702/</id>
-    <published>2024-01-08T12:49:19.000Z</published>
-    <updated>2024-01-14T13:59:12.376Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;SpringCloud-day2&quot;&gt;&lt;a href=&quot;#SpringCloud-day2&quot; class=&quot;headerlink&quot; title=&quot;SpringCloud day2&quot;&gt;&lt;/a&gt;SpringCloud day2&lt;/h1&gt;&lt;h1 id=&quot;0-学习目标&quot;&gt;&lt;a href=&quot;#0-学习目标&quot; class=&quot;headerlink&quot; title=&quot;0.学习目标&quot;&gt;&lt;/a&gt;0.学习目标&lt;/h1&gt;&lt;h1 id=&quot;1-Nacos配置管理&quot;&gt;&lt;a href=&quot;#1-Nacos配置管理&quot; class=&quot;headerlink&quot; title=&quot;1.Nacos配置管理&quot;&gt;&lt;/a&gt;1.Nacos配置管理&lt;/h1&gt;&lt;p&gt;Nacos除了可以做注册中心，同样可以做配置管理来使用。&lt;/p&gt;
-&lt;h2 id=&quot;1-1-统一配置管理&quot;&gt;&lt;a href=&quot;#1-1-统一配置管理&quot; class=&quot;headerlink&quot; title=&quot;1.1.统一配置管理&quot;&gt;&lt;/a&gt;1.1.统一配置管理&lt;/h2&gt;</summary>
-    
-    
-    
-    <category term="SpringCloud" scheme="https://slowfever01.github.io/categories/SpringCloud/"/>
-    
-    
-    <category term="SpringCloud" scheme="https://slowfever01.github.io/tags/SpringCloud/"/>
     
   </entry>
   
