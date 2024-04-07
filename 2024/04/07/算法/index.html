@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"slowfever01.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="数字反转12345678910111213141516* 输入一个不小于 100 且小于 1000，同时包括小数点后一位的一个浮点数，例如 123.4 ，要求把这个数字翻转过来，变成 4.321并输出。* 输入格式* 一行一个浮点数* 输出格式* 一行一个浮点数    Scanner scanner &#x3D; new Scanner(System.in);            float t &#x3D; sc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法整理">
+<meta property="og:url" content="https://slowfever01.github.io/2024/04/07/%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="Smiling">
+<meta property="og:description" content="数字反转12345678910111213141516* 输入一个不小于 100 且小于 1000，同时包括小数点后一位的一个浮点数，例如 123.4 ，要求把这个数字翻转过来，变成 4.321并输出。* 输入格式* 一行一个浮点数* 输出格式* 一行一个浮点数    Scanner scanner &#x3D; new Scanner(System.in);            float t &#x3D; sc">
+<meta property="og:locale">
+<meta property="article:published_time" content="2024-04-07T15:08:19.000Z">
+<meta property="article:modified_time" content="2024-04-07T15:10:02.080Z">
+<meta property="article:author" content="SlowFever">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://slowfever01.github.io/2024/04/07/%E7%AE%97%E6%B3%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"https://slowfever01.github.io/2024/04/07/%E7%AE%97%E6%B3%95/","path":"2024/04/07/算法/","title":"算法整理"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>算法整理 | Smiling</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Smiling" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  <a target="_blank" rel="noopener" href="https://github.com/SlowFever01" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Smiling</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">8</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">7</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E5%8F%8D%E8%BD%AC"><span class="nav-number">1.</span> <span class="nav-text">数字反转</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#String%E5%88%B0%E5%8D%95-%E5%A4%9A%E7%B2%BE%E5%BA%A6%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">2.</span> <span class="nav-text">String到单&#x2F;多精度的转换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">时间类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%B0%E5%B9%B4%E5%88%A4%E6%96%AD"><span class="nav-number">4.</span> <span class="nav-text">闰年判断</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">冒泡排序算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E8%B4%A8%E6%95%B0"><span class="nav-number">6.</span> <span class="nav-text">判断质数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9E%E6%96%87%E6%95%B0"><span class="nav-number">7.</span> <span class="nav-text">回文数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%98%B6%E4%B9%98%E4%B9%8B%E5%92%8C"><span class="nav-number">8.</span> <span class="nav-text">阶乘之和</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="nav-number">9.</span> <span class="nav-text">最小值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%AB%98%E7%B2%BE%E5%BA%A6"><span class="nav-number">10.</span> <span class="nav-text">高精度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%95%B4%E6%95%B0%E4%B8%AD%E6%95%B0%E7%A0%81%E7%9A%84%E4%B8%AA%E6%95%B0"><span class="nav-number">11.</span> <span class="nav-text">查询整数中数码的个数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="nav-number">12.</span> <span class="nav-text">进制转换</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="SlowFever"
+      src="/images/picture1.jpg">
+  <p class="site-author-name" itemprop="name">SlowFever</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SlowFever01" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SlowFever01" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:gengrujin123@gmail.com" title="E-Mail → mailto:gengrujin123@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/images/QQ.jpg" title="QQ → &#x2F;images&#x2F;QQ.jpg" rel="noopener me"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/images/wechat.png" title="WeChat → &#x2F;images&#x2F;wechat.png" rel="noopener me"><i class="fab fa-weixin fa-fw"></i>WeChat</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://slowfever01.github.io/2024/04/07/%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/picture1.jpg">
+      <meta itemprop="name" content="SlowFever">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Smiling">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="算法整理 | Smiling">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          算法整理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2024-04-07 23:08:19 / Modified: 23:10:02" itemprop="dateCreated datePublished" datetime="2024-04-07T23:08:19+08:00">2024-04-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span id="/2024/04/07/%E7%AE%97%E6%B3%95/" class="post-meta-item leancloud_visitors" data-flag-title="算法整理" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="数字反转"><a href="#数字反转" class="headerlink" title="数字反转"></a>数字反转</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">* 输入一个不小于 <span class="number">100</span> 且小于 <span class="number">1000</span>，同时包括小数点后一位的一个浮点数，例如 <span class="number">123.4</span> ，要求把这个数字翻转过来，变成 <span class="number">4.321</span>并输出。</span><br><span class="line">* 输入格式</span><br><span class="line">* 一行一个浮点数</span><br><span class="line">* 输出格式</span><br><span class="line">* 一行一个浮点数</span><br><span class="line">    <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">            <span class="type">float</span> <span class="variable">t</span> <span class="operator">=</span> scanner.nextFloat();</span><br><span class="line">            <span class="type">int</span> <span class="variable">s</span> <span class="operator">=</span> (<span class="type">int</span>) (t*<span class="number">10</span>);</span><br><span class="line">            <span class="type">int</span> <span class="variable">ge</span> <span class="operator">=</span> s%<span class="number">10</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">shi</span> <span class="operator">=</span> s/<span class="number">10</span>%<span class="number">10</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">bai</span> <span class="operator">=</span> s/<span class="number">100</span>%<span class="number">10</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">qian</span> <span class="operator">=</span> s/<span class="number">1000</span>%<span class="number">10</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">s2</span> <span class="operator">=</span> ge*<span class="number">1000</span>+shi*<span class="number">100</span>+bai*<span class="number">10</span>+qian;</span><br><span class="line">            <span class="type">float</span> <span class="variable">ans</span> <span class="operator">=</span> (<span class="type">float</span>) (s2/<span class="number">1000.0</span>); <span class="comment">//直接强转</span></span><br><span class="line">            System.out.println(ans);</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+<h1 id="String到单-多精度的转换"><a href="#String到单-多精度的转换" class="headerlink" title="String到单&#x2F;多精度的转换"></a>String到单&#x2F;多精度的转换</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> <span class="variable">s</span> <span class="operator">=</span> Math.sqrt(p*(p-a)*(p-b)*(p-c));</span><br><span class="line"><span class="type">String</span> <span class="variable">format</span> <span class="operator">=</span> String.format(<span class="string">&quot;%.1f&quot;</span>, s);</span><br><span class="line">System.out.println(format);</span><br><span class="line"><span class="comment">//或者直接 System.out.printf(&quot;%.1f\n&quot;, s);</span></span><br><span class="line"><span class="comment">//注意：</span></span><br><span class="line"><span class="comment">//System.out.printf()：用于格式化输出，可以指定输出的格式，如小数位数等。它的格式化字符串中可以使用 %f 来表示浮点数。</span></span><br><span class="line"><span class="comment">//System.out.println()：用于直接输出对象的字符串表示形式，并在末尾添加换行符。它不具有格式化的能力，所以不能直接指定输出的小数位数</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="时间类型"><a href="#时间类型" class="headerlink" title="时间类型"></a>时间类型</h1><p>用于操控时间的除了最常用的 <strong>Date</strong> 类，还有</p>
+<ul>
+<li><strong>方便日期运算的 Calendar 类</strong>，</li>
+<li>**拥有许多国家标准时间的 GregorianCalendar 类( Calendar 子类)**。</li>
+</ul>
+<p>Calendar 类中用一下这些常量表示不同的意义，jdk 内的很多类其实都是采用的这种思想。</p>
+<ul>
+<li>Calendar.YEAR <em>——年份</em> 。</li>
+<li>Calendar.MONTH <em>——月份</em> 。</li>
+<li>Calendar.DATE <em>——日期</em> 。</li>
+<li>Calendar.DAY_OF_MONTH <em>——日期，和上面的字段意义相同</em> 。</li>
+<li>Calendar.HOUR <em>——12小时制的小时</em> 。</li>
+<li>Calendar.HOUR_OF_DAY <em>——24小时制的小时</em> 。</li>
+<li>Calendar.MINUTE <em>——分钟</em> 。</li>
+<li>Calendar.SECOND <em>——秒</em> 。</li>
+<li>Calendar.DAY_OF_WEEK <em>——星期几</em>。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Calendar</span> <span class="variable">c1</span> <span class="operator">=</span> Calendar.getInstance();</span><br><span class="line">c1.add(Calendar.DATE, <span class="number">10</span>); </span><br><span class="line">c1.add(Calendar.DATE, -<span class="number">10</span>); <span class="comment">//把c1对象的日期加上-10，也就是c1所表的日期的10天前的日期，其它所有的数值会被重新计算。</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Calendar</span> <span class="variable">date</span> <span class="operator">=</span> Calendar.getInstance(); <span class="comment">//创造 Calendar 类实例。</span></span><br><span class="line">date.set(<span class="number">2021</span>, Calendar.MAY, <span class="number">5</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">0</span>); <span class="comment">//设置时间(不设置默认为计算机当前时间。)</span></span><br><span class="line">date.add(Calendar.MINUTE, s % y == <span class="number">0</span> ? -(s / y) : -(s / y) - <span class="number">1</span>); <span class="comment">// 使用三目运算符。因为如果路程不能整除速度的话需要再使用一分钟填满。</span></span><br></pre></td></tr></table></figure>
+
+<p>之后再使用 <strong>SimpleDateFormat 进行时间格式化</strong>再输出。</p>
+<ul>
+<li>yyyy：年。</li>
+<li>MM：月。</li>
+<li>dd：日 。</li>
+<li>hh：1~12 小时制 (1-12)。</li>
+<li>HH：24 小时制 (0-23)。</li>
+<li>mm：分。</li>
+<li>ss：秒。</li>
+<li>S：毫秒。</li>
+<li>E：星期几。</li>
+<li>D：一年中的第几天。</li>
+<li>F：一月中的第几个星期(会把这个月总共过的天数除以 7)。</li>
+<li>w：一年中的第几个星期。</li>
+<li>W：一月中的第几星期(会根据实际情况来算)。</li>
+<li>a：上下午标识。</li>
+<li>k：和HH差不多，表示一天 24 小时制 (1-24)。</li>
+<li>K：和hh差不多，表示一天 12 小时制 (0-11)。</li>
+<li>z：表示时区。</li>
+</ul>
+<p>这里只需要输出 小时:分钟，所以格式化的格式为：HH:mm</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">SimpleDateFormat</span> <span class="variable">format</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;HH:mm&quot;</span>); <span class="comment">//创造格式化 HH:mm 的 SimpleDateFormat 对象。</span></span><br><span class="line"><span class="comment">//最后在输出的时候要将 Calendar 类转换为长整型输出，否则会报错。而日期类都可以转换成长整型( long )格式，所以：</span></span><br><span class="line">System.out.println(format.format(date.getTime())); </span><br><span class="line"><span class="comment">//date.getTime()：这部分是获取Date对象的时间戳（长整型时间），getTime()方法返回的是从1970年1月1日00:00:00 GMT开始计算的毫秒数。</span></span><br><span class="line"><span class="comment">//.format(date.getTime())：这部分是调用SimpleDateFormat对象的format()方法，将时间戳格式化为字符串。.format()方法接受一个Date对象或者时间戳作为参数，并返回一个格式化后的字符串。</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="闰年判断"><a href="#闰年判断" class="headerlink" title="闰年判断"></a>闰年判断</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">不是闰年：不能被<span class="number">4</span>整除，能被<span class="number">100</span>整除不能被<span class="number">400</span>整除</span><br><span class="line">闰年<span class="number">2</span>月<span class="number">29</span>天，平年<span class="number">28</span>天</span><br></pre></td></tr></table></figure>
+
+<h1 id="冒泡排序算法"><a href="#冒泡排序算法" class="headerlink" title="冒泡排序算法"></a>冒泡排序算法</h1><p>每次比较相邻的两个元素，如果它们的顺序不对就交换它们</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; numbers.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; numbers.length - <span class="number">1</span> - i; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (numbers[j] &gt; numbers[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                    <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> numbers[j];</span><br><span class="line">                    numbers[j] = numbers[j + <span class="number">1</span>];</span><br><span class="line">                    numbers[j + <span class="number">1</span>] = temp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="判断质数"><a href="#判断质数" class="headerlink" title="判断质数"></a>判断质数</h1><ol>
+<li>在素数判断时，不需要一直循环到 Math.sqrt(n)，只需循环到 n 的平方根取整即可。</li>
+<li>对于大于 3 的素数，可以只考虑奇数，因为偶数除了 2 之外都不是素数。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">isPrime</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">2</span> || n == <span class="number">3</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (n % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">3</span>; i &lt;= Math.sqrt(n); i += <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (n % i == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="回文数"><a href="#回文数" class="headerlink" title="回文数"></a>回文数</h1><p>对于回文数判断，您可以：</p>
+<ol>
+<li>不需要完全反转整个数字，只需要反转一半的数字即可，然后与剩余部分进行比较。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">isHuiWen</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (x &lt; <span class="number">0</span> || (x % <span class="number">10</span> == <span class="number">0</span> &amp;&amp; x != <span class="number">0</span>)) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="type">int</span> <span class="variable">reversed</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">while</span> (x &gt; reversed) &#123;</span><br><span class="line">          <span class="type">int</span> <span class="variable">digit</span> <span class="operator">=</span> x % <span class="number">10</span>;</span><br><span class="line">          reversed = reversed * <span class="number">10</span> + digit;</span><br><span class="line">          x /= <span class="number">10</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> x == reversed || x == reversed / <span class="number">10</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="阶乘之和"><a href="#阶乘之和" class="headerlink" title="阶乘之和"></a>阶乘之和</h1><p><code>BigInteger 类提供了支持任意精度整数运算的功能，可以用来解决整数溢出的问题。</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.math.BigInteger;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class 阶乘之和P1009 &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        <span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> scanner.nextInt();</span><br><span class="line">        <span class="type">BigInteger</span> <span class="variable">s</span> <span class="operator">=</span> BigInteger.ZERO;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= x; i++) &#123;</span><br><span class="line">            s = s.add(jieCheng(BigInteger.valueOf(i)));</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(s);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> BigInteger <span class="title function_">jieCheng</span><span class="params">(BigInteger n)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (n.compareTo(BigInteger.ZERO) &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> BigInteger.ZERO;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">BigInteger</span> <span class="variable">result</span> <span class="operator">=</span> BigInteger.ONE;</span><br><span class="line">        <span class="comment">//这段代码使用了 BigInteger 类型的变量 `i` 来进行循环，从 2 开始逐步增加，直到达到或超过 `n` 的值。</span></span><br><span class="line">        <span class="comment">//这里用到了 `compareTo` 方法，该方法用于比较两个 BigInteger 对象的大小关系。</span></span><br><span class="line">        <span class="comment">//如果当前的 `i` 小于等于 `n`，循环就会继续进行；一旦 `i` 大于 `n`，循环就会停止。</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">BigInteger</span> <span class="variable">i</span> <span class="operator">=</span> BigInteger.valueOf(<span class="number">2</span>); i.compareTo(n) &lt;= <span class="number">0</span>; i = i.add(BigInteger.ONE)) &#123;</span><br><span class="line">            result = result.multiply(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="最小值"><a href="#最小值" class="headerlink" title="最小值"></a>最小值</h1><p><strong>数组中的最小值：</strong></p>
+<ul>
+<li>如果你有一个数组，可以使用 <code>Arrays</code> 类的 <code>min</code> 方法来找到数组中的最小值。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] array = &#123;<span class="number">5</span>, <span class="number">3</span>, <span class="number">8</span>, <span class="number">1</span>, <span class="number">9</span>&#125;;</span><br><span class="line"><span class="comment">//orElse(Integer.MAX_VALUE) 的意思是如果流为空（即数组为空），则返回 Integer.MAX_VALUE，否则返回流中的最小值。</span></span><br><span class="line"><span class="type">int</span> <span class="variable">minValue</span> <span class="operator">=</span> Arrays.stream(array).min().orElse(Integer.MAX_VALUE);</span><br><span class="line"><span class="comment">//或者写成int min = Arrays.stream(n).min().getAsInt();</span></span><br><span class="line">System.out.println(<span class="string">&quot;最小值为：&quot;</span> + minValue);</span><br></pre></td></tr></table></figure>
+
+<p><strong>集合中的最小值：</strong></p>
+<ul>
+<li>如果你有一个集合，可以使用集合类的 <code>Collections</code> 类的 <code>min</code> 方法来找到集合中的最小值。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; list = Arrays.asList(<span class="number">5</span>, <span class="number">3</span>, <span class="number">8</span>, <span class="number">1</span>, <span class="number">9</span>);</span><br><span class="line"><span class="type">int</span> <span class="variable">minValue</span> <span class="operator">=</span> Collections.min(list);</span><br><span class="line">System.out.println(<span class="string">&quot;最小值为：&quot;</span> + minValue);</span><br></pre></td></tr></table></figure>
+
+<h1 id="高精度"><a href="#高精度" class="headerlink" title="高精度"></a>高精度</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">A</span>加B高精P1601 &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 读取输入字符串并转换为字符数组</span></span><br><span class="line">        <span class="type">char</span>[] s1 = scanner.nextLine().toCharArray();</span><br><span class="line">        <span class="type">char</span>[] s2 = scanner.nextLine().toCharArray();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 根据输入字符串的长度动态分配数组大小</span></span><br><span class="line">        <span class="type">int</span>[] a = <span class="keyword">new</span> <span class="title class_">int</span>[s1.length];</span><br><span class="line">        <span class="type">int</span>[] b = <span class="keyword">new</span> <span class="title class_">int</span>[s2.length];</span><br><span class="line">        <span class="type">int</span>[] c = <span class="keyword">new</span> <span class="title class_">int</span>[Math.max(s1.length, s2.length) + <span class="number">1</span>]; <span class="comment">// 结果数组长度可能比较大，需要加1防止进位溢出</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 将字符数组转换为整数数组</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; s1.length; i++) &#123;</span><br><span class="line">            a[s1.length - <span class="number">1</span> - i] = s1[i] - <span class="string">&#x27;0&#x27;</span>; <span class="comment">// 修改这里的索引</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; s2.length; i++) &#123;</span><br><span class="line">            b[s2.length - <span class="number">1</span> - i] = s2[i] - <span class="string">&#x27;0&#x27;</span>; <span class="comment">// 修改这里的索引</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 执行加法运算</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">max</span> <span class="operator">=</span> Math.max(a.length, b.length);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; max; i++) &#123; <span class="comment">// 修改循环从0开始</span></span><br><span class="line">            c[i] += (i &lt; a.length ? a[i] : <span class="number">0</span>) + (i &lt; b.length ? b[i] : <span class="number">0</span>);</span><br><span class="line">            c[i + <span class="number">1</span>] = c[i] / <span class="number">10</span>;</span><br><span class="line">            c[i] %= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 找到最高有效位的索引</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> c.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (index &gt; <span class="number">0</span> &amp;&amp; c[index] == <span class="number">0</span>) &#123;</span><br><span class="line">            index--;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 输出结果</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> index; i &gt;= <span class="number">0</span>; i--) &#123; <span class="comment">// 修改循环条件，从index开始递减</span></span><br><span class="line">            System.out.print(c[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        scanner.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//或者直接应Java自带的高精度</span></span><br><span class="line">System.out.print(sc.nextBigInteger().add(sc.nextBigInteger()));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="查询整数中数码的个数"><a href="#查询整数中数码的个数" class="headerlink" title="查询整数中数码的个数"></a>查询整数中数码的个数</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先将整数转为字符串</span></span><br><span class="line"><span class="type">String</span> <span class="variable">jieChengStr</span> <span class="operator">=</span> jieCheng.toString();</span><br><span class="line"><span class="comment">//a.toString().charAt(0)--&gt;把整数转换为字符串，然后提取该字符串的第一个字符。</span></span><br><span class="line">s[i] = countOccurrences(jieChengStr,a.toString().charAt(<span class="number">0</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">countOccurrences</span><span class="params">(String str, <span class="type">char</span> target)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">char</span> c : str.toCharArray()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (c == target) &#123;</span><br><span class="line">            count++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//十进制转二、八、十六进制</span></span><br><span class="line"><span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line"><span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> scanner.nextInt();</span><br><span class="line"><span class="type">BigInteger</span> <span class="variable">bigInteger</span> <span class="operator">=</span> BigInteger.valueOf(x);</span><br><span class="line"><span class="type">String</span> <span class="variable">two</span> <span class="operator">=</span> bigInteger.toString(<span class="number">2</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">eight</span> <span class="operator">=</span> bigInteger.toString(<span class="number">8</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">sixteen</span> <span class="operator">=</span> bigInteger.toString(<span class="number">16</span>);</span><br><span class="line">System.out.println(two+<span class="string">&quot; &quot;</span>+eight+<span class="string">&quot; &quot;</span>+sixteen);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//各进制间转换</span></span><br><span class="line"><span class="type">String</span> <span class="variable">x</span> <span class="operator">=</span> scanner.nextLine(); </span><br><span class="line"><span class="type">BigInteger</span> <span class="variable">bigInteger</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BigInteger</span>(x, <span class="number">16</span>);<span class="comment">//第一个参数是要转换的值，第二个参数是进制数</span></span><br><span class="line"><span class="type">String</span> <span class="variable">t</span> <span class="operator">=</span> bigInteger.toString(<span class="number">2</span>); <span class="comment">//要转换成的进制数</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 八进制判断</span></span><br><span class="line">       <span class="type">int</span> <span class="variable">eightFlag</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; eight.length(); i++) &#123;</span><br><span class="line">           <span class="comment">//取到八进制的每个字符</span></span><br><span class="line">           <span class="type">char</span> <span class="variable">c</span> <span class="operator">=</span> eight.charAt(i);</span><br><span class="line">           <span class="comment">//使用Character.isDigit()方法检查字符是否为数字。如果是数字，则直接将其转换为相应的整数值；</span></span><br><span class="line">           <span class="keyword">if</span>(Character.isDigit(c))&#123;</span><br><span class="line">               eightFlag+=c-<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">               <span class="comment">//如果不是数字，则将其转换为小写字母并减去字符&#x27;a&#x27;的值，然后再加上10（因为十六进制中的a到f分别代表10到15）</span></span><br><span class="line">               <span class="comment">//小写字母&#x27;a&#x27;对应的十进制ASCII码值为97，而大写字母&#x27;A&#x27;对应的十进制ASCII码值为65。</span></span><br><span class="line">           &#125;<span class="keyword">else</span> eightFlag+=Character.toLowerCase(c)-<span class="string">&#x27;a&#x27;</span>+<span class="number">10</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (x % eightFlag != <span class="number">0</span>) &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="SlowFever WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/04/02/%E5%9F%BA%E4%BA%8ESpringboot%E5%92%8CVue%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE/" rel="prev" title="博客项目">
+                  <i class="fa fa-angle-left"></i> 博客项目
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/04/07/java%E5%9F%BA%E7%A1%80/" rel="next" title="Java面试八股">
+                  Java面试八股 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="valine-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">SlowFever</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<script class="next-config" data-name="valine" type="application/json">{"enable":true,"appId":"3Mp1pYKOZuGEBQlAIKWEvL9P-gzGzoHsz","appKey":"UwzoWdwdPDVOb0jQL6cvf0Zx","serverURLs":"https://3mp1pyko.lc-cn-n1-shared.com","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-cn","visitor":true,"comment_count":true,"recordIP":true,"enableQQ":true,"requiredFields":[],"el":"#valine-comments","path":"/2024/04/07/%E7%AE%97%E6%B3%95/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.valine.el)
+    .then(() => NexT.utils.getScript(
+      'https://fastly.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js',
+      { condition: window.Valine }
+    ))
+    .then(() => {
+      new Valine(CONFIG.valine);
+    });
+});
+</script>
+
+</body>
+</html>

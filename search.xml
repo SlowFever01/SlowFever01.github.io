@@ -6113,4 +6113,365 @@
         <tag>项目</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Java面试八股</title>
+    <url>/2024/04/07/java%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<h1 id="面试八股"><a href="#面试八股" class="headerlink" title="面试八股"></a>面试八股</h1><h1 id="java基础"><a href="#java基础" class="headerlink" title="java基础"></a>java基础</h1><h2 id="面向对象的特征有哪些方面"><a href="#面向对象的特征有哪些方面" class="headerlink" title="面向对象的特征有哪些方面?"></a>面向对象的特征有哪些方面?</h2><p>抽象（包括数据抽象和行为抽象，只关注属性和行为，不关注细节）、封装（隐藏一切可隐藏的东西， 只向外界提供最简单的编程接口）、继承（从父类得到继承信息创建子类的过程）、多态（允许不同子类型的对象对同一消息作出不同的响应，要实现多态需要做两件事：1). 方法重写（子类继承父类并重写父类中已 有的或抽象的方法）；2). 对象造型（用父类型引用引用子类型对象，这样同样 的引用调用同样的方法就会根据子类对象的不同而表现出不同的行为）。</p>
+<h2 id="重载和重写的区别"><a href="#重载和重写的区别" class="headerlink" title="重载和重写的区别"></a>重载和重写的区别</h2><p>重写： 在子类中把父类本身有的方法重新写一遍，方法名，参数列表，返回类型都相同的情况下， 对方法体进行修改或重写，这就是重写。但要 注意子类函数的访问修饰权限不能少于父类的。</p>
+<p>重载： 重载是一个类中多态性的一种表现 。重载要求同名方法的参数列表不同。重载的时候，返回值类型可以相同也可以不同。</p>
+<h2 id="equals与-的区别"><a href="#equals与-的区别" class="headerlink" title="equals与&#x3D;&#x3D;的区别"></a>equals与&#x3D;&#x3D;的区别</h2><p>&#x3D;&#x3D;： &#x3D;&#x3D; 比较的是变量(栈)内存中存放的对象的(堆)内存地址，用来判断两个对象的地址是否相同，即是否是 指相同一个对象。比较的是真正意义上的指针操作。两边的操作数必须是同一类型的才能编译通过。 比较的是地址，如果是具体的阿拉伯数字的比较，值相等则为true</p>
+<p>equals： equals用来比较的是两个对象的内容是否相等，由于所有的类都是继承自java.lang.Object类的，所以 适用于所有对象。</p>
+<h2 id="Static关键字有什么作用？"><a href="#Static关键字有什么作用？" class="headerlink" title="Static关键字有什么作用？"></a>Static关键字有什么作用？</h2><p>Static修饰的类是静态内部类.</p>
+<p>Static修饰的方法是静态方法，表示该方法属于当前类的，而不属于某个对象的，静态方法也不能被重写，可以直接使用类名来调用。在 static方法中不能使用this或者super关键字。</p>
+<p>Static修饰变量是静态变量或者叫类变量，静态变量被所有实例所共享，不会依赖于对象。</p>
+<p>Static修饰的代码块叫静态代码块，通常用来做程序优化的。静态代码块中的代码在整个类加载的时候只会执行一次。静态代码块可以有多 个，如果有多个，按照先后顺序依次执行。</p>
+<h2 id="final在java中的作用，有哪些用法"><a href="#final在java中的作用，有哪些用法" class="headerlink" title="final在java中的作用，有哪些用法?"></a>final在java中的作用，有哪些用法?</h2><ol>
+<li>被final修饰的类不可以被继承 </li>
+<li>被final修饰的方法不可以被重写 </li>
+<li>被final修饰的变量不可以被改变.如果修饰引用,那么表示引用不可变,引用指向的内容可变.</li>
+<li>被final修饰的方法,JVM会尝试将其内联,以提高运行效率 </li>
+<li>被final修饰的常量,在编译阶段会存入常量池中.</li>
+</ol>
+<h2 id="String-StringBuffffer-和-StringBuilder-的区别是什么？"><a href="#String-StringBuffffer-和-StringBuilder-的区别是什么？" class="headerlink" title="String StringBuffffer 和 StringBuilder 的区别是什么？"></a>String StringBuffffer 和 StringBuilder 的区别是什么？</h2><p>String是只读字符串，它并不是基本数据类型，而是一个对象。</p>
+<p>StringBuffer是线程安全的，Stringbuilder是非线程安全的。所以Stringbuilder比stringbuffer效率更高，StringBuffer的方法大多都加了 synchronized关键字</p>
+<h2 id="普通类与抽象类有什么区别？"><a href="#普通类与抽象类有什么区别？" class="headerlink" title="普通类与抽象类有什么区别？"></a>普通类与抽象类有什么区别？</h2><p>普通类不能包含抽象方法，抽象类可以包含抽象方法 抽象类不能直接实例化，普通类可以直接实例化</p>
+<h2 id="抽象类和接口的区别"><a href="#抽象类和接口的区别" class="headerlink" title="抽象类和接口的区别"></a>抽象类和接口的区别</h2><p>抽象类：</p>
+<ol>
+<li>抽象方法，只有行为的概念，没有具体的行为实现。使用abstract关键字修饰，没有方法体。子类必须重写这些抽象方法。 </li>
+<li>包含抽象方法的类，一定是抽象类。 </li>
+<li>抽象类只能被继承，一个类只能继承一个抽象类。</li>
+</ol>
+<p> 接口： </p>
+<ol>
+<li>全部的方法都是抽象方法，属性都是常量 </li>
+<li>不能实例化，可以定义变量。 </li>
+<li>接口变量可以引用具体实现类的实例 </li>
+<li>接口只能被实现，一个具体类实现接口，必须实现全部的抽象方法 </li>
+<li>接口之间可以多实现 </li>
+<li>一个具体类可以实现多个接口，实现多继承现象</li>
+</ol>
+<h2 id="Java创建对象有几种方式？"><a href="#Java创建对象有几种方式？" class="headerlink" title="Java创建对象有几种方式？"></a>Java创建对象有几种方式？</h2><ol>
+<li>new创建新对象 </li>
+<li>通过反射机制 </li>
+<li>采用clone机制 </li>
+<li>通过序列化机制</li>
+</ol>
+<h1 id="Java集合-泛型面试题"><a href="#Java集合-泛型面试题" class="headerlink" title="Java集合&#x2F;泛型面试题"></a>Java集合&#x2F;泛型面试题</h1><p>![image-20240407124950846](C:\Users\slow fever\AppData\Roaming\Typora\typora-user-images\image-20240407124950846.png)</p>
+<h2 id="1、ArrayList和linkedList的区别"><a href="#1、ArrayList和linkedList的区别" class="headerlink" title="1、ArrayList和linkedList的区别"></a>1、ArrayList和linkedList的区别</h2><p>嗯，它们两个主要是底层使用的数据结构不一样，ArrayList 是动态数组，LinkedList 是双向链表，这也导致了它们很多不同的特点。</p>
+<p>1，从操作数据效率来说</p>
+<p>ArrayList按照下标查询的时间复杂度O(1)【内存是连续的，根据寻址公式】， LinkedList不支持下标查询</p>
+<p>查找（未知索引）： ArrayList需要遍历，链表也需要链表，时间复杂度都是O(n)</p>
+<p>新增和删除</p>
+<ul>
+<li>ArrayList尾部插入和删除，时间复杂度是O(1)；其他部分增删需要挪动数组，时间复杂度是O(n)</li>
+<li>LinkedList头尾节点增删时间复杂度是O(1)，其他都需要遍历链表，时间复杂度是O(n)</li>
+</ul>
+<p>2，从内存空间占用来说</p>
+<p>ArrayList底层是数组，内存连续，节省内存</p>
+<p>LinkedList 是双向链表需要存储数据，和两个指针，更占用内存</p>
+<p>3，从线程安全来说，ArrayList和LinkedList都不是线程安全的</p>
+<h2 id="2、-HashMap和HashTable的区别"><a href="#2、-HashMap和HashTable的区别" class="headerlink" title="2、 HashMap和HashTable的区别"></a>2、 HashMap和HashTable的区别</h2><p>Hashtable：key和value都不能为null。 </p>
+<p>HashMap：key可以为null，但是这样的key只能有一个，因为必须保证key的唯一性；可以有多个key 值对应的value为null。</p>
+<p>Hashtable比HashMap多提供了elments() 和contains() 两个方法。</p>
+<p>初始容量大小和每次扩充容量大小不同 </p>
+<p>计算hash值的方法不同</p>
+<p>HashMap是线程不安全的，在多线程并发的环境下，可能会产生死锁等问题，因此需要开发人员自己 处理多线程的安全问题。 Hashtable是线程安全的，它的每个方法上都有synchronized 关键字，因此可直接用于多线程中。 虽然HashMap是线程不安全的，但是它的效率远远高于Hashtable。</p>
+<p>ConcurrentHashMap虽然也是线程安全的，但是它的效率比Hashtable要高好多倍。因为 ConcurrentHashMap使用了分段锁，并不对整个数据进行锁定。</p>
+<h2 id="3-说说List-Set-Map三者的区别"><a href="#3-说说List-Set-Map三者的区别" class="headerlink" title="3.说说List,Set,Map三者的区别"></a>3.说说List,Set,Map三者的区别</h2><p>List： List接口存储一组不唯一（可以有多个元素引用相同的对象），有序的 对象 </p>
+<p>Set:不允许重复的集合。不会有多个元素引用相同的对象。 </p>
+<p>Map: 以键值对存储数据 ，元素存储循序是无序的 ，不允许出现重复键</p>
+<h2 id="4-ArrayList源码分析"><a href="#4-ArrayList源码分析" class="headerlink" title="4. ArrayList源码分析"></a>4. ArrayList源码分析</h2><ul>
+<li>底层数据结构</li>
+</ul>
+<p>ArrayList底层是用动态的数组实现的</p>
+<ul>
+<li>初始容量</li>
+</ul>
+<p>ArrayList初始容量为0，当第一次添加数据的时候才会初始化容量为10</p>
+<ul>
+<li>扩容逻辑</li>
+</ul>
+<p>ArrayList在进行扩容的时候是原来容量的1.5倍，每次扩容都需要拷贝数组</p>
+<ul>
+<li><p>添加逻辑</p>
+<ul>
+<li><p>确保数组已使用长度（size）加1之后足够存下下一个数据 </p>
+</li>
+<li><p>计算数组的容量，如果当前数组已使用长度+1后的大于当前的数组长度，则调用grow方法扩容（原来的1.5倍）</p>
+</li>
+<li><p>确保新增的数据有地方存储之后，则将新元素添加到位于size的位置上。</p>
+</li>
+<li><p>返回添加成功布尔值。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-用Arrays-asList转List后，如果修改了数组内容，list受影响吗？List用toArray转数组后，如果修改了List内容，数组受影响吗"><a href="#5-用Arrays-asList转List后，如果修改了数组内容，list受影响吗？List用toArray转数组后，如果修改了List内容，数组受影响吗" class="headerlink" title="5.用Arrays.asList转List后，如果修改了数组内容，list受影响吗？List用toArray转数组后，如果修改了List内容，数组受影响吗"></a>5.用Arrays.asList转List后，如果修改了数组内容，list受影响吗？List用toArray转数组后，如果修改了List内容，数组受影响吗</h2><p>Arrays.asList转换list之后，如果修改了数组的内容，list会受影响，因为它的底层使用的Arrays类中的一个内部类ArrayList来构造的集合，在这个集合的构造器中，把我们传入的这个集合进行了包装而已，最终指向的都是同一个内存地址</p>
+<p>list用了toArray转数组后，如果修改了list内容，数组不会影响，当调用了toArray以后，在底层是它是进行了数组的拷贝，跟原来的元素就没啥关系了，所以即使list修改了以后，数组也不受影响</p>
+<hr>
+<h2 id="6-说一下HashMap的实现原理？"><a href="#6-说一下HashMap的实现原理？" class="headerlink" title="6.说一下HashMap的实现原理？"></a>6.说一下HashMap的实现原理？</h2><p>1，底层使用hash表数据结构，即数组+（链表 | 红黑树）</p>
+<p>2，添加数据时，计算key的值确定元素在数组中的下标</p>
+<p>​	key相同则替换，不同则存入链表或红黑树中</p>
+<p>3，获取数据通过key的hash计算数组下标获取元素</p>
+<ul>
+<li><p>JDK1.8之前采用的拉链法，数组+链表</p>
+</li>
+<li><p>JDK1.8之后采用数组+链表+红黑树，链表长度大于8且数组长度大于64则会从链表转化为红黑树</p>
+</li>
+</ul>
+<h2 id="7-HashMap的put方法的具体流程？"><a href="#7-HashMap的put方法的具体流程？" class="headerlink" title="7.HashMap的put方法的具体流程？"></a>7.HashMap的put方法的具体流程？</h2><ol>
+<li>首先，根据键的<code>hashCode()</code>方法计算键的哈希码，确定键值对在哈希表中的位置。哈希码决定了键值对在哈希表数组中的索引位置。</li>
+<li>如果在计算出的索引位置上没有其他键值对，直接将新的键值对放入该位置。</li>
+<li>如果计算出的索引位置上已经存在键值对，则可能发生两种情况：<ul>
+<li>如果新的键与已存在的键相等（使用<code>equals()</code>方法比较），则用新的值替换旧的值。</li>
+<li>如果新的键与已存在的键不相等，则发生了哈希冲突，通常情况下，这时会使用链表或红黑树等数据结构来解决冲突。新的键值对将被插入到冲突位置的数据结构中。</li>
+</ul>
+</li>
+<li>如果插入新的键值对后，哈希表的大小超过了负载因子（load factor），则会触发哈希表的扩容操作，将哈希表的容量翻倍，并重新计算每个键值对的位置。</li>
+</ol>
+<h2 id="8-HashMap的扩容机制"><a href="#8-HashMap的扩容机制" class="headerlink" title="8.HashMap的扩容机制"></a>8.HashMap的扩容机制</h2><ol>
+<li>当哈希表中存储的键值对数量达到了负载因子（默认为0.75）与当前容量的乘积时，会触发扩容操作。</li>
+<li>扩容操作首先会创建一个新的哈希表，其容量是当前哈希表容量的两倍。</li>
+<li>然后，将原有哈希表中的所有键值对重新计算哈希码，并插入到新的哈希表中。这是因为扩容后哈希表的容量变化，原有的哈希码计算可能会导致键值对存放在错误的位置。</li>
+<li>扩容操作完成后，原有的哈希表会被丢弃，新的哈希表成为HashMap的存储结构。</li>
+</ol>
+<h2 id="9-面试官：HashSet与HashMap的区别？"><a href="#9-面试官：HashSet与HashMap的区别？" class="headerlink" title="9.面试官：HashSet与HashMap的区别？"></a>9.<strong>面试官</strong>：HashSet与HashMap的区别？</h2><p>HashSet底层其实是用HashMap实现存储的, HashSet封装了一系列HashMap的方法. 依靠HashMap来存储元素值,(利用hashMap的key键进行存储), 而value值默认为Object对象. 所以HashSet也不允许出现重复值, 判断标准和HashMap判断标准相同, 两个元素的hashCode相等并且通过equals()方法返回true.</p>
+<h2 id="10-说说ConcurrentHashMap"><a href="#10-说说ConcurrentHashMap" class="headerlink" title="10.说说ConcurrentHashMap"></a>10.说说ConcurrentHashMap</h2><p>Segment 段</p>
+<p> ConcurrentHashMap 和 HashMap 思路是差不多的，但是因为它支持并发操作，所以要复杂一 些。整个 ConcurrentHashMap 由一个个 Segment 组成， Segment 代表”部分“或”一段“的 意思，所以很多地方都会将其描述为分段锁。</p>
+<p> 线程安全（Segment 继承 ReentrantLock 加锁） </p>
+<p>简单理解就是， ConcurrentHashMap 是一个 Segment 数组， Segment 通过继承 ReentrantLock 来进行加锁，所以每次需要加锁的操作锁住的是一个 segment，这样只要保证每 个 Segment 是线程安全的，也就实现了全局的线程安全 </p>
+<h1 id="多线程-并发面试题"><a href="#多线程-并发面试题" class="headerlink" title="多线程&amp;并发面试题"></a>多线程&amp;并发面试题</h1><h2 id="1、Java中实现多线程有几种方法"><a href="#1、Java中实现多线程有几种方法" class="headerlink" title="1、Java中实现多线程有几种方法"></a>1、Java中实现多线程有几种方法</h2><p>继承Thread类、实现runnable接口、实现Callable接口、线程池创建线程。通常情况下，我们项目中都会采用线程池的方式创建线程。</p>
+<h2 id="2-runnable-和-callable-两个接口创建线程有什么不同呢？"><a href="#2-runnable-和-callable-两个接口创建线程有什么不同呢？" class="headerlink" title="2.runnable 和 callable 两个接口创建线程有什么不同呢？"></a>2.runnable 和 callable 两个接口创建线程有什么不同呢？</h2><p>Runnable 接口run方法无返回值；Callable接口call方法有返回值，是个泛型，和Future、FutureTask配合可以用来获取异步执行的结果</p>
+<p>还有一个就是，他们异常处理也不一样。Runnable接口run方法只能抛出运行时异常，也无法捕获处理；Callable接口call方法允许抛出异常，可以获取异常信息</p>
+<p>在实际开发中，如果需要拿到执行的结果，需要使用Callalbe接口创建线程，调用FutureTask.get()得到可以得到返回值，此方法会阻塞主进程的继续往下执行，如果不调用不会阻塞。</p>
+<h2 id="3-并行和并发有什么区别？"><a href="#3-并行和并发有什么区别？" class="headerlink" title="3.并行和并发有什么区别？"></a>3.并行和并发有什么区别？</h2><p>并发是同一时间应对多件事情的能力，多个线程轮流使用一个或多个CPU</p>
+<p>并行是同一时间动手做多件事情的能力，4核CPU同时执行4个线程</p>
+<h2 id="4-线程和进程的区别？"><a href="#4-线程和进程的区别？" class="headerlink" title="4.线程和进程的区别？"></a>4.线程和进程的区别？</h2><ul>
+<li>进程是正在运行程序的实例，进程中包含了线程，每个线程执行不同的任务</li>
+<li>不同的进程使用不同的内存空间，在当前进程下的所有线程可以共享内存空间</li>
+<li>线程更轻量，线程上下文切换成本一般上要比进程上下文切换低(上下文切换指的是从一个线程切换到另一个线程)</li>
+</ul>
+<h2 id="5-线程包括哪些状态，状态之间是如何变化的？"><a href="#5-线程包括哪些状态，状态之间是如何变化的？" class="headerlink" title="5.线程包括哪些状态，状态之间是如何变化的？"></a>5.线程包括哪些状态，状态之间是如何变化的？</h2><p>在JDK中的Thread类中的枚举State里面定义了6中线程的状态分别是：新建、可运行、终结、阻塞、等待和有时限等待六种。</p>
+<p>关于线程的状态切换情况比较多。我分别介绍一下</p>
+<p>当一个线程对象被创建，但还未调用 start 方法时处于<strong>新建</strong>状态，调用了 start 方法，就会由<strong>新建</strong>进入<strong>可运行</strong>状态。如果线程内代码已经执行完毕，由<strong>可运行</strong>进入<strong>终结</strong>状态。当然这些是一个线程正常执行情况。</p>
+<p>如果线程获取锁失败后，由<strong>可运行</strong>进入 Monitor 的阻塞队列<strong>阻塞</strong>，只有当持锁线程释放锁时，会按照一定规则唤醒阻塞队列中的<strong>阻塞</strong>线程，唤醒后的线程进入<strong>可运行</strong>状态</p>
+<p>如果线程获取锁成功后，但由于条件不满足，调用了 wait() 方法，此时从<strong>可运行</strong>状态释放锁<strong>等待</strong>状态，当其它持锁线程调用 notify() 或 notifyAll() 方法，会恢复为<strong>可运行</strong>状态</p>
+<p>还有一种情况是调用 sleep(long) 方法也会从<strong>可运行</strong>状态进入<strong>有时限等待</strong>状态，不需要主动唤醒，超时时间到自然恢复为<strong>可运行</strong>状态</p>
+<h2 id="6-wait-和-sleep方法有什么不同呢？"><a href="#6-wait-和-sleep方法有什么不同呢？" class="headerlink" title="6.wait 和 sleep方法有什么不同呢？"></a>6.wait 和 sleep方法有什么不同呢？</h2><p>第一：方法归属不同</p>
+<p>sleep(long) 是 Thread 的静态方法。而 wait()，是 Object 的成员方法，每个对象都有</p>
+<p>第二：线程醒来时机不同</p>
+<p>线程执行 sleep(long) 会在等待相应毫秒后醒来，而 wait() 需要被 notify 唤醒，wait() 如果不唤醒就一直等下去</p>
+<p>第三：锁特性不同</p>
+<p>wait 方法的调用必须先获取 wait 对象的锁，而 sleep 则无此限制</p>
+<p>wait 方法执行后会释放对象锁，允许其它线程获得该对象锁（相当于我放弃 cpu，但你们还可以用）</p>
+<p>而 sleep 如果在 synchronized 代码块中执行，并不会释放对象锁（相当于我放弃 cpu，你们也用不了）</p>
+<h2 id="7-如何停止一个正在运行的线程呢？"><a href="#7-如何停止一个正在运行的线程呢？" class="headerlink" title="7.如何停止一个正在运行的线程呢？"></a>7.如何停止一个正在运行的线程呢？</h2><p>第一：可以使用退出标志，使线程正常退出，也就是当run方法完成后线程终止，一般我们加一个标记</p>
+<p>第二：可以使用线程的stop方法强行终止，不过一般不推荐，这个方法已作废</p>
+<p>第三：可以使用线程的interrupt方法中断线程，内部其实也是使用中断标志来中断线程</p>
+<h2 id="8-volatile-是什么-可以保证有序性吗"><a href="#8-volatile-是什么-可以保证有序性吗" class="headerlink" title="8.volatile 是什么?可以保证有序性吗?"></a>8.volatile 是什么?可以保证有序性吗?</h2><p>一旦一个共享变量（类的成员变量、类的静态成员变量）被volatile修饰之后，那么就具备了两层语 义： </p>
+<p>1）保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他 线程来说是立即可见的,volatile关键字会强制将修改的值立即写入主存。 </p>
+<p>2）禁止进行指令重排序。 volatile 不是原子性操作 当程序执行到volatile变量的读操作或者写操作时，在其前面的操作的更改肯定全部已经进行，且结果 已经对后面的操作可见；在其后面的操作肯定还没有进行；</p>
+<h2 id="9-Thread-类中的start-和-run-方法有什么区别？"><a href="#9-Thread-类中的start-和-run-方法有什么区别？" class="headerlink" title="9.Thread 类中的start() 和 run() 方法有什么区别？"></a>9.Thread 类中的start() 和 run() 方法有什么区别？</h2><p>start()方法被用来启动新创建的线程，而且start()内部调用了run()方法，这和直接调用run()方法的效果 不一样。当你调用run()方法的时候，只会是在原来的线程中调用，没有新的线程启动，start()方法才会 启动新线程 。</p>
+<h2 id="10-线程中并发锁"><a href="#10-线程中并发锁" class="headerlink" title="10.线程中并发锁"></a>10.线程中并发锁</h2><blockquote>
+<h3 id="面试官：讲一下synchronized关键字的底层原理？"><a href="#面试官：讲一下synchronized关键字的底层原理？" class="headerlink" title="面试官：讲一下synchronized关键字的底层原理？"></a><strong>面试官</strong>：讲一下synchronized关键字的底层原理？</h3><p><strong>候选人</strong>：</p>
+<p>嗯~~好的，</p>
+<p>synchronized 底层使用的JVM级别中的Monitor 来决定当前线程是否获得了锁，如果某一个线程获得了锁，在没有释放锁之前，其他线程是不能或得到锁的。synchronized 属于悲观锁。</p>
+<p>synchronized 因为需要依赖于JVM级别的Monitor ，相对性能也比较低。</p>
+<h3 id="面试官：好的，你能具体说下Monitor-吗？"><a href="#面试官：好的，你能具体说下Monitor-吗？" class="headerlink" title="面试官：好的，你能具体说下Monitor 吗？"></a><strong>面试官</strong>：好的，你能具体说下Monitor 吗？</h3><p><strong>候选人</strong>：</p>
+<p>monitor对象存在于每个Java对象的对象头中，synchronized 锁便是通过这种方式获取锁的，也是为什么Java中任意对象可以作为锁的原因</p>
+<p>monitor内部维护了三个变量</p>
+<ul>
+<li><p>WaitSet：保存处于Waiting状态的线程</p>
+</li>
+<li><p>EntryList：保存处于Blocked状态的线程</p>
+</li>
+<li><p>Owner：持有锁的线程</p>
+</li>
+</ul>
+<p>只有一个线程获取到的标志就是在monitor中设置成功了Owner，一个monitor中只能有一个Owner</p>
+<p>在上锁的过程中，如果有其他线程也来抢锁，则进入EntryList 进行阻塞，当获得锁的线程执行完了，释放了锁，就会唤醒EntryList 中等待的线程竞争锁，竞争的时候是非公平的。</p>
+<h3 id="面试官：好的，那关于synchronized-的锁升级的情况了解吗？"><a href="#面试官：好的，那关于synchronized-的锁升级的情况了解吗？" class="headerlink" title="面试官：好的，那关于synchronized 的锁升级的情况了解吗？"></a><strong>面试官</strong>：好的，那关于synchronized 的锁升级的情况了解吗？</h3><p><strong>候选人</strong>：</p>
+<p>嗯，知道一些（要谦虚）</p>
+<p>Java中的synchronized有偏向锁、轻量级锁、重量级锁三种形式，分别对应了锁只被一个线程持有、不同线程交替持有锁、多线程竞争锁三种情况。</p>
+<p>重量级锁：底层使用的Monitor实现，里面涉及到了用户态和内核态的切换、进程的上下文切换，成本较高，性能比较低。</p>
+<p>轻量级锁：线程加锁的时间是错开的（也就是没有竞争），可以使用轻量级锁来优化。轻量级修改了对象头的锁标志，相对重量级锁性能提升很多。每次修改都是CAS操作，保证原子性</p>
+<p>偏向锁：一段很长的时间内都只被一个线程使用锁，可以使用了偏向锁，在第一次获得锁时，会有一个CAS操作，之后该线程再获取锁，只需要判断mark word中是否是自己的线程id即可，而不是开销相对较大的CAS命令</p>
+<p>一旦锁发生了竞争，都会升级为重量级锁</p>
+<h3 id="面试官：好的，刚才你说了synchronized它在高并发量的情况下，性能不高，在项目该如何控制使用锁呢？"><a href="#面试官：好的，刚才你说了synchronized它在高并发量的情况下，性能不高，在项目该如何控制使用锁呢？" class="headerlink" title="面试官：好的，刚才你说了synchronized它在高并发量的情况下，性能不高，在项目该如何控制使用锁呢？"></a><strong>面试官</strong>：好的，刚才你说了synchronized它在高并发量的情况下，性能不高，在项目该如何控制使用锁呢？</h3><p><strong>候选人</strong>：</p>
+<p>嗯，其实，在高并发下，我们可以采用ReentrantLock来加锁。</p>
+<p><strong>面试官</strong>：嗯，那你说下ReentrantLock的使用方式和底层原理？</p>
+<p><strong>候选人</strong>：</p>
+<p>好的，</p>
+<p>ReentrantLock是一个可重入锁:，调用 lock 方 法获取了锁之后，再次调用 lock，是不会再阻塞，内部直接增加重入次数 就行了，标识这个线程已经重复获取一把锁而不需要等待锁的释放。</p>
+<p>ReentrantLock是属于juc报下的类，属于api层面的锁，跟synchronized一样，都是悲观锁。通过lock()用来获取锁，unlock()释放锁。</p>
+<p>它的底层实现原理主要利用<strong>CAS+AQS队列</strong>来实现。它支持公平锁和非公平锁，两者的实现类似</p>
+<p>构造方法接受一个可选的公平参数（<strong>默认非公平锁</strong>），当设置为true时，表示公平锁，否则为非公平锁。公平锁的效率往往没有非公平锁的效率高。</p>
+<h3 id="synchronized和Lock有什么区别"><a href="#synchronized和Lock有什么区别" class="headerlink" title="synchronized和Lock有什么区别 ?"></a>synchronized和Lock有什么区别 ?</h3><p>第一，语法层面</p>
+<ul>
+<li>synchronized 是关键字，源码在 jvm 中，用 c++ 语言实现，退出同步代码块锁会自动释放</li>
+<li>Lock 是接口，源码由 jdk 提供，用 java 语言实现，需要手动调用 unlock 方法释放锁</li>
+</ul>
+<p>第二，功能层面</p>
+<ul>
+<li>二者均属于悲观锁、都具备基本的互斥、同步、锁重入功能</li>
+<li>Lock 提供了许多 synchronized 不具备的功能，例如获取等待状态、公平锁、可打断、可超时、多条件变量，同时Lock 可以实现不同的场景，如 ReentrantLock， ReentrantReadWriteLock</li>
+</ul>
+<p>第三，性能层面</p>
+<ul>
+<li>在没有竞争时，synchronized 做了很多优化，如偏向锁、轻量级锁，性能不赖</li>
+<li>在竞争激烈时，Lock 的实现通常会提供更好的性能</li>
+</ul>
+<h3 id="死锁产生的条件是什么？"><a href="#死锁产生的条件是什么？" class="headerlink" title="死锁产生的条件是什么？"></a>死锁产生的条件是什么？</h3><p>嗯，是这样的，一个线程需要同时获取多把锁，这时就容易发生死锁，举个例子来说：</p>
+<p>t1 线程获得A对象锁，接下来想获取B对象的锁</p>
+<p>t2 线程获得B对象锁，接下来想获取A对象的锁 </p>
+<p>这个时候t1线程和t2线程都在互相等待对方的锁，就产生了死锁</p>
+<h3 id="面试官：线程池的种类有哪些？"><a href="#面试官：线程池的种类有哪些？" class="headerlink" title="面试官：线程池的种类有哪些？"></a><strong>面试官</strong>：线程池的种类有哪些？</h3><p><strong>候选人</strong>：</p>
+<p>嗯！是这样</p>
+<p>在jdk中默认提供了4中方式创建线程池</p>
+<p>第一个是：newCachedThreadPool创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回 收空闲线程，若无可回收，则新建线程。 </p>
+<p>第二个是：newFixedThreadPool 创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列 中等待。 </p>
+<p>第三个是：newScheduledThreadPool 创建一个定长线程池，支持定时及周期性任务执行。 </p>
+<p>第四个是：newSingleThreadExecutor 创建一个单线程化的线程池，它只会用唯一的工作线程来执行任 务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。</p>
+<h3 id="面试官：线程池的核心参数有哪些？"><a href="#面试官：线程池的核心参数有哪些？" class="headerlink" title="面试官：线程池的核心参数有哪些？"></a><strong>面试官</strong>：线程池的核心参数有哪些？</h3><p><strong>候选人</strong>：</p>
+<p>在线程池中一共有7个核心参数：</p>
+<ol>
+<li><p>corePoolSize 核心线程数目 - 池中会保留的最多线程数</p>
+</li>
+<li><p>maximumPoolSize 最大线程数目 - 核心线程+救急线程的最大数目</p>
+</li>
+<li><p>keepAliveTime 生存时间 - 救急线程的生存时间，生存时间内没有新任务，此线程资源会释放</p>
+</li>
+<li><p>unit 时间单位 - 救急线程的生存时间单位，如秒、毫秒等</p>
+</li>
+<li><p>workQueue - 当没有空闲核心线程时，新来任务会加入到此队列排队，队列满会创建救急线程执行任务</p>
+</li>
+<li><p>threadFactory 线程工厂 - 可以定制线程对象的创建，例如设置线程名字、是否是守护线程等</p>
+</li>
+<li><p>handler 拒绝策略 - 当所有线程都在繁忙，workQueue 也放满时，会触发拒绝策略</p>
+</li>
+</ol>
+<p> 在拒绝策略中又有4中拒绝策略</p>
+<p> 当线程数过多以后，第一种是抛异常、第二种是由调用者执行任务、第三是丢弃当前的任务，第四是丢弃最早排队任务。默认是直接抛异常。</p>
+<h3 id="面试官：如何确定核心线程池呢？"><a href="#面试官：如何确定核心线程池呢？" class="headerlink" title="面试官：如何确定核心线程池呢？"></a><strong>面试官</strong>：如何确定核心线程池呢？</h3><p><strong>候选人</strong>：</p>
+<p>是这样的，我们公司当时有一些规范，为了减少线程上下文的切换，要根据当时部署的服务器的CPU核数来决定，我们规则是：CPU核数+1就是最终的核心线程数。</p>
+<h3 id="面试官：线程池的执行原理知道吗？"><a href="#面试官：线程池的执行原理知道吗？" class="headerlink" title="面试官：线程池的执行原理知道吗？"></a><strong>面试官</strong>：线程池的执行原理知道吗？</h3><p><strong>候选人</strong>：</p>
+<p>嗯~，它是这样的</p>
+<p>首先判断线程池里的核心线程是否都在执行任务，如果不是则创建一个新的工作线程来执行任务。如果核心线程都在执行任务，则线程池判断工作队列是否已满，如果工作队列没有满，则将新提交的任务存储在这个工作队 列里。如果工作队列满了，则判断线程池里的线程是否都处于工作状态，如果没有，则创建一个新的工作线程来执行任 务。如果已经满了，则交给拒绝策略来处理这个任务。</p>
+<h3 id="面试官：为什么不建议使用Executors创建线程池呢？"><a href="#面试官：为什么不建议使用Executors创建线程池呢？" class="headerlink" title="面试官：为什么不建议使用Executors创建线程池呢？"></a><strong>面试官</strong>：为什么不建议使用Executors创建线程池呢？</h3><p><strong>候选人</strong>：</p>
+<p>主要原因是如果使用Executors创建线程池的话，它允许的请求队列默认长度是Integer.MAX_VALUE，这样的话，有可能导致堆积大量的请求，从而导致OOM（内存溢出）。</p>
+<p>所以，我们一般推荐使用ThreadPoolExecutor来创建线程池，这样可以明确规定线程池的参数，避免资源的耗尽。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>面试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>算法整理</title>
+    <url>/2024/04/07/%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="数字反转"><a href="#数字反转" class="headerlink" title="数字反转"></a>数字反转</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">* 输入一个不小于 <span class="number">100</span> 且小于 <span class="number">1000</span>，同时包括小数点后一位的一个浮点数，例如 <span class="number">123.4</span> ，要求把这个数字翻转过来，变成 <span class="number">4.321</span>并输出。</span><br><span class="line">* 输入格式</span><br><span class="line">* 一行一个浮点数</span><br><span class="line">* 输出格式</span><br><span class="line">* 一行一个浮点数</span><br><span class="line">    <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">            <span class="type">float</span> <span class="variable">t</span> <span class="operator">=</span> scanner.nextFloat();</span><br><span class="line">            <span class="type">int</span> <span class="variable">s</span> <span class="operator">=</span> (<span class="type">int</span>) (t*<span class="number">10</span>);</span><br><span class="line">            <span class="type">int</span> <span class="variable">ge</span> <span class="operator">=</span> s%<span class="number">10</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">shi</span> <span class="operator">=</span> s/<span class="number">10</span>%<span class="number">10</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">bai</span> <span class="operator">=</span> s/<span class="number">100</span>%<span class="number">10</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">qian</span> <span class="operator">=</span> s/<span class="number">1000</span>%<span class="number">10</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">s2</span> <span class="operator">=</span> ge*<span class="number">1000</span>+shi*<span class="number">100</span>+bai*<span class="number">10</span>+qian;</span><br><span class="line">            <span class="type">float</span> <span class="variable">ans</span> <span class="operator">=</span> (<span class="type">float</span>) (s2/<span class="number">1000.0</span>); <span class="comment">//直接强转</span></span><br><span class="line">            System.out.println(ans);</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+<h1 id="String到单-多精度的转换"><a href="#String到单-多精度的转换" class="headerlink" title="String到单&#x2F;多精度的转换"></a>String到单&#x2F;多精度的转换</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">double</span> <span class="variable">s</span> <span class="operator">=</span> Math.sqrt(p*(p-a)*(p-b)*(p-c));</span><br><span class="line"><span class="type">String</span> <span class="variable">format</span> <span class="operator">=</span> String.format(<span class="string">&quot;%.1f&quot;</span>, s);</span><br><span class="line">System.out.println(format);</span><br><span class="line"><span class="comment">//或者直接 System.out.printf(&quot;%.1f\n&quot;, s);</span></span><br><span class="line"><span class="comment">//注意：</span></span><br><span class="line"><span class="comment">//System.out.printf()：用于格式化输出，可以指定输出的格式，如小数位数等。它的格式化字符串中可以使用 %f 来表示浮点数。</span></span><br><span class="line"><span class="comment">//System.out.println()：用于直接输出对象的字符串表示形式，并在末尾添加换行符。它不具有格式化的能力，所以不能直接指定输出的小数位数</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="时间类型"><a href="#时间类型" class="headerlink" title="时间类型"></a>时间类型</h1><p>用于操控时间的除了最常用的 <strong>Date</strong> 类，还有</p>
+<ul>
+<li><strong>方便日期运算的 Calendar 类</strong>，</li>
+<li>**拥有许多国家标准时间的 GregorianCalendar 类( Calendar 子类)**。</li>
+</ul>
+<p>Calendar 类中用一下这些常量表示不同的意义，jdk 内的很多类其实都是采用的这种思想。</p>
+<ul>
+<li>Calendar.YEAR <em>——年份</em> 。</li>
+<li>Calendar.MONTH <em>——月份</em> 。</li>
+<li>Calendar.DATE <em>——日期</em> 。</li>
+<li>Calendar.DAY_OF_MONTH <em>——日期，和上面的字段意义相同</em> 。</li>
+<li>Calendar.HOUR <em>——12小时制的小时</em> 。</li>
+<li>Calendar.HOUR_OF_DAY <em>——24小时制的小时</em> 。</li>
+<li>Calendar.MINUTE <em>——分钟</em> 。</li>
+<li>Calendar.SECOND <em>——秒</em> 。</li>
+<li>Calendar.DAY_OF_WEEK <em>——星期几</em>。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Calendar</span> <span class="variable">c1</span> <span class="operator">=</span> Calendar.getInstance();</span><br><span class="line">c1.add(Calendar.DATE, <span class="number">10</span>); </span><br><span class="line">c1.add(Calendar.DATE, -<span class="number">10</span>); <span class="comment">//把c1对象的日期加上-10，也就是c1所表的日期的10天前的日期，其它所有的数值会被重新计算。</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Calendar</span> <span class="variable">date</span> <span class="operator">=</span> Calendar.getInstance(); <span class="comment">//创造 Calendar 类实例。</span></span><br><span class="line">date.set(<span class="number">2021</span>, Calendar.MAY, <span class="number">5</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">0</span>); <span class="comment">//设置时间(不设置默认为计算机当前时间。)</span></span><br><span class="line">date.add(Calendar.MINUTE, s % y == <span class="number">0</span> ? -(s / y) : -(s / y) - <span class="number">1</span>); <span class="comment">// 使用三目运算符。因为如果路程不能整除速度的话需要再使用一分钟填满。</span></span><br></pre></td></tr></table></figure>
+
+<p>之后再使用 <strong>SimpleDateFormat 进行时间格式化</strong>再输出。</p>
+<ul>
+<li>yyyy：年。</li>
+<li>MM：月。</li>
+<li>dd：日 。</li>
+<li>hh：1~12 小时制 (1-12)。</li>
+<li>HH：24 小时制 (0-23)。</li>
+<li>mm：分。</li>
+<li>ss：秒。</li>
+<li>S：毫秒。</li>
+<li>E：星期几。</li>
+<li>D：一年中的第几天。</li>
+<li>F：一月中的第几个星期(会把这个月总共过的天数除以 7)。</li>
+<li>w：一年中的第几个星期。</li>
+<li>W：一月中的第几星期(会根据实际情况来算)。</li>
+<li>a：上下午标识。</li>
+<li>k：和HH差不多，表示一天 24 小时制 (1-24)。</li>
+<li>K：和hh差不多，表示一天 12 小时制 (0-11)。</li>
+<li>z：表示时区。</li>
+</ul>
+<p>这里只需要输出 小时:分钟，所以格式化的格式为：HH:mm</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">SimpleDateFormat</span> <span class="variable">format</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;HH:mm&quot;</span>); <span class="comment">//创造格式化 HH:mm 的 SimpleDateFormat 对象。</span></span><br><span class="line"><span class="comment">//最后在输出的时候要将 Calendar 类转换为长整型输出，否则会报错。而日期类都可以转换成长整型( long )格式，所以：</span></span><br><span class="line">System.out.println(format.format(date.getTime())); </span><br><span class="line"><span class="comment">//date.getTime()：这部分是获取Date对象的时间戳（长整型时间），getTime()方法返回的是从1970年1月1日00:00:00 GMT开始计算的毫秒数。</span></span><br><span class="line"><span class="comment">//.format(date.getTime())：这部分是调用SimpleDateFormat对象的format()方法，将时间戳格式化为字符串。.format()方法接受一个Date对象或者时间戳作为参数，并返回一个格式化后的字符串。</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="闰年判断"><a href="#闰年判断" class="headerlink" title="闰年判断"></a>闰年判断</h1><figure class="highlight php"><table><tr><td class="code"><pre><span class="line">不是闰年：不能被<span class="number">4</span>整除，能被<span class="number">100</span>整除不能被<span class="number">400</span>整除</span><br><span class="line">闰年<span class="number">2</span>月<span class="number">29</span>天，平年<span class="number">28</span>天</span><br></pre></td></tr></table></figure>
+
+<h1 id="冒泡排序算法"><a href="#冒泡排序算法" class="headerlink" title="冒泡排序算法"></a>冒泡排序算法</h1><p>每次比较相邻的两个元素，如果它们的顺序不对就交换它们</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; numbers.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; numbers.length - <span class="number">1</span> - i; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (numbers[j] &gt; numbers[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                    <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> numbers[j];</span><br><span class="line">                    numbers[j] = numbers[j + <span class="number">1</span>];</span><br><span class="line">                    numbers[j + <span class="number">1</span>] = temp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="判断质数"><a href="#判断质数" class="headerlink" title="判断质数"></a>判断质数</h1><ol>
+<li>在素数判断时，不需要一直循环到 Math.sqrt(n)，只需循环到 n 的平方根取整即可。</li>
+<li>对于大于 3 的素数，可以只考虑奇数，因为偶数除了 2 之外都不是素数。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">isPrime</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">2</span> || n == <span class="number">3</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (n % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">3</span>; i &lt;= Math.sqrt(n); i += <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (n % i == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="回文数"><a href="#回文数" class="headerlink" title="回文数"></a>回文数</h1><p>对于回文数判断，您可以：</p>
+<ol>
+<li>不需要完全反转整个数字，只需要反转一半的数字即可，然后与剩余部分进行比较。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">isHuiWen</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (x &lt; <span class="number">0</span> || (x % <span class="number">10</span> == <span class="number">0</span> &amp;&amp; x != <span class="number">0</span>)) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="type">int</span> <span class="variable">reversed</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">while</span> (x &gt; reversed) &#123;</span><br><span class="line">          <span class="type">int</span> <span class="variable">digit</span> <span class="operator">=</span> x % <span class="number">10</span>;</span><br><span class="line">          reversed = reversed * <span class="number">10</span> + digit;</span><br><span class="line">          x /= <span class="number">10</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> x == reversed || x == reversed / <span class="number">10</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="阶乘之和"><a href="#阶乘之和" class="headerlink" title="阶乘之和"></a>阶乘之和</h1><p><code>BigInteger 类提供了支持任意精度整数运算的功能，可以用来解决整数溢出的问题。</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.math.BigInteger;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class 阶乘之和P1009 &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        <span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> scanner.nextInt();</span><br><span class="line">        <span class="type">BigInteger</span> <span class="variable">s</span> <span class="operator">=</span> BigInteger.ZERO;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= x; i++) &#123;</span><br><span class="line">            s = s.add(jieCheng(BigInteger.valueOf(i)));</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(s);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> BigInteger <span class="title function_">jieCheng</span><span class="params">(BigInteger n)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (n.compareTo(BigInteger.ZERO) &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> BigInteger.ZERO;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">BigInteger</span> <span class="variable">result</span> <span class="operator">=</span> BigInteger.ONE;</span><br><span class="line">        <span class="comment">//这段代码使用了 BigInteger 类型的变量 `i` 来进行循环，从 2 开始逐步增加，直到达到或超过 `n` 的值。</span></span><br><span class="line">        <span class="comment">//这里用到了 `compareTo` 方法，该方法用于比较两个 BigInteger 对象的大小关系。</span></span><br><span class="line">        <span class="comment">//如果当前的 `i` 小于等于 `n`，循环就会继续进行；一旦 `i` 大于 `n`，循环就会停止。</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">BigInteger</span> <span class="variable">i</span> <span class="operator">=</span> BigInteger.valueOf(<span class="number">2</span>); i.compareTo(n) &lt;= <span class="number">0</span>; i = i.add(BigInteger.ONE)) &#123;</span><br><span class="line">            result = result.multiply(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="最小值"><a href="#最小值" class="headerlink" title="最小值"></a>最小值</h1><p><strong>数组中的最小值：</strong></p>
+<ul>
+<li>如果你有一个数组，可以使用 <code>Arrays</code> 类的 <code>min</code> 方法来找到数组中的最小值。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>[] array = &#123;<span class="number">5</span>, <span class="number">3</span>, <span class="number">8</span>, <span class="number">1</span>, <span class="number">9</span>&#125;;</span><br><span class="line"><span class="comment">//orElse(Integer.MAX_VALUE) 的意思是如果流为空（即数组为空），则返回 Integer.MAX_VALUE，否则返回流中的最小值。</span></span><br><span class="line"><span class="type">int</span> <span class="variable">minValue</span> <span class="operator">=</span> Arrays.stream(array).min().orElse(Integer.MAX_VALUE);</span><br><span class="line"><span class="comment">//或者写成int min = Arrays.stream(n).min().getAsInt();</span></span><br><span class="line">System.out.println(<span class="string">&quot;最小值为：&quot;</span> + minValue);</span><br></pre></td></tr></table></figure>
+
+<p><strong>集合中的最小值：</strong></p>
+<ul>
+<li>如果你有一个集合，可以使用集合类的 <code>Collections</code> 类的 <code>min</code> 方法来找到集合中的最小值。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;Integer&gt; list = Arrays.asList(<span class="number">5</span>, <span class="number">3</span>, <span class="number">8</span>, <span class="number">1</span>, <span class="number">9</span>);</span><br><span class="line"><span class="type">int</span> <span class="variable">minValue</span> <span class="operator">=</span> Collections.min(list);</span><br><span class="line">System.out.println(<span class="string">&quot;最小值为：&quot;</span> + minValue);</span><br></pre></td></tr></table></figure>
+
+<h1 id="高精度"><a href="#高精度" class="headerlink" title="高精度"></a>高精度</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">A</span>加B高精P1601 &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 读取输入字符串并转换为字符数组</span></span><br><span class="line">        <span class="type">char</span>[] s1 = scanner.nextLine().toCharArray();</span><br><span class="line">        <span class="type">char</span>[] s2 = scanner.nextLine().toCharArray();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 根据输入字符串的长度动态分配数组大小</span></span><br><span class="line">        <span class="type">int</span>[] a = <span class="keyword">new</span> <span class="title class_">int</span>[s1.length];</span><br><span class="line">        <span class="type">int</span>[] b = <span class="keyword">new</span> <span class="title class_">int</span>[s2.length];</span><br><span class="line">        <span class="type">int</span>[] c = <span class="keyword">new</span> <span class="title class_">int</span>[Math.max(s1.length, s2.length) + <span class="number">1</span>]; <span class="comment">// 结果数组长度可能比较大，需要加1防止进位溢出</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 将字符数组转换为整数数组</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; s1.length; i++) &#123;</span><br><span class="line">            a[s1.length - <span class="number">1</span> - i] = s1[i] - <span class="string">&#x27;0&#x27;</span>; <span class="comment">// 修改这里的索引</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; s2.length; i++) &#123;</span><br><span class="line">            b[s2.length - <span class="number">1</span> - i] = s2[i] - <span class="string">&#x27;0&#x27;</span>; <span class="comment">// 修改这里的索引</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 执行加法运算</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">max</span> <span class="operator">=</span> Math.max(a.length, b.length);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; max; i++) &#123; <span class="comment">// 修改循环从0开始</span></span><br><span class="line">            c[i] += (i &lt; a.length ? a[i] : <span class="number">0</span>) + (i &lt; b.length ? b[i] : <span class="number">0</span>);</span><br><span class="line">            c[i + <span class="number">1</span>] = c[i] / <span class="number">10</span>;</span><br><span class="line">            c[i] %= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 找到最高有效位的索引</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> c.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (index &gt; <span class="number">0</span> &amp;&amp; c[index] == <span class="number">0</span>) &#123;</span><br><span class="line">            index--;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 输出结果</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> index; i &gt;= <span class="number">0</span>; i--) &#123; <span class="comment">// 修改循环条件，从index开始递减</span></span><br><span class="line">            System.out.print(c[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        scanner.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//或者直接应Java自带的高精度</span></span><br><span class="line">System.out.print(sc.nextBigInteger().add(sc.nextBigInteger()));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="查询整数中数码的个数"><a href="#查询整数中数码的个数" class="headerlink" title="查询整数中数码的个数"></a>查询整数中数码的个数</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//先将整数转为字符串</span></span><br><span class="line"><span class="type">String</span> <span class="variable">jieChengStr</span> <span class="operator">=</span> jieCheng.toString();</span><br><span class="line"><span class="comment">//a.toString().charAt(0)--&gt;把整数转换为字符串，然后提取该字符串的第一个字符。</span></span><br><span class="line">s[i] = countOccurrences(jieChengStr,a.toString().charAt(<span class="number">0</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">countOccurrences</span><span class="params">(String str, <span class="type">char</span> target)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">char</span> c : str.toCharArray()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (c == target) &#123;</span><br><span class="line">            count++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//十进制转二、八、十六进制</span></span><br><span class="line"><span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line"><span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> scanner.nextInt();</span><br><span class="line"><span class="type">BigInteger</span> <span class="variable">bigInteger</span> <span class="operator">=</span> BigInteger.valueOf(x);</span><br><span class="line"><span class="type">String</span> <span class="variable">two</span> <span class="operator">=</span> bigInteger.toString(<span class="number">2</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">eight</span> <span class="operator">=</span> bigInteger.toString(<span class="number">8</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">sixteen</span> <span class="operator">=</span> bigInteger.toString(<span class="number">16</span>);</span><br><span class="line">System.out.println(two+<span class="string">&quot; &quot;</span>+eight+<span class="string">&quot; &quot;</span>+sixteen);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//各进制间转换</span></span><br><span class="line"><span class="type">String</span> <span class="variable">x</span> <span class="operator">=</span> scanner.nextLine(); </span><br><span class="line"><span class="type">BigInteger</span> <span class="variable">bigInteger</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BigInteger</span>(x, <span class="number">16</span>);<span class="comment">//第一个参数是要转换的值，第二个参数是进制数</span></span><br><span class="line"><span class="type">String</span> <span class="variable">t</span> <span class="operator">=</span> bigInteger.toString(<span class="number">2</span>); <span class="comment">//要转换成的进制数</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 八进制判断</span></span><br><span class="line">       <span class="type">int</span> <span class="variable">eightFlag</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; eight.length(); i++) &#123;</span><br><span class="line">           <span class="comment">//取到八进制的每个字符</span></span><br><span class="line">           <span class="type">char</span> <span class="variable">c</span> <span class="operator">=</span> eight.charAt(i);</span><br><span class="line">           <span class="comment">//使用Character.isDigit()方法检查字符是否为数字。如果是数字，则直接将其转换为相应的整数值；</span></span><br><span class="line">           <span class="keyword">if</span>(Character.isDigit(c))&#123;</span><br><span class="line">               eightFlag+=c-<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">               <span class="comment">//如果不是数字，则将其转换为小写字母并减去字符&#x27;a&#x27;的值，然后再加上10（因为十六进制中的a到f分别代表10到15）</span></span><br><span class="line">               <span class="comment">//小写字母&#x27;a&#x27;对应的十进制ASCII码值为97，而大写字母&#x27;A&#x27;对应的十进制ASCII码值为65。</span></span><br><span class="line">           &#125;<span class="keyword">else</span> eightFlag+=Character.toLowerCase(c)-<span class="string">&#x27;a&#x27;</span>+<span class="number">10</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (x % eightFlag != <span class="number">0</span>) &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
 </search>
