@@ -6361,6 +6361,470 @@
 <p>主要原因是如果使用Executors创建线程池的话，它允许的请求队列默认长度是Integer.MAX_VALUE，这样的话，有可能导致堆积大量的请求，从而导致OOM（内存溢出）。</p>
 <p>所以，我们一般推荐使用ThreadPoolExecutor来创建线程池，这样可以明确规定线程池的参数，避免资源的耗尽。</p>
 </blockquote>
+<h1 id="Mysql面试题"><a href="#Mysql面试题" class="headerlink" title="Mysql面试题"></a>Mysql面试题</h1><h2 id="SQL优化"><a href="#SQL优化" class="headerlink" title="SQL优化"></a>SQL优化</h2><p>1、查询语句中不要使用select *</p>
+<p> 2、尽量减少子查询，使用关联查询（left join,right join,inner join）替代 </p>
+<p>3、减少使用IN或者NOT IN ,使用exists，not exists或者关联查询语句替代 </p>
+<p>4、or 的查询尽量用 union或者union all 代替(在确认没有重复数据或者不用剔除重复数据时，union all会更好) </p>
+<p>5、应尽量避免在 where 子句中使用!&#x3D;或&lt;&gt;操作符，否则将引擎放弃使用索引而进行全表扫描。 </p>
+<p>6、应尽量避免在 where 子句中对字段进行 null 值判断，否则将导致引擎放弃使用索引而进行全表扫描，如： select id from t where num is null 可以在num上设置默认值0，确保表中num列没有null值，然后这样查询： select id from t where num&#x3D;0</p>
+<h2 id="了解过索引吗？"><a href="#了解过索引吗？" class="headerlink" title="了解过索引吗？"></a>了解过索引吗？</h2><p>索引在项目中还是比较常见的，它是帮助MySQL高效获取数据的数据结构，主要是用来提高数据检索的效率，降低数据库的IO成本，同时通过索引列对数据进行排序，降低数据排序的成本，也能降低了CPU的消耗</p>
+<h2 id="事务的特性是什么？"><a href="#事务的特性是什么？" class="headerlink" title="事务的特性是什么？"></a>事务的特性是什么？</h2><p>ACID，分别指的是：原子性、一致性、隔离性、持久性</p>
+<h2 id="并发事务带来哪些问题？"><a href="#并发事务带来哪些问题？" class="headerlink" title="并发事务带来哪些问题？"></a>并发事务带来哪些问题？</h2><p>我们在项目开发中，多个事务并发进行是经常发生的，并发也是必然的，有可能导致一些问题</p>
+<p>第一是脏读， 当一个事务正在访问数据并且对数据进行了修改，而这种修改还没有提交到数据库中，这时另外一个事务也访问了这个数据，因为这个数据是还没有提交的数据，那么另外一个事务读到的这个数据是“脏数据”，依据“脏数据”所做的操作可能是不正确的。</p>
+<p>第二是不可重复读：比如在一个事务内多次读同一数据。在这个事务还没有结束时，另一个事务也访问该数据。那么，在第一个事务中的两次读数据之间，由于第二个事务的修改导致第一个事务两次读取的数据可能不太一样。这就发生了在一个事务内两次读到的数据是不一样的情况，因此称为不可重复读。</p>
+<p>第三是幻读（Phantom read）：幻读与不可重复读类似。它发生在一个事务（T1）读取了几行数据，接着另一个并发事务（T2）插入了一些数据时。在随后的查询中，第一个事务（T1）就会发现多了一些原本不存在的记录，就好像发生了幻觉一样，所以称为幻读。</p>
+<h2 id="MySQL主从同步原理"><a href="#MySQL主从同步原理" class="headerlink" title="MySQL主从同步原理"></a>MySQL主从同步原理</h2><p><strong>候选人</strong>：MySQL主从复制的核心就是二进制日志(DDL（数据定义语言）语句和 DML（数据操纵语言）语句)，它的步骤是这样的：</p>
+<p>第一：主库在事务提交时，会把数据变更记录在二进制日志文件 Binlog 中。</p>
+<p>第二：从库读取主库的二进制日志文件 Binlog ，写入到从库的中继日志 Relay Log 。</p>
+<p>第三：从库重做中继日志中的事件，将改变反映它自己的数据</p>
+<h2 id="面试官：你们项目用过MySQL的分库分表吗？"><a href="#面试官：你们项目用过MySQL的分库分表吗？" class="headerlink" title="面试官：你们项目用过MySQL的分库分表吗？"></a><strong>面试官</strong>：你们项目用过MySQL的分库分表吗？</h2><p>嗯，因为我们都是微服务开发，每个微服务对应了一个数据库，是根据业务进行拆分的，这个其实就是垂直拆分。</p>
+<h1 id="redis面试题"><a href="#redis面试题" class="headerlink" title="redis面试题"></a>redis面试题</h1><h1 id="Redis相关面试题"><a href="#Redis相关面试题" class="headerlink" title="Redis相关面试题"></a>Redis相关面试题</h1><blockquote>
+<h3 id="面试官：什么是缓存穿透-怎么解决"><a href="#面试官：什么是缓存穿透-怎么解决" class="headerlink" title="面试官：什么是缓存穿透 ? 怎么解决 ?"></a><strong>面试官</strong>：什么是缓存穿透 ? 怎么解决 ?</h3><p><strong>候选人</strong>：</p>
+<p>嗯~~，我想一下</p>
+<p>缓存穿透是指查询一个一定<strong>不存在</strong>的数据，如果从存储层查不到数据则不写入缓存，这将导致这个不存在的数据每次请求都要到 DB 去查询，可能导致 DB 挂掉。这种情况大概率是遭到了攻击。</p>
+<p>解决方案的话，我们通常都会用布隆过滤器来解决它</p>
+<h3 id="面试官：好的，你能介绍一下布隆过滤器吗？"><a href="#面试官：好的，你能介绍一下布隆过滤器吗？" class="headerlink" title="面试官：好的，你能介绍一下布隆过滤器吗？"></a><strong>面试官</strong>：好的，你能介绍一下布隆过滤器吗？</h3><p><strong>候选人</strong>：</p>
+<p>嗯，是这样~</p>
+<p>布隆过滤器主要是用于检索一个元素是否在一个集合中。我们当时使用的是redisson实现的布隆过滤器。</p>
+<p>它的底层主要是先去初始化一个比较大数组，里面存放的二进制0或1。在一开始都是0，当一个key来了之后经过3次hash计算，模于数组长度找到数据的下标然后把数组中原来的0改为1，这样的话，三个数组的位置就能标明一个key的存在。查找的过程也是一样的。</p>
+<p>当然是有缺点的，布隆过滤器有可能会产生一定的误判，我们一般可以设置这个误判率，大概不会超过5%，其实这个误判是必然存在的，要不就得增加数组的长度，其实已经算是很划分了，5%以内的误判率一般的项目也能接受，不至于高并发下压倒数据库。</p>
+<h3 id="面试官：什么是缓存击穿-怎么解决"><a href="#面试官：什么是缓存击穿-怎么解决" class="headerlink" title="面试官：什么是缓存击穿 ? 怎么解决 ?"></a><strong>面试官</strong>：什么是缓存击穿 ? 怎么解决 ?</h3><p><strong>候选人</strong>：</p>
+<p>嗯！！</p>
+<p>缓存击穿的意思是对于设置了过期时间的key，缓存在某个时间点过期的时候，恰好这时间点对这个Key有大量的并发请求过来，这些请求发现缓存过期一般都会从后端 DB 加载数据并回设到缓存，这个时候大并发的请求可能会瞬间把 DB 压垮。</p>
+<p>解决方案有两种方式：</p>
+<p>第一可以使用互斥锁：当缓存失效时，不立即去load db，先使用如 Redis 的 setnx 去设置一个互斥锁，当操作成功返回时再进行 load db的操作并回设缓存，否则重试get缓存的方法</p>
+<p>第二种方案可以设置当前key逻辑过期，大概是思路如下：</p>
+<p>①：在设置key的时候，设置一个过期时间字段一块存入缓存中，不给当前key设置过期时间</p>
+<p>②：当查询的时候，从redis取出数据后判断时间是否过期</p>
+<p>③：如果过期则开通另外一个线程进行数据同步，当前线程正常返回数据，这个数据不是最新</p>
+<p>当然两种方案各有利弊：</p>
+<p>如果选择数据的强一致性，建议使用分布式锁的方案，性能上可能没那么高，锁需要等，也有可能产生死锁的问题</p>
+<p>如果选择key的逻辑删除，则优先考虑的高可用性，性能比较高，但是数据同步这块做不到强一致。</p>
+<h3 id="面试官：什么是缓存雪崩-怎么解决"><a href="#面试官：什么是缓存雪崩-怎么解决" class="headerlink" title="面试官：什么是缓存雪崩 ? 怎么解决 ?"></a><strong>面试官</strong>：什么是缓存雪崩 ? 怎么解决 ?</h3><p><strong>候选人</strong>：</p>
+<p>嗯！！</p>
+<p>缓存雪崩意思是设置缓存时采用了相同的过期时间，导致缓存在某一时刻同时失效，请求全部转发到DB，DB 瞬时压力过重雪崩。与缓存击穿的区别：雪崩是很多key，击穿是某一个key缓存。</p>
+<p>解决方案主要是可以将缓存失效时间分散开，比如可以在原有的失效时间基础上增加一个随机值，比如1-5分钟随机，这样每一个缓存的过期时间的重复率就会降低，就很难引发集体失效的事件。</p>
+<h3 id="面试官：redis做为缓存，mysql的数据如何与redis进行同步呢？（双写一致性）"><a href="#面试官：redis做为缓存，mysql的数据如何与redis进行同步呢？（双写一致性）" class="headerlink" title="面试官：redis做为缓存，mysql的数据如何与redis进行同步呢？（双写一致性）"></a><strong>面试官</strong>：redis做为缓存，mysql的数据如何与redis进行同步呢？（双写一致性）</h3><p><strong>候选人</strong>：嗯！就说我最近做的这个项目，里面有xxxx（<strong>根据自己的简历上写</strong>）的功能，需要让数据库与redis高度保持一致，因为要求时效性比较高，我们当时采用的读写锁保证的强一致性。</p>
+<p>我们采用的是redisson实现的读写锁，在读的时候添加共享锁，可以保证读读不互斥，读写互斥。当我们更新数据的时候，添加排他锁，它是读写，读读都互斥，这样就能保证在写数据的同时是不会让其他线程读数据的，避免了脏数据。这里面需要注意的是读方法和写方法上需要使用同一把锁才行。</p>
+<h3 id="面试官：那这个排他锁是如何保证读写、读读互斥的呢？"><a href="#面试官：那这个排他锁是如何保证读写、读读互斥的呢？" class="headerlink" title="面试官：那这个排他锁是如何保证读写、读读互斥的呢？"></a><strong>面试官</strong>：那这个排他锁是如何保证读写、读读互斥的呢？</h3><p><strong>候选人</strong>：其实排他锁底层使用也是setnx，保证了同时只能有一个线程操作锁住的方法</p>
+<h3 id="面试官：你听说过延时双删吗？为什么不用它呢？"><a href="#面试官：你听说过延时双删吗？为什么不用它呢？" class="headerlink" title="面试官：你听说过延时双删吗？为什么不用它呢？"></a><strong>面试官</strong>：你听说过延时双删吗？为什么不用它呢？</h3><p><strong>候选人</strong>：延迟双删，如果是写操作，我们先把缓存中的数据删除，然后更新数据库，最后再延时删除缓存中的数据，其中这个延时多久不太好确定，在延时的过程中可能会出现脏数据，并不能保证强一致性，所以没有采用它。</p>
+<h3 id="面试官：redis做为缓存，数据的持久化是怎么做的？"><a href="#面试官：redis做为缓存，数据的持久化是怎么做的？" class="headerlink" title="面试官：redis做为缓存，数据的持久化是怎么做的？"></a><strong>面试官</strong>：redis做为缓存，数据的持久化是怎么做的？</h3><p><strong>候选人</strong>：在Redis中提供了两种数据持久化的方式：1、RDB  2、AOF</p>
+<h3 id="面试官：这两种持久化方式有什么区别呢？"><a href="#面试官：这两种持久化方式有什么区别呢？" class="headerlink" title="面试官：这两种持久化方式有什么区别呢？"></a><strong>面试官</strong>：这两种持久化方式有什么区别呢？</h3><p><strong>候选人</strong>：RDB是一个快照文件，它是把redis内存存储的数据写到磁盘上，当redis实例宕机恢复数据的时候，方便从RDB的快照文件中恢复数据。</p>
+<p>AOF的含义是追加文件，当redis操作写命令的时候，都会存储这个文件中，当redis实例宕机恢复数据的时候，会从这个文件中再次执行一遍命令来恢复数据</p>
+<h3 id="面试官：这两种方式，哪种恢复的比较快呢？"><a href="#面试官：这两种方式，哪种恢复的比较快呢？" class="headerlink" title="面试官：这两种方式，哪种恢复的比较快呢？"></a><strong>面试官</strong>：这两种方式，哪种恢复的比较快呢？</h3><p><strong>候选人</strong>：RDB因为是二进制文件，在保存的时候体积也是比较小的，它恢复的比较快，但是它有可能会丢数据，我们通常在项目中也会使用AOF来恢复数据，虽然AOF恢复的速度慢一些，但是它丢数据的风险要小很多，在AOF文件中可以设置刷盘策略，我们当时设置的就是每秒批量写入一次命令</p>
+<h3 id="面试官：Redis的数据过期策略有哪些"><a href="#面试官：Redis的数据过期策略有哪些" class="headerlink" title="面试官：Redis的数据过期策略有哪些 ?"></a><strong>面试官</strong>：Redis的数据过期策略有哪些 ?</h3><p><strong>候选人</strong>：</p>
+<p>嗯~，在redis中提供了两种数据过期删除策略</p>
+<p>第一种是惰性删除，在设置该key过期时间后，我们不去管它，当需要该key时，我们在检查其是否过期，如果过期，我们就删掉它，反之返回该key。</p>
+<p>第二种是 定期删除，就是说每隔一段时间，我们就对一些key进行检查，删除里面过期的key</p>
+<p>定期清理的两种模式：</p>
+<ul>
+<li>SLOW模式是定时任务，执行频率默认为10hz，每次不超过25ms，以通过修改配置文件redis.conf 的 <strong>hz</strong> 选项来调整这个次数</li>
+<li>FAST模式执行频率不固定，每次事件循环会尝试执行，但两次间隔不低于2ms，每次耗时不超过1ms</li>
+</ul>
+<p>Redis的过期删除策略：<strong>惰性删除 + 定期删除</strong>两种策略进行配合使用。</p>
+<h3 id="面试官：Redis的数据淘汰策略有哪些"><a href="#面试官：Redis的数据淘汰策略有哪些" class="headerlink" title="面试官：Redis的数据淘汰策略有哪些 ?"></a><strong>面试官</strong>：Redis的数据淘汰策略有哪些 ?</h3><p><strong>候选人</strong>：</p>
+<p>嗯，这个在redis中提供了很多种，默认是noeviction，不删除任何数据，内部不足直接报错</p>
+<p>是可以在redis的配置文件中进行设置的，里面有两个非常重要的概念，一个是LRU，另外一个是LFU</p>
+<p>LRU的意思就是最少最近使用，用当前时间减去最后一次访问时间，这个值越大则淘汰优先级越高。</p>
+<p>LFU的意思是最少频率使用。会统计每个key的访问频率，值越小淘汰优先级越高</p>
+<p>我们在项目设置的allkeys-lru，挑选最近最少使用的数据淘汰，把一些经常访问的key留在redis中</p>
+<h3 id="面试官：数据库有1000万数据-Redis只能缓存20w数据-如何保证Redis中的数据都是热点数据"><a href="#面试官：数据库有1000万数据-Redis只能缓存20w数据-如何保证Redis中的数据都是热点数据" class="headerlink" title="面试官：数据库有1000万数据 ,Redis只能缓存20w数据, 如何保证Redis中的数据都是热点数据 ?"></a><strong>面试官</strong>：数据库有1000万数据 ,Redis只能缓存20w数据, 如何保证Redis中的数据都是热点数据 ?</h3><p><strong>候选人</strong>：</p>
+<p>嗯，我想一下~~</p>
+<p>可以使用 allkeys-lru （挑选最近最少使用的数据淘汰）淘汰策略，那留下来的都是经常访问的热点数据</p>
+<h3 id="面试官：Redis的内存用完了会发生什么？"><a href="#面试官：Redis的内存用完了会发生什么？" class="headerlink" title="面试官：Redis的内存用完了会发生什么？"></a><strong>面试官</strong>：Redis的内存用完了会发生什么？</h3><p><strong>候选人</strong>：</p>
+<p>嗯~，这个要看redis的数据淘汰策略是什么，如果是默认的配置，redis内存用完以后则直接报错。我们当时设置的 allkeys-lru 策略。把最近最常访问的数据留在缓存中。</p>
+<h3 id="面试官：Redis分布式锁如何实现"><a href="#面试官：Redis分布式锁如何实现" class="headerlink" title="面试官：Redis分布式锁如何实现 ?"></a><strong>面试官</strong>：Redis分布式锁如何实现 ?</h3><p><strong>候选人</strong>：嗯，在redis中提供了一个命令setnx(SET if not exists)</p>
+<p>由于redis的单线程的，用了命令之后，只能有一个客户端对某一个key设置值，在没有过期或删除key的时候是其他客户端是不能设置这个key的</p>
+<h3 id="面试官：好的，那你如何控制Redis实现分布式锁有效时长呢？"><a href="#面试官：好的，那你如何控制Redis实现分布式锁有效时长呢？" class="headerlink" title="面试官：好的，那你如何控制Redis实现分布式锁有效时长呢？"></a><strong>面试官</strong>：好的，那你如何控制Redis实现分布式锁有效时长呢？</h3><p><strong>候选人</strong>：嗯，的确，redis的setnx指令不好控制这个问题，我们当时采用的redis的一个框架redisson实现的。</p>
+<p>在redisson中需要手动加锁，并且可以控制锁的失效时间和等待时间，当锁住的一个业务还没有执行完成的时候，在redisson中引入了一个看门狗机制，就是说每隔一段时间就检查当前业务是否还持有锁，如果持有就增加加锁的持有时间，当业务执行完成之后需要使用释放锁就可以了</p>
+<p>还有一个好处就是，在高并发下，一个业务有可能会执行很快，先客户1持有锁的时候，客户2来了以后并不会马上拒绝，它会自旋不断尝试获取锁，如果客户1释放之后，客户2就可以马上持有锁，性能也得到了提升。</p>
+<h3 id="面试官：好的，redisson实现的分布式锁是可重入的吗？"><a href="#面试官：好的，redisson实现的分布式锁是可重入的吗？" class="headerlink" title="面试官：好的，redisson实现的分布式锁是可重入的吗？"></a><strong>面试官</strong>：好的，redisson实现的分布式锁是可重入的吗？</h3><p><strong>候选人</strong>：嗯，是可以重入的。这样做是为了避免死锁的产生。这个重入其实在内部就是判断是否是当前线程持有的锁，如果是当前线程持有的锁就会计数，如果释放锁就会在计算上减一。在存储数据的时候采用的hash结构，大key可以按照自己的业务进行定制，其中小key是当前线程的唯一标识，value是当前线程重入的次数</p>
+<h3 id="面试官：redisson实现的分布式锁能解决主从一致性的问题吗"><a href="#面试官：redisson实现的分布式锁能解决主从一致性的问题吗" class="headerlink" title="面试官：redisson实现的分布式锁能解决主从一致性的问题吗"></a><strong>面试官</strong>：redisson实现的分布式锁能解决主从一致性的问题吗</h3><p><strong>候选人</strong>：这个是不能的，比如，当线程1加锁成功后，master节点数据会异步复制到slave节点，此时当前持有Redis锁的master节点宕机，slave节点被提升为新的master节点，假如现在来了一个线程2，再次加锁，会在新的master节点上加锁成功，这个时候就会出现两个节点同时持有一把锁的问题。</p>
+<p>我们可以利用redisson提供的红锁来解决这个问题，它的主要作用是，不能只在一个redis实例上创建锁，应该是在多个redis实例上创建锁，并且要求在大多数redis节点上都成功创建锁，红锁中要求是redis的节点数量要过半。这样就能避免线程1加锁成功后master节点宕机导致线程2成功加锁到新的master节点上的问题了。</p>
+<p>但是，如果使用了红锁，因为需要同时在多个节点上都添加锁，性能就变的很低了，并且运维维护成本也非常高，所以，我们一般在项目中也不会直接使用红锁，并且官方也暂时废弃了这个红锁</p>
+<h3 id="面试官：好的，如果业务非要保证数据的强一致性，这个该怎么解决呢？"><a href="#面试官：好的，如果业务非要保证数据的强一致性，这个该怎么解决呢？" class="headerlink" title="面试官：好的，如果业务非要保证数据的强一致性，这个该怎么解决呢？"></a><strong>面试官</strong>：好的，如果业务非要保证数据的强一致性，这个该怎么解决呢？</h3><p><strong>候选人：</strong>嗯~，redis本身就是支持高可用的，做到强一致性，就非常影响性能，所以，如果有强一致性要求高的业务，建议使用zookeeper实现的分布式锁，它是可以保证强一致性的。</p>
+<h3 id="面试官：Redis集群有哪些方案-知道嘛"><a href="#面试官：Redis集群有哪些方案-知道嘛" class="headerlink" title="面试官：Redis集群有哪些方案, 知道嘛 ?"></a><strong>面试官</strong>：Redis集群有哪些方案, 知道嘛 ?</h3><p><strong>候选人</strong>：嗯~~，在Redis中提供的集群方案总共有三种：主从复制、哨兵模式、Redis分片集群</p>
+<h3 id="面试官：那你来介绍一下主从同步"><a href="#面试官：那你来介绍一下主从同步" class="headerlink" title="面试官：那你来介绍一下主从同步"></a><strong>面试官</strong>：那你来介绍一下主从同步</h3><p><strong>候选人</strong>：嗯，是这样的，单节点Redis的并发能力是有上限的，要进一步提高Redis的并发能力，可以搭建主从集群，实现读写分离。一般都是一主多从，主节点负责写数据，从节点负责读数据，主节点写入数据之后，需要把数据同步到从节点中</p>
+<h3 id="面试官：能说一下，主从同步数据的流程"><a href="#面试官：能说一下，主从同步数据的流程" class="headerlink" title="面试官：能说一下，主从同步数据的流程"></a><strong>面试官</strong>：能说一下，主从同步数据的流程</h3><p><strong>候选人</strong>：嗯~~，好！主从同步分为了两个阶段，一个是全量同步，一个是增量同步</p>
+<p>全量同步是指从节点第一次与主节点建立连接的时候使用全量同步，流程是这样的：</p>
+<p>第一：从节点请求主节点同步数据，其中从节点会携带自己的replication id和offset偏移量。</p>
+<p>第二：主节点判断是否是第一次请求，主要判断的依据就是，主节点与从节点是否是同一个replication id，如果不是，就说明是第一次同步，那主节点就会把自己的replication id和offset发送给从节点，让从节点与主节点的信息保持一致。</p>
+<p>第三：在同时主节点会执行bgsave，生成rdb文件后，发送给从节点去执行，从节点先把自己的数据清空，然后执行主节点发送过来的rdb文件，这样就保持了一致</p>
+<p>当然，如果在rdb生成执行期间，依然有请求到了主节点，而主节点会以命令的方式记录到缓冲区，缓冲区是一个日志文件，最后把这个日志文件发送给从节点，这样就能保证主节点与从节点完全一致了，后期再同步数据的时候，都是依赖于这个日志文件，这个就是全量同步</p>
+<p>增量同步指的是，当从节点服务重启之后，数据就不一致了，所以这个时候，从节点会请求主节点同步数据，主节点还是判断不是第一次请求，不是第一次就获取从节点的offset值，然后主节点从命令日志中获取offset值之后的数据，发送给从节点进行数据同步</p>
+<h3 id="面试官：怎么保证Redis的高并发高可用"><a href="#面试官：怎么保证Redis的高并发高可用" class="headerlink" title="面试官：怎么保证Redis的高并发高可用"></a><strong>面试官</strong>：怎么保证Redis的高并发高可用</h3><p><strong>候选人</strong>：首先可以搭建主从集群，再加上使用redis中的哨兵模式，哨兵模式可以实现主从集群的自动故障恢复，里面就包含了对主从服务的监控、自动故障恢复、通知；如果master故障，Sentinel会将一个slave提升为master。当故障实例恢复后也以新的master为主；同时Sentinel也充当Redis客户端的服务发现来源，当集群发生故障转移时，会将最新信息推送给Redis的客户端，所以一般项目都会采用哨兵的模式来保证redis的高并发高可用</p>
+<h3 id="面试官：你们使用redis是单点还是集群，哪种集群"><a href="#面试官：你们使用redis是单点还是集群，哪种集群" class="headerlink" title="面试官：你们使用redis是单点还是集群，哪种集群"></a><strong>面试官</strong>：你们使用redis是单点还是集群，哪种集群</h3><p><strong>候选人</strong>：嗯！，我们当时使用的是主从（1主1从）加哨兵。一般单节点不超过10G内存，如果Redis内存不足则可以给不同服务分配独立的Redis主从节点。尽量不做分片集群。因为集群维护起来比较麻烦，并且集群之间的心跳检测和数据通信会消耗大量的网络带宽，也没有办法使用lua脚本和事务</p>
+<h3 id="面试官：redis集群脑裂，该怎么解决呢？"><a href="#面试官：redis集群脑裂，该怎么解决呢？" class="headerlink" title="面试官：redis集群脑裂，该怎么解决呢？"></a><strong>面试官</strong>：redis集群脑裂，该怎么解决呢？</h3><p><strong>候选人</strong>：嗯！ 这个在项目很少见，不过脑裂的问题是这样的，我们现在用的是redis的哨兵模式集群的</p>
+<p>有的时候由于网络等原因可能会出现脑裂的情况，就是说，由于redis master节点和redis salve节点和sentinel处于不同的网络分区，使得sentinel没有能够心跳感知到master，所以通过选举的方式提升了一个salve为master，这样就存在了两个master，就像大脑分裂了一样，这样会导致客户端还在old master那里写入数据，新节点无法同步数据，当网络恢复后，sentinel会将old master降为salve，这时再从新master同步数据，这会导致old master中的大量数据丢失。</p>
+<p>关于解决的话，我记得在redis的配置中可以设置：第一可以设置最少的salve节点个数，比如设置至少要有一个从节点才能同步数据，第二个可以设置主从数据复制和同步的延迟时间，达不到要求就拒绝请求，就可以避免大量的数据丢失</p>
+<h3 id="面试官：redis的分片集群有什么作用"><a href="#面试官：redis的分片集群有什么作用" class="headerlink" title="面试官：redis的分片集群有什么作用"></a><strong>面试官</strong>：redis的分片集群有什么作用</h3><p><strong>候选人</strong>：分片集群主要解决的是，海量数据存储的问题，集群中有多个master，每个master保存不同数据，并且还可以给每个master设置多个slave节点，就可以继续增大集群的高并发能力。同时每个master之间通过ping监测彼此健康状态，就类似于哨兵模式了。当客户端请求可以访问集群任意节点，最终都会被转发到正确节点</p>
+<h3 id="面试官：Redis分片集群中数据是怎么存储和读取的？"><a href="#面试官：Redis分片集群中数据是怎么存储和读取的？" class="headerlink" title="面试官：Redis分片集群中数据是怎么存储和读取的？"></a><strong>面试官</strong>：Redis分片集群中数据是怎么存储和读取的？</h3><p><strong>候选人</strong>：</p>
+<p>嗯~，在redis集群中是这样的</p>
+<p>Redis 集群引入了哈希槽的概念，有 16384 个哈希槽，集群中每个主节点绑定了一定范围的哈希槽范围， key通过 CRC16 校验后对 16384 取模来决定放置哪个槽，通过槽找到对应的节点进行存储。</p>
+<p>取值的逻辑是一样的</p>
+<h3 id="面试官：Redis是单线程的，但是为什么还那么快？"><a href="#面试官：Redis是单线程的，但是为什么还那么快？" class="headerlink" title="面试官：Redis是单线程的，但是为什么还那么快？"></a><strong>面试官</strong>：Redis是单线程的，但是为什么还那么快？</h3><p><strong>候选人</strong>：</p>
+<p>嗯，这个有几个原因吧~~~</p>
+<p>1、完全基于内存的，C语言编写</p>
+<p>2、采用单线程，避免不必要的上下文切换可竞争条件</p>
+<p>3、使用多路I&#x2F;O复用模型，非阻塞IO</p>
+<p>例如：bgsave 和 bgrewriteaof  都是在<strong>后台</strong>执行操作，不影响主线程的正常使用，不会产生阻塞</p>
+<h3 id="面试官：能解释一下I-O多路复用模型？"><a href="#面试官：能解释一下I-O多路复用模型？" class="headerlink" title="面试官：能解释一下I&#x2F;O多路复用模型？"></a><strong>面试官</strong>：能解释一下I&#x2F;O多路复用模型？</h3><p><strong>候选人</strong>：嗯~~，I&#x2F;O多路复用是指利用单个线程来同时监听多个Socket ，并在某个Socket可读、可写时得到通知，从而避免无效的等待，充分利用CPU资源。目前的I&#x2F;O多路复用都是采用的epoll模式实现，它会在通知用户进程Socket就绪的同时，把已就绪的Socket写入用户空间，不需要挨个遍历Socket来判断是否就绪，提升了性能。</p>
+<p>其中Redis的网络模型就是使用I&#x2F;O多路复用结合事件的处理器来应对多个Socket请求，比如，提供了连接应答处理器、命令回复处理器，命令请求处理器；</p>
+<p>在Redis6.0之后，为了提升更好的性能，在命令回复处理器使用了多线程来处理回复事件，在命令请求处理器中，将命令的转换使用了多线程，增加命令转换速度，在命令执行的时候，依然是单线程</p>
+<h3 id="如果有大量的-key-需要设置同一时间过期，一般需要注意什么？"><a href="#如果有大量的-key-需要设置同一时间过期，一般需要注意什么？" class="headerlink" title="如果有大量的 key 需要设置同一时间过期，一般需要注意什么？"></a>如果有大量的 key 需要设置同一时间过期，一般需要注意什么？</h3><p>如果大量的 key 过期时间设置的过于集中，到过期的那个时间点，redis 可能会出现短暂的卡顿现象。一般需要在时间上加一个随机值，使 得过期时间分散一些。 </p>
+</blockquote>
+<h1 id="spring框架"><a href="#spring框架" class="headerlink" title="spring框架"></a>spring框架</h1><blockquote>
+<h5 id="面试官：Spring框架中的单例bean是线程安全的吗？"><a href="#面试官：Spring框架中的单例bean是线程安全的吗？" class="headerlink" title="面试官：Spring框架中的单例bean是线程安全的吗？"></a><strong>面试官</strong>：Spring框架中的单例bean是线程安全的吗？</h5><p><strong>候选人</strong>：</p>
+<p>嗯！</p>
+<p>不是线程安全的，是这样的</p>
+<p>当多用户同时请求一个服务时，容器会给每一个请求分配一个线程，这是多个线程会并发执行该请求对应的业务逻辑（成员方法），如果该处理逻辑中有对该单列状态的修改（体现为该单例的成员属性），则必须考虑线程同步问题。</p>
+<p>Spring框架并没有对单例bean进行任何多线程的封装处理。关于单例bean的线程安全和并发问题需要开发者自行去搞定。</p>
+<p>比如：我们通常在项目中使用的Spring bean都是不可可变的状态(比如Service类和DAO类)，所以在某种程度上说Spring的单例bean是线程安全的。</p>
+<p>如果你的bean有多种状态的话（比如 View Model对象），就需要自行保证线程安全。最浅显的解决办法就是将多态bean的作用由“<strong>singleton</strong>”变更为“<strong>prototype</strong>”。</p>
+<h3 id="什么是IOC"><a href="#什么是IOC" class="headerlink" title="什么是IOC"></a>什么是IOC</h3><p>Spring的IoC（Inversion of Control，控制反转）是Spring框架的核心概念之一，它是一种设计原则，用于降低组件之间的耦合度。IoC的核心思想是将对象的创建和管理交给容器来负责，而不是在代码中直接创建和管理对象。</p>
+<p>在Spring框架中，IoC容器负责创建、管理和装配应用中的各个组件（如bean）。当应用程序需要使用某个组件时，不再由应用程序自己创建该组件，而是由IoC容器来创建并且将其注入到需要的地方。</p>
+<p>Spring框架实现IoC的方式主要有两种：</p>
+<ol>
+<li><strong>依赖注入（Dependency Injection，DI）</strong>：依赖注入是IoC的一种具体实现方式。在依赖注入中，组件之间的依赖关系由容器在运行时动态地注入到组件中。这种方式使得组件之间的耦合度降低，更容易进行单元测试和组件替换。Spring框架支持构造器注入、Setter方法注入、字段注入等多种方式进行依赖注入。</li>
+<li><strong>控制反转（Inversion of Control，IoC）</strong>：IoC是一种更广义的设计原则，而依赖注入是IoC的一种具体实现方式。IoC的核心思想是将对象的创建和管理交给容器来负责，这种方式将组件之间的控制权反转给了容器，从而降低了组件之间的耦合度。</li>
+</ol>
+<p>Spring框架提供了多种IoC容器的实现，其中最常用的是BeanFactory和ApplicationContext。BeanFactory是IoC容器的基础接口，提供了最基本的IoC功能，而ApplicationContext在BeanFactory的基础上提供了更多的企业级特性，如国际化、事件发布、AOP等。</p>
+<h3 id="面试官：什么是AOP"><a href="#面试官：什么是AOP" class="headerlink" title="面试官：什么是AOP"></a><strong>面试官</strong>：什么是AOP</h3><p><strong>候选人</strong>：</p>
+<p>aop是面向切面编程，在spring中用于将那些与业务无关，但却对多个对象产生影响的公共行为和逻辑，抽取公共模块复用，降低耦合，一般比如可以做为公共日志保存，事务处理等</p>
+<h3 id="面试官：你们项目中有没有使用到AOP"><a href="#面试官：你们项目中有没有使用到AOP" class="headerlink" title="面试官：你们项目中有没有使用到AOP"></a><strong>面试官</strong>：你们项目中有没有使用到AOP</h3><p><strong>候选人</strong>：</p>
+<p>我们当时在后台管理系统中，就是使用aop来记录了系统的操作日志</p>
+<p>主要思路是这样的，使用aop中的环绕通知+切点表达式，这个表达式就是要找到要记录日志的方法，然后通过环绕通知的参数获取请求方法的参数，比如类信息、方法信息、注解、请求方式等，获取到这些参数以后，保存到数据库</p>
+<h3 id="面试官：Spring中的事务是如何实现的"><a href="#面试官：Spring中的事务是如何实现的" class="headerlink" title="面试官：Spring中的事务是如何实现的"></a><strong>面试官</strong>：Spring中的事务是如何实现的</h3><p><strong>候选人</strong>：</p>
+<p>spring实现的事务本质就是aop完成，对方法前后进行拦截，在执行方法之前开启事务，在执行完目标方法之后根据执行情况提交或者回滚事务。</p>
+<h3 id="面试官：Spring中事务失效的场景有哪些"><a href="#面试官：Spring中事务失效的场景有哪些" class="headerlink" title="面试官：Spring中事务失效的场景有哪些"></a><strong>面试官</strong>：Spring中事务失效的场景有哪些</h3><p><strong>候选人</strong>：</p>
+<p>嗯！这个在项目中之前遇到过，我想想啊</p>
+<p>第一个，如果方法上异常捕获处理，自己处理了异常，没有抛出，就会导致事务失效，所以一般处理了异常以后，别忘了跑出去就行了</p>
+<p>第二个，如果方法抛出检查异常，如果报错也会导致事务失效，最后在spring事务的注解上，就是@Transactional上配置rollbackFor属性为Exception，这样别管是什么异常，都会回滚事务</p>
+<p>第三，我之前还遇到过一个，如果方法上不是public修饰的，也会导致事务失效</p>
+<p>嗯，就能想起来那么多</p>
+<h3 id="面试官：Spring的bean的生命周期"><a href="#面试官：Spring的bean的生命周期" class="headerlink" title="面试官：Spring的bean的生命周期"></a><strong>面试官</strong>：Spring的bean的生命周期</h3><p><strong>候选人</strong>：</p>
+<p>嗯！，这个步骤还是挺多的，我之前看过一些源码，它大概流程是这样的</p>
+<p>首先会通过一个非常重要的类，叫做BeanDefinition获取bean的定义信息，这里面就封装了bean的所有信息，比如，类的全路径，是否是延迟加载，是否是单例等等这些信息</p>
+<p>在创建bean的时候，第一步是调用构造函数实例化bean</p>
+<p>第二步是bean的依赖注入，比如一些set方法注入，像平时开发用的@Autowire都是这一步完成</p>
+<p>第三步是处理Aware接口，如果某一个bean实现了Aware接口就会重写方法执行</p>
+<p>第四步是bean的后置处理器BeanPostProcessor，这个是前置处理器</p>
+<p>第五步是初始化方法，比如实现了接口InitializingBean或者自定义了方法init-method标签或@PostContruct</p>
+<p>第六步是执行了bean的后置处理器BeanPostProcessor，主要是对bean进行增强，有可能在这里产生代理对象</p>
+<p>最后一步是销毁bean</p>
+<h3 id="面试官：Spring中的循环引用"><a href="#面试官：Spring中的循环引用" class="headerlink" title="面试官：Spring中的循环引用"></a><strong>面试官</strong>：Spring中的循环引用</h3><p><strong>候选人</strong>：</p>
+<p>嗯，好的，我来解释一下</p>
+<p>循环依赖：循环依赖其实就是循环引用,也就是两个或两个以上的bean互相持有对方,最终形成闭环。比如A依赖于B,B依赖于A</p>
+<p>循环依赖在spring中是允许存在，spring框架依据三级缓存已经解决了大部分的循环依赖</p>
+<p>①一级缓存：单例池，缓存已经经历了完整的生命周期，已经初始化完成的bean对象</p>
+<p>②二级缓存：缓存早期的bean对象（生命周期还没走完）</p>
+<p>③三级缓存：缓存的是ObjectFactory，表示对象工厂，用来创建某个对象的</p>
+<h3 id="面试官：那具体解决流程清楚吗？"><a href="#面试官：那具体解决流程清楚吗？" class="headerlink" title="面试官：那具体解决流程清楚吗？"></a><strong>面试官</strong>：那具体解决流程清楚吗？</h3><p><strong>候选人</strong>：</p>
+<p>第一，先实例A对象，同时会创建ObjectFactory对象存入三级缓存singletonFactories  </p>
+<p>第二，A在初始化的时候需要B对象，这个走B的创建的逻辑</p>
+<p>第三，B实例化完成，也会创建ObjectFactory对象存入三级缓存singletonFactories  </p>
+<p>第四，B需要注入A，通过三级缓存中获取ObjectFactory来生成一个A的对象同时存入二级缓存，这个是有两种情况，一个是可能是A的普通对象，另外一个是A的代理对象，都可以让ObjectFactory来生产对应的对象，这也是三级缓存的关键</p>
+<p>第五，B通过从通过二级缓存earlySingletonObjects  获得到A的对象后可以正常注入，B创建成功，存入一级缓存singletonObjects  </p>
+<p>第六，回到A对象初始化，因为B对象已经创建完成，则可以直接注入B，A创建成功存入一次缓存singletonObjects </p>
+<p>第七，二级缓存中的临时对象A清除 </p>
+<h3 id="面试官：构造方法出现了循环依赖怎么解决？"><a href="#面试官：构造方法出现了循环依赖怎么解决？" class="headerlink" title="面试官：构造方法出现了循环依赖怎么解决？"></a><strong>面试官</strong>：构造方法出现了循环依赖怎么解决？</h3><p><strong>候选人</strong>：</p>
+<p>由于bean的生命周期中构造函数是第一个执行的，spring框架并不能解决构造函数的的依赖注入，可以使用@Lazy懒加载，什么时候需要对象再进行bean对象的创建</p>
+<h3 id="面试官：SpringMVC的执行流程知道嘛"><a href="#面试官：SpringMVC的执行流程知道嘛" class="headerlink" title="面试官：SpringMVC的执行流程知道嘛"></a><strong>面试官</strong>：SpringMVC的执行流程知道嘛</h3><p><strong>候选人</strong>：</p>
+<p>嗯，这个知道的，它分了好多步骤</p>
+<p>1、用户发送出请求到前端控制器DispatcherServlet，这是一个调度中心</p>
+<p>2、DispatcherServlet收到请求调用HandlerMapping（处理器映射器）。</p>
+<p>3、HandlerMapping找到具体的处理器(可查找xml配置或注解配置)，生成处理器对象及处理器拦截器(如果有)，再一起返回给DispatcherServlet。</p>
+<p>4、DispatcherServlet调用HandlerAdapter（处理器适配器）。</p>
+<p>5、HandlerAdapter经过适配调用具体的处理器（Handler&#x2F;Controller）。</p>
+<p>6、Controller执行完成返回ModelAndView对象。</p>
+<p>7、HandlerAdapter将Controller执行结果ModelAndView返回给DispatcherServlet。</p>
+<p>8、DispatcherServlet将ModelAndView传给ViewReslover（视图解析器）。</p>
+<p>9、ViewReslover解析后返回具体View（视图）。</p>
+<p>10、DispatcherServlet根据View进行渲染视图（即将模型数据填充至视图中）。</p>
+<p>11、DispatcherServlet响应用户。</p>
+<p>当然现在的开发，基本都是前后端分离的开发的，并没有视图这些，一般都是handler中使用Response直接结果返回</p>
+<h3 id="面试官：Springboot自动配置原理"><a href="#面试官：Springboot自动配置原理" class="headerlink" title="面试官：Springboot自动配置原理"></a><strong>面试官</strong>：Springboot自动配置原理</h3><p><strong>候选人</strong>：</p>
+<p>嗯，好的，它是这样的。</p>
+<p>在Spring Boot项目中的引导类上有一个注解@SpringBootApplication，这个注解是对三个注解进行了封装，分别是：</p>
+<ul>
+<li><p>@SpringBootConfiguration</p>
+</li>
+<li><p>@EnableAutoConfiguration</p>
+</li>
+<li><p>@ComponentScan</p>
+</li>
+</ul>
+<p>其中<code>@EnableAutoConfiguration</code>是实现自动化配置的核心注解。 </p>
+<p>该注解通过<code>@Import</code>注解导入对应的配置选择器。关键的是内部就是读取了该项目和该项目引用的Jar包的的classpath路径下<strong>META-INF&#x2F;spring.factories</strong>文件中的所配置的类的全类名。 </p>
+<p>在这些配置类中所定义的Bean会根据条件注解所<strong>指定的条件来决定</strong>是否需要将其导入到Spring容器中。</p>
+<p>一般条件判断会有像<code>@ConditionalOnClass</code>这样的注解，判断是否有对应的class文件，如果有则加载该类，把这个配置类的所有的Bean放入spring容器中使用。</p>
+<h3 id="面试官：Spring-的常见注解有哪些？"><a href="#面试官：Spring-的常见注解有哪些？" class="headerlink" title="面试官：Spring 的常见注解有哪些？"></a><strong>面试官</strong>：Spring 的常见注解有哪些？</h3><p><strong>候选人</strong>：</p>
+<p>嗯，这个就很多了</p>
+<p>第一类是：声明bean，有@Component、@Service、@Repository、@Controller</p>
+<p>第二类是：依赖注入相关的，有@Autowired、@Qualifier、@Resourse</p>
+<p>第三类是：设置作用域 @Scope</p>
+<p>第四类是：spring配置相关的，比如@Configuration，@ComponentScan 和 @Bean </p>
+<p>第五类是：跟aop相关做增强的注解  @Aspect，@Before，@After，@Around，@Pointcut</p>
+<h3 id="面试官：SpringMVC常见的注解有哪些？"><a href="#面试官：SpringMVC常见的注解有哪些？" class="headerlink" title="面试官：SpringMVC常见的注解有哪些？"></a><strong>面试官</strong>：SpringMVC常见的注解有哪些？</h3><p><strong>候选人</strong>：</p>
+<p>嗯，这个也很多的</p>
+<p>有@RequestMapping：用于映射请求路径；</p>
+<p>@RequestBody：注解实现接收http请求的json数据，将json转换为java对象；</p>
+<p>@RequestParam：指定请求参数的名称；</p>
+<p>@PathViriable：从请求路径下中获取请求参数(&#x2F;user&#x2F;{id})，传递给方法的形式参数；@ResponseBody：注解实现将controller方法返回对象转化为json对象响应给客户端。@RequestHeader：获取指定的请求头数据，还有像@PostMapping、@GetMapping这些。</p>
+<h3 id="面试官：Springboot常见注解有哪些？"><a href="#面试官：Springboot常见注解有哪些？" class="headerlink" title="面试官：Springboot常见注解有哪些？"></a><strong>面试官</strong>：Springboot常见注解有哪些？</h3><p><strong>候选人</strong>：</p>
+<p>嗯~~</p>
+<p>Spring Boot的核心注解是@SpringBootApplication , 他由几个注解组成 : </p>
+<ul>
+<li>@SpringBootConfiguration： 组合了- @Configuration注解，实现配置文件的功能；</li>
+<li>@EnableAutoConfiguration：打开自动配置的功能，也可以关闭某个自动配置的选项</li>
+<li>@ComponentScan：Spring组件扫描</li>
+</ul>
+<h3 id="面试官：MyBatis执行流程"><a href="#面试官：MyBatis执行流程" class="headerlink" title="面试官：MyBatis执行流程"></a><strong>面试官</strong>：MyBatis执行流程</h3><p><strong>候选人</strong>：</p>
+<p>好，这个知道的，不过步骤也很多</p>
+<p>①读取MyBatis配置文件：mybatis-config.xml加载运行环境和映射文件</p>
+<p>②构造会话工厂SqlSessionFactory，一个项目只需要一个，单例的，一般由spring进行管理</p>
+<p>③会话工厂创建SqlSession对象，这里面就含了执行SQL语句的所有方法</p>
+<p>④操作数据库的接口，Executor执行器，同时负责查询缓存的维护</p>
+<p>⑤Executor接口的执行方法中有一个MappedStatement类型的参数，封装了映射信息</p>
+<p>⑥输入参数映射</p>
+<p>⑦输出结果映射</p>
+<h3 id="面试官：Mybatis是否支持延迟加载？"><a href="#面试官：Mybatis是否支持延迟加载？" class="headerlink" title="面试官：Mybatis是否支持延迟加载？"></a><strong>面试官</strong>：Mybatis是否支持延迟加载？</h3><p><strong>候选人</strong>：</p>
+<p>是支持的~</p>
+<p>延迟加载的意思是：就是在需要用到数据时才进行加载，不需要用到数据时就不加载数据。</p>
+<p>Mybatis支持一对一关联对象和一对多关联集合对象的延迟加载</p>
+<p>在Mybatis配置文件中，可以配置是否启用延迟加载lazyLoadingEnabled&#x3D;true|false，默认是关闭的</p>
+<h3 id="面试官：延迟加载的底层原理知道吗？"><a href="#面试官：延迟加载的底层原理知道吗？" class="headerlink" title="面试官：延迟加载的底层原理知道吗？"></a><strong>面试官</strong>：延迟加载的底层原理知道吗？</h3><p><strong>候选人</strong>：</p>
+<p>嗯，我想想啊</p>
+<p>延迟加载在底层主要使用的CGLIB动态代理完成的</p>
+<p>第一是，使用CGLIB创建目标对象的代理对象，这里的目标对象就是开启了延迟加载的mapper</p>
+<p>第二个是当调用目标方法时，进入拦截器invoke方法，发现目标方法是null值，再执行sql查询</p>
+<p>第三个是获取数据以后，调用set方法设置属性值，再继续查询目标方法，就有值了</p>
+<h3 id="面试官：Mybatis的一级、二级缓存用过吗？"><a href="#面试官：Mybatis的一级、二级缓存用过吗？" class="headerlink" title="面试官：Mybatis的一级、二级缓存用过吗？"></a><strong>面试官</strong>：Mybatis的一级、二级缓存用过吗？</h3><p><strong>候选人</strong>：</p>
+<p>嗯~~，用过的~</p>
+<p>mybatis的一级缓存: 基于 PerpetualCache 的 HashMap 本地缓存，其存储作用域为 Session，当Session进行flush或close之后，该Session中的所有Cache就将清空，默认打开一级缓存</p>
+<p>关于二级缓存需要单独开启</p>
+<p>二级缓存是基于namespace和mapper的作用域起作用的，不是依赖于SQL session，默认也是采用 PerpetualCache，HashMap 存储。</p>
+<p>如果想要开启二级缓存需要在全局配置文件和映射文件中开启配置才行。</p>
+<h3 id="面试官：Mybatis的二级缓存什么时候会清理缓存中的数据"><a href="#面试官：Mybatis的二级缓存什么时候会清理缓存中的数据" class="headerlink" title="面试官：Mybatis的二级缓存什么时候会清理缓存中的数据"></a><strong>面试官</strong>：Mybatis的二级缓存什么时候会清理缓存中的数据</h3><p><strong>候选人</strong>：</p>
+<p>嗯！！</p>
+<p>当某一个作用域(一级缓存 Session&#x2F;二级缓存Namespaces)的进行了新增、修改、删除操作后，默认该作用域下所有 select 中的缓存将被 clear。</p>
+</blockquote>
+<h1 id="消息中间件"><a href="#消息中间件" class="headerlink" title="消息中间件"></a>消息中间件</h1><h2 id="消息中间件面试题-参考回答"><a href="#消息中间件面试题-参考回答" class="headerlink" title="消息中间件面试题-参考回答"></a>消息中间件面试题-参考回答</h2><blockquote>
+<h3 id="面试官：RabbitMQ-如何保证消息不丢失"><a href="#面试官：RabbitMQ-如何保证消息不丢失" class="headerlink" title="面试官：RabbitMQ-如何保证消息不丢失"></a><strong>面试官</strong>：RabbitMQ-如何保证消息不丢失</h3><p><strong>候选人</strong>：</p>
+<p>嗯！我们当时MYSQL和Redis的数据双写一致性就是采用RabbitMQ实现同步的，这里面就要求了消息的高可用性，我们要保证消息的不丢失。主要从三个层面考虑</p>
+<p>第一个是开启生产者确认机制，确保生产者的消息能到达队列，如果报错可以先记录到日志中，再去修复数据</p>
+<p>第二个是开启持久化功能，确保消息未消费前在队列中不会丢失，其中的交换机、队列、和消息都要做持久化</p>
+<p>第三个是开启消费者确认机制为auto，由spring确认消息处理成功后完成ack，当然也需要设置一定的重试次数，我们当时设置了3次，如果重试3次还没有收到消息，就将失败后的消息投递到异常交换机，交由人工处理</p>
+<h3 id="面试官：RabbitMQ消息的重复消费问题如何解决的"><a href="#面试官：RabbitMQ消息的重复消费问题如何解决的" class="headerlink" title="面试官：RabbitMQ消息的重复消费问题如何解决的"></a><strong>面试官</strong>：RabbitMQ消息的重复消费问题如何解决的</h3><p><strong>候选人</strong>：</p>
+<p>嗯，这个我们还真遇到过，是这样的，我们当时消费者是设置了自动确认机制，当服务还没来得及给MQ确认的时候，服务宕机了，导致服务重启之后，又消费了一次消息。这样就重复消费了</p>
+<p>因为我们当时处理的支付（订单|业务唯一标识），它有一个业务的唯一标识，我们再处理消息时，先到数据库查询一下，这个数据是否存在，如果不存在，说明没有处理过，这个时候就可以正常处理这个消息了。如果已经存在这个数据了，就说明消息重复消费了，我们就不需要再消费了</p>
+<h3 id="面试官：那你还知道其他的解决方案吗？"><a href="#面试官：那你还知道其他的解决方案吗？" class="headerlink" title="面试官：那你还知道其他的解决方案吗？"></a><strong>面试官</strong>：那你还知道其他的解决方案吗？</h3><p><strong>候选人</strong>：</p>
+<p>嗯，我想想~</p>
+<p>其实这个就是典型的幂等的问题，比如，redis分布式锁、数据库的锁都是可以的</p>
+<h3 id="面试官：RabbitMQ中死信交换机-（RabbitMQ延迟队列有了解过嘛）"><a href="#面试官：RabbitMQ中死信交换机-（RabbitMQ延迟队列有了解过嘛）" class="headerlink" title="面试官：RabbitMQ中死信交换机 ? （RabbitMQ延迟队列有了解过嘛）"></a><strong>面试官</strong>：RabbitMQ中死信交换机 ? （RabbitMQ延迟队列有了解过嘛）</h3><p><strong>候选人</strong>：</p>
+<p>嗯！了解过！</p>
+<p>我们当时的xx项目有一个xx业务，需要用到延迟队列，其中就是使用RabbitMQ来实现的。</p>
+<p>延迟队列就是用到了死信交换机和TTL（消息存活时间）实现的。</p>
+<p>如果消息超时未消费就会变成死信，在RabbitMQ中如果消息成为死信，队列可以绑定一个死信交换机，在死信交换机上可以绑定其他队列，在我们发消息的时候可以按照需求指定TTL的时间，这样就实现了延迟队列的功能了。</p>
+<p>我记得RabbitMQ还有一种方式可以实现延迟队列，在RabbitMQ中安装一个死信插件，这样更方便一些，我们只需要在声明交互机的时候，指定这个就是死信交换机，然后在发送消息的时候直接指定超时时间就行了，相对于死信交换机+TTL要省略了一些步骤</p>
+<h3 id="面试官：如果有100万消息堆积在MQ-如何解决"><a href="#面试官：如果有100万消息堆积在MQ-如何解决" class="headerlink" title="面试官：如果有100万消息堆积在MQ , 如何解决 ?"></a><strong>面试官</strong>：如果有100万消息堆积在MQ , 如何解决 ?</h3><p><strong>候选人</strong>：</p>
+<p>我在实际的开发中，没遇到过这种情况，不过，如果发生了堆积的问题，解决方案也所有很多的</p>
+<p>第一:提高消费者的消费能力 ,可以使用多线程消费任务</p>
+<p>第二：增加更多消费者，提高消费速度 </p>
+<p>​			 使用工作队列模式, 设置多个消费者消费消费同一个队列中的消息</p>
+<p>第三：扩大队列容积，提高堆积上限 </p>
+<p>可以使用RabbitMQ惰性队列，惰性队列的好处主要是</p>
+<p>①接收到消息后直接存入磁盘而非内存</p>
+<p>②消费者要消费消息时才会从磁盘中读取并加载到内存</p>
+<p>③支持数百万条的消息存储</p>
+<h3 id="面试官：RabbitMQ的高可用机制有了解过嘛"><a href="#面试官：RabbitMQ的高可用机制有了解过嘛" class="headerlink" title="面试官：RabbitMQ的高可用机制有了解过嘛"></a><strong>面试官</strong>：RabbitMQ的高可用机制有了解过嘛</h3><p><strong>候选人</strong>：</p>
+<p>嗯，熟悉的~</p>
+<p>我们当时项目在生产环境下，使用的集群，当时搭建是镜像模式集群，使用了3台机器。</p>
+<p>镜像队列结构是一主多从，所有操作都是主节点完成，然后同步给镜像节点，如果主节点宕机后，镜像节点会替代成新的主节点，不过在主从同步完成前，主节点就已经宕机，可能出现数据丢失</p>
+<h3 id="面试官：那出现丢数据怎么解决呢？"><a href="#面试官：那出现丢数据怎么解决呢？" class="headerlink" title="面试官：那出现丢数据怎么解决呢？"></a><strong>面试官</strong>：那出现丢数据怎么解决呢？</h3><p><strong>候选人</strong>：</p>
+<p>我们可以采用仲裁队列，与镜像队列一样，都是主从模式，支持主从数据同步，主从同步基于Raft协议，强一致。</p>
+<p>并且使用起来也非常简单，不需要额外的配置，在声明队列的时候只要指定这个是仲裁队列即可</p>
+<h3 id="面试官：Kafka是如何保证消息不丢失"><a href="#面试官：Kafka是如何保证消息不丢失" class="headerlink" title="面试官：Kafka是如何保证消息不丢失"></a><strong>面试官</strong>：Kafka是如何保证消息不丢失</h3><p><strong>候选人</strong>：</p>
+<p>嗯，这个保证机制很多，在发送消息到消费者接收消息，在每个阶段都有可能会丢失消息，所以我们解决的话也是从多个方面考虑</p>
+<p>第一个是生产者发送消息的时候，可以使用异步回调发送，如果消息发送失败，我们可以通过回调获取失败后的消息信息，可以考虑重试或记录日志，后边再做补偿都是可以的。同时在生产者这边还可以设置消息重试，有的时候是由于网络抖动的原因导致发送不成功，就可以使用重试机制来解决</p>
+<p>第二个在broker中消息有可能会丢失，我们可以通过kafka的复制机制来确保消息不丢失，在生产者发送消息的时候，可以设置一个acks，就是确认机制。我们可以设置参数为all，这样的话，当生产者发送消息到了分区之后，不仅仅只在leader分区保存确认，在follwer分区也会保存确认，只有当所有的副本都保存确认以后才算是成功发送了消息，所以，这样设置就很大程度了保证了消息不会在broker丢失</p>
+<p>第三个有可能是在消费者端丢失消息，kafka消费消息都是按照offset进行标记消费的，消费者默认是自动按期提交已经消费的偏移量，默认是每隔5s提交一次，如果出现重平衡的情况，可能会重复消费或丢失数据。我们一般都会禁用掉自动提价偏移量，改为手动提交，当消费成功以后再报告给broker消费的位置，这样就可以避免消息丢失和重复消费了</p>
+<h3 id="面试官：Kafka中消息的重复消费问题如何解决的"><a href="#面试官：Kafka中消息的重复消费问题如何解决的" class="headerlink" title="面试官：Kafka中消息的重复消费问题如何解决的"></a><strong>面试官</strong>：Kafka中消息的重复消费问题如何解决的</h3><p><strong>候选人</strong>：</p>
+<p>kafka消费消息都是按照offset进行标记消费的，消费者默认是自动按期提交已经消费的偏移量，默认是每隔5s提交一次，如果出现重平衡的情况，可能会重复消费或丢失数据。我们一般都会禁用掉自动提价偏移量，改为手动提交，当消费成功以后再报告给broker消费的位置，这样就可以避免消息丢失和重复消费了</p>
+<p>为了消息的幂等，我们也可以设置唯一主键来进行区分，或者是加锁，数据库的锁，或者是redis分布式锁，都能解决幂等的问题</p>
+<h3 id="面试官：Kafka是如何保证消费的顺序性"><a href="#面试官：Kafka是如何保证消费的顺序性" class="headerlink" title="面试官：Kafka是如何保证消费的顺序性"></a><strong>面试官</strong>：Kafka是如何保证消费的顺序性</h3><p><strong>候选人</strong>：</p>
+<p>kafka默认存储和消费消息，是不能保证顺序性的，因为一个topic数据可能存储在不同的分区中，每个分区都有一个按照顺序的存储的偏移量，如果消费者关联了多个分区不能保证顺序性</p>
+<p>如果有这样的需求的话，我们是可以解决的，把消息都存储同一个分区下就行了，有两种方式都可以进行设置，第一个是发送消息时指定分区号，第二个是发送消息时按照相同的业务设置相同的key，因为默认情况下分区也是通过key的hashcode值来选择分区的，hash值如果一样的话，分区肯定也是一样的</p>
+<h3 id="面试官：Kafka的高可用机制有了解过嘛"><a href="#面试官：Kafka的高可用机制有了解过嘛" class="headerlink" title="面试官：Kafka的高可用机制有了解过嘛"></a><strong>面试官</strong>：Kafka的高可用机制有了解过嘛</h3><p><strong>候选人</strong>：</p>
+<p>嗯，主要是有两个层面，第一个是集群，第二个是提供了复制机制</p>
+<p>kafka集群指的是由多个broker实例组成，即使某一台宕机，也不耽误其他broker继续对外提供服务</p>
+<p>复制机制是可以保证kafka的高可用的，一个topic有多个分区，每个分区有多个副本，有一个leader，其余的是follower，副本存储在不同的broker中；所有的分区副本的内容是都是相同的，如果leader发生故障时，会自动将其中一个follower提升为leader，保证了系统的容错性、高可用性</p>
+<h3 id="面试官：解释一下复制机制中的ISR"><a href="#面试官：解释一下复制机制中的ISR" class="headerlink" title="面试官：解释一下复制机制中的ISR"></a><strong>面试官</strong>：解释一下复制机制中的ISR</h3><p><strong>候选人</strong>：</p>
+<p>ISR的意思是in-sync replica，就是需要同步复制保存的follower</p>
+<p>其中分区副本有很多的follower，分为了两类，一个是ISR，与leader副本同步保存数据，另外一个普通的副本，是异步同步数据，当leader挂掉之后，会优先从ISR副本列表中选取一个作为leader，因为ISR是同步保存数据，数据更加的完整一些，所以优先选择ISR副本列表</p>
+<h3 id="面试官：Kafka数据清理机制了解过嘛"><a href="#面试官：Kafka数据清理机制了解过嘛" class="headerlink" title="面试官：Kafka数据清理机制了解过嘛"></a><strong>面试官</strong>：Kafka数据清理机制了解过嘛</h3><p><strong>候选人</strong>：</p>
+<p>嗯，了解过~~</p>
+<p>Kafka中topic的数据存储在分区上，分区如果文件过大会分段存储segment</p>
+<p>每个分段都在磁盘上以索引(xxxx.index)和日志文件(xxxx.log)的形式存储，这样分段的好处是，第一能够减少单个文件内容的大小，查找数据方便，第二方便kafka进行日志清理。</p>
+<p>在kafka中提供了两个日志的清理策略：</p>
+<p>第一，根据消息的保留时间，当消息保存的时间超过了指定的时间，就会触发清理，默认是168小时（ 7天）</p>
+<p>第二是根据topic存储的数据大小，当topic所占的日志文件大小大于一定的阈值，则开始删除最久的消息。这个默认是关闭的</p>
+<p>这两个策略都可以通过kafka的broker中的配置文件进行设置</p>
+<h3 id="面试官：Kafka中实现高性能的设计有了解过嘛"><a href="#面试官：Kafka中实现高性能的设计有了解过嘛" class="headerlink" title="面试官：Kafka中实现高性能的设计有了解过嘛"></a><strong>面试官</strong>：Kafka中实现高性能的设计有了解过嘛</h3><p><strong>候选人</strong>：</p>
+<p>Kafka 高性能，是多方面协同的结果，包括宏观架构、分布式存储、ISR 数据同步、以及高效的利用磁盘、操作系统特性等。主要体现有这么几点：</p>
+<p>消息分区：不受单台服务器的限制，可以不受限的处理更多的数据</p>
+<p>顺序读写：磁盘顺序读写，提升读写效率</p>
+<p>页缓存：把磁盘中的数据缓存到内存中，把对磁盘的访问变为对内存的访问</p>
+<p>零拷贝：减少上下文切换及数据拷贝</p>
+<p>消息压缩：减少磁盘IO和网络IO</p>
+<p>分批发送：将消息打包批量发送，减少网络开销</p>
+</blockquote>
+<h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><h3 id="JVM组成"><a href="#JVM组成" class="headerlink" title="JVM组成"></a>JVM组成</h3><blockquote>
+<h3 id="面试官：JVM由那些部分组成，运行流程是什么？"><a href="#面试官：JVM由那些部分组成，运行流程是什么？" class="headerlink" title="面试官：JVM由那些部分组成，运行流程是什么？"></a><strong>面试官</strong>：JVM由那些部分组成，运行流程是什么？</h3><p><strong>候选人:</strong></p>
+<p>嗯，好的~~</p>
+<p>在JVM中共有四大部分，分别是ClassLoader（类加载器）、Runtime Data Area（运行时数据区，内存分区）、Execution Engine（执行引擎）、Native Method Library（本地库接口）</p>
+<p>它们的运行流程是：</p>
+<p>第一，类加载器（ClassLoader）把Java代码转换为字节码</p>
+<p>第二，运行时数据区（Runtime Data Area）把字节码加载到内存中，而字节码文件只是JVM的一套指令集规范，并不能直接交给底层系统去执行，而是有执行引擎运行</p>
+<p>第三，执行引擎（Execution Engine）将字节码翻译为底层系统指令，再交由CPU执行去执行，此时需要调用其他语言的本地库接口（Native Method Library）来实现整个程序的功能。</p>
+<h3 id="面试官：好的，你能详细说一下-JVM-运行时数据区吗？"><a href="#面试官：好的，你能详细说一下-JVM-运行时数据区吗？" class="headerlink" title="面试官：好的，你能详细说一下 JVM 运行时数据区吗？"></a><strong>面试官</strong>：好的，你能详细说一下 JVM 运行时数据区吗？</h3><p><strong>候选人:</strong></p>
+<p>嗯，好~</p>
+<p>运行时数据区包含了堆、方法区、栈、本地方法栈、程序计数器这几部分，每个功能作用不一样。</p>
+<ul>
+<li>堆解决的是对象实例存储的问题，垃圾回收器管理的主要区域。</li>
+<li>方法区可以认为是堆的一部分，用于存储已被虚拟机加载的信息，常量、静态变量、即时编译器编译后的代码。</li>
+<li>栈解决的是程序运行的问题，栈里面存的是栈帧，栈帧里面存的是局部变量表、操作数栈、动态链接、方法出口等信息。</li>
+<li>本地方法栈与栈功能相同，本地方法栈执行的是本地方法，一个Java调用非Java代码的接口。</li>
+<li>程序计数器（PC寄存器）程序计数器中存放的是当前线程所执行的字节码的行数。JVM工作时就是通过改变这个计数器的值来选取下一个需要执行的字节码指令。</li>
+</ul>
+<h3 id="面试官：好的，你再详细介绍一下程序计数器的作用？"><a href="#面试官：好的，你再详细介绍一下程序计数器的作用？" class="headerlink" title="面试官：好的，你再详细介绍一下程序计数器的作用？"></a><strong>面试官</strong>：好的，你再详细介绍一下程序计数器的作用？</h3><p><strong>候选人:</strong></p>
+<p>嗯，是这样~~</p>
+<p>java虚拟机对于多线程是通过线程轮流切换并且分配线程执行时间。在任何的一个时间点上，一个处理器只会处理执行一个线程，如果当前被执行的这个线程它所分配的执行时间用完了【挂起】。处理器会切换到另外的一个线程上来进行执行。并且这个线程的执行时间用完了，接着处理器就会又来执行被挂起的这个线程。这时候程序计数器就起到了关键作用，程序计数器在来回切换的线程中记录他上一次执行的行号，然后接着继续向下执行。</p>
+<h3 id="面试官：你能给我详细的介绍Java堆吗"><a href="#面试官：你能给我详细的介绍Java堆吗" class="headerlink" title="面试官：你能给我详细的介绍Java堆吗?"></a><strong>面试官</strong>：你能给我详细的介绍Java堆吗?</h3><p><strong>候选人:</strong></p>
+<p>好的~</p>
+<p>Java中的堆术语线程共享的区域。主要用来保存<strong>对象实例，数组</strong>等，当堆中没有内存空间可分配给实例，也无法再扩展时，则抛出OutOfMemoryError异常。</p>
+<p>​	在JAVA8中堆内会存在年轻代、老年代</p>
+<p>​	1）Young区被划分为三部分，Eden区和两个大小严格相同的Survivor区，其中，Survivor区间中，某一时刻只有其中一个是被使用的，另外一个留做垃圾收集时复制对象用。在Eden区变满的时候， GC就会将存活的对象移到空闲的Survivor区间中，根据JVM的策略，在经过几次垃圾收集后，任然存活于Survivor的对象将被移动到Tenured区间。</p>
+<p>​	2）Tenured区主要保存生命周期长的对象，一般是一些老的对象，当一些对象在Young复制转移一定的次数以后，对象就会被转移到Tenured区。</p>
+<h3 id="面试官：能不能解释一下方法区？"><a href="#面试官：能不能解释一下方法区？" class="headerlink" title="面试官：能不能解释一下方法区？"></a><strong>面试官</strong>：能不能解释一下方法区？</h3><p><strong>候选人:</strong></p>
+<p>好的~</p>
+<p>与虚拟机栈类似。本地方法栈是为虚拟机<strong>执行本地方法时提供服务的</strong>。不需要进行GC。本地方法一般是由其他语言编写。</p>
+<h3 id="面试官：你听过直接内存吗？"><a href="#面试官：你听过直接内存吗？" class="headerlink" title="面试官：你听过直接内存吗？"></a><strong>面试官</strong>：你听过直接内存吗？</h3><p><strong>候选人:</strong></p>
+<p>嗯~~</p>
+<p>它又叫做<strong>堆外内存</strong>，<strong>线程共享的区域</strong>，在 Java 8 之前有个<strong>永久代</strong>的概念，实际上指的是 HotSpot 虚拟机上的永久代，它用永久代实现了 JVM 规范定义的方法区功能，<strong>主要存储类的信息，常量，静态变量</strong>，即时编译器编译后代码等，这部分由于是在堆中实现的，受 GC 的管理，不过由于永久代有 -XX:MaxPermSize 的上限，所以如果大量动态生成类（将类信息放入永久代），很容易造成 OOM，有人说可以把永久代设置得足够大，但很难确定一个合适的大小，受类数量，常量数量的多少影响很大。</p>
+<p>​	所以在 Java 8 中就把方法区的实现移到了本地内存中的元空间中，这样方法区就不受 JVM 的控制了,也就不会进行 GC，也因此提升了性能。</p>
+<h3 id="面试官：什么是虚拟机栈"><a href="#面试官：什么是虚拟机栈" class="headerlink" title="面试官：什么是虚拟机栈"></a><strong>面试官</strong>：什么是虚拟机栈</h3><p><strong>候选人:</strong></p>
+<p>虚拟机栈是描述的是方法执行时的内存模型,是线程私有的，生命周期与线程相同,每个方法被执行的同时会创建<strong>栈桢</strong>。保存执行方法时的<strong>局部变量、动态连接信息、方法返回地址信息</strong>等等。方法开始执行的时候会进栈，方法执行完会出栈【相当于清空了数据】，所以这块区域<strong>不需要进行 GC</strong>。</p>
+<h3 id="面试官：能说一下堆栈的区别是什么吗？"><a href="#面试官：能说一下堆栈的区别是什么吗？" class="headerlink" title="面试官：能说一下堆栈的区别是什么吗？"></a><strong>面试官</strong>：能说一下堆栈的区别是什么吗？</h3><p><strong>候选人:</strong></p>
+<p>嗯，好的，有这几个区别</p>
+<p>第一，栈内存一般会用来存储局部变量和方法调用，但堆内存是用来存储Java对象和数组的的。堆会GC垃圾回收，而栈不会。</p>
+<p>第二、栈内存是线程私有的，而堆内存是线程共有的。</p>
+<p>第三、两者异常错误不同，但如果栈内存或者堆内存不足都会抛出异常。</p>
+<p>栈空间不足：java.lang.StackOverFlowError。</p>
+<p>堆空间不足：java.lang.OutOfMemoryError。</p>
+</blockquote>
+<h3 id="5-2-类加载器"><a href="#5-2-类加载器" class="headerlink" title="5.2 类加载器"></a>5.2 类加载器</h3><blockquote>
+<h3 id="面试官：什么是类加载器，类加载器有哪些"><a href="#面试官：什么是类加载器，类加载器有哪些" class="headerlink" title="面试官：什么是类加载器，类加载器有哪些?"></a><strong>面试官</strong>：什么是类加载器，类加载器有哪些?</h3><p><strong>候选人:</strong></p>
+<p>嗯，是这样的</p>
+<p>JVM只会运行二进制文件，而类加载器（ClassLoader）的主要作用就是将<strong>字节码文件加载到JVM中</strong>，从而让Java程序能够启动起来。</p>
+<p>常见的类加载器有4个</p>
+<p>第一个是启动类加载器(BootStrap ClassLoader)：其是由C++编写实现。用于加载JAVA_HOME&#x2F;jre&#x2F;lib目录下的类库。</p>
+<p>第二个是扩展类加载器(ExtClassLoader)：该类是ClassLoader的子类，主要加载JAVA_HOME&#x2F;jre&#x2F;lib&#x2F;ext目录中的类库。</p>
+<p>第三个是应用类加载器(AppClassLoader)：该类是ClassLoader的子类，主要用于加载classPath下的类，也就是加载开发者自己编写的Java类。</p>
+<p>第四个是自定义类加载器：开发者自定义类继承ClassLoader，实现自定义类加载规则。</p>
+<h3 id="面试官：说一下类装载的执行过程？"><a href="#面试官：说一下类装载的执行过程？" class="headerlink" title="面试官：说一下类装载的执行过程？"></a><strong>面试官</strong>：说一下类装载的执行过程？</h3><p><strong>候选人:</strong></p>
+<p>嗯，这个过程还是挺多的。</p>
+<p>类从加载到虚拟机中开始，直到卸载为止，它的整个生命周期包括了：加载、验证、准备、解析、初始化、使用和卸载这7个阶段。其中，验证、准备和解析这三个部分统称为连接（linking）</p>
+<p>1.加载：查找和导入class文件</p>
+<p>2.验证：保证加载类的准确性</p>
+<p>3.准备：为类变量分配内存并设置类变量初始值</p>
+<p>4.解析：把类中的符号引用转换为直接引用</p>
+<p>5.初始化：对类的静态变量，静态代码块执行初始化操作</p>
+<p>6.使用：JVM 开始从入口方法开始执行用户的程序代码</p>
+<p>7.卸载：当用户程序代码执行完毕后，JVM 便开始销毁创建的 Class 对象，最后负责运行的 JVM 也退出内存</p>
+<h3 id="面试官：什么是双亲委派模型？"><a href="#面试官：什么是双亲委派模型？" class="headerlink" title="面试官：什么是双亲委派模型？"></a><strong>面试官</strong>：什么是双亲委派模型？</h3><p><strong>候选人:</strong></p>
+<p>嗯，它是是这样的。</p>
+<p>如果一个类加载器收到了类加载的请求，它首先不会自己尝试加载这个类，而是把这请求委派给父类加载器去完成，每一个层次的类加载器都是如此，因此所有的加载请求最终都应该传说到顶层的启动类加载器中，只有当父类加载器返回自己无法完成这个加载请求（它的搜索返回中没有找到所需的类）时，子类加载器才会尝试自己去加载</p>
+<h3 id="面试官：JVM为什么采用双亲委派机制"><a href="#面试官：JVM为什么采用双亲委派机制" class="headerlink" title="面试官：JVM为什么采用双亲委派机制"></a><strong>面试官</strong>：JVM为什么采用双亲委派机制</h3><p><strong>候选人:</strong></p>
+<p>主要有两个原因。</p>
+<p>第一、通过双亲委派机制可以避免某一个类被重复加载，当父类已经加载后则无需重复加载，保证唯一性。</p>
+<p>第二、为了安全，保证类库API不会被修改</p>
+</blockquote>
+<h3 id="5-3-垃圾回收"><a href="#5-3-垃圾回收" class="headerlink" title="5.3 垃圾回收"></a>5.3 垃圾回收</h3><blockquote>
+<h3 id="面试官：简述Java垃圾回收机制？（GC是什么？为什么要GC）"><a href="#面试官：简述Java垃圾回收机制？（GC是什么？为什么要GC）" class="headerlink" title="面试官：简述Java垃圾回收机制？（GC是什么？为什么要GC）"></a><strong>面试官</strong>：简述Java垃圾回收机制？（GC是什么？为什么要GC）</h3><p><strong>候选人:</strong></p>
+<p>嗯，是这样~~</p>
+<p>为了让程序员更专注于代码的实现，而不用过多的考虑内存释放的问题，所以，在Java语言中，有了自动的垃圾回收机制，也就是我们熟悉的GC(Garbage Collection)。</p>
+<p>有了垃圾回收机制后，程序员只需要关心内存的申请即可，内存的释放由系统自动识别完成。</p>
+<p>在进行垃圾回收时，不同的对象引用类型，GC会采用不同的回收时机</p>
+<h3 id="面试官：强引用、软引用、弱引用、虚引用的区别？"><a href="#面试官：强引用、软引用、弱引用、虚引用的区别？" class="headerlink" title="面试官：强引用、软引用、弱引用、虚引用的区别？"></a><strong>面试官</strong>：强引用、软引用、弱引用、虚引用的区别？</h3><p><strong>候选人:</strong></p>
+<p>嗯嗯~</p>
+<p>强引用最为普通的引用方式，表示一个对象处于<strong>有用且必须</strong>的状态，如果一个对象具有强引用，则GC并不会回收它。即便堆中内存不足了，宁可出现OOM，也不会对其进行回收</p>
+<p>软引用表示一个对象处于<strong>有用且非必须</strong>状态，如果一个对象处于软引用，在内存空间足够的情况下，GC机制并不会回收它，而在内存空间不足时，则会在OOM异常出现之间对其进行回收。但值得注意的是，因为GC线程优先级较低，软引用并不会立即被回收。</p>
+<p>弱引用表示一个对象处于<strong>可能有用且非必须</strong>的状态。在GC线程扫描内存区域时，一旦发现弱引用，就会回收到弱引用相关联的对象。对于弱引用的回收，无关内存区域是否足够，一旦发现则会被回收。同样的，因为GC线程优先级较低，所以弱引用也并不是会被立刻回收。</p>
+<p>虚引用表示一个对象处于<strong>无用</strong>的状态。在任何时候都有可能被垃圾回收。虚引用的使用必须和引用队列Reference Queue联合使用</p>
+<h3 id="面试官：对象什么时候可以被垃圾器回收"><a href="#面试官：对象什么时候可以被垃圾器回收" class="headerlink" title="面试官：对象什么时候可以被垃圾器回收"></a><strong>面试官</strong>：对象什么时候可以被垃圾器回收</h3><p><strong>候选人:</strong></p>
+<p>思考一会~~</p>
+<p>如果一个或多个对象没有任何的引用指向它了，那么这个对象现在就是垃圾，如果定位了垃圾，则有可能会被垃圾回收器回收。</p>
+<p>如果要定位什么是垃圾，有两种方式来确定，第一个是引用计数法，第二个是可达性分析算法</p>
+<p>通常都使用可达性分析算法来确定是不是垃圾</p>
+<h3 id="面试官：-JVM-垃圾回收算法有哪些？"><a href="#面试官：-JVM-垃圾回收算法有哪些？" class="headerlink" title="面试官： JVM 垃圾回收算法有哪些？"></a><strong>面试官</strong>： JVM 垃圾回收算法有哪些？</h3><p><strong>候选人:</strong></p>
+<p>我记得一共有四种，分别是标记清除算法、复制算法、标记整理算法、分代回收</p>
+<h3 id="面试官：-你能详细聊一下分代回收吗？"><a href="#面试官：-你能详细聊一下分代回收吗？" class="headerlink" title="面试官： 你能详细聊一下分代回收吗？"></a><strong>面试官</strong>： 你能详细聊一下分代回收吗？</h3><p><strong>候选人:</strong></p>
+<p>关于分代回收是这样的</p>
+<p>在java8时，堆被分为了两份：新生代和老年代，它们默认空间占用比例是1:2</p>
+<p>对于新生代，内部又被分为了三个区域。Eden区，S0区，S1区默认空间占用比例是8:1:1</p>
+<p>具体的工作机制是有些情况：</p>
+<p>1）当创建一个对象的时候，那么这个对象会被分配在新生代的Eden区。当Eden区要满了时候，触发YoungGC。</p>
+<p>2）当进行YoungGC后，此时在Eden区存活的对象被移动到S0区，并且<strong>当前对象的年龄会加1</strong>，清空Eden区。</p>
+<p>3）当再一次触发YoungGC的时候，会把Eden区中存活下来的对象和S0中的对象，移动到S1区中，这些对象的年龄会加1，清空Eden区和S0区。</p>
+<p>4）当再一次触发YoungGC的时候，会把Eden区中存活下来的对象和S1中的对象，移动到S0区中，这些对象的年龄会加1，清空Eden区和S1区。</p>
+<p>5）对象的年龄达到了某一个限定的值（<strong>默认15岁</strong>  ），那么这个对象就会进入到老年代中。</p>
+<p>当然也有特殊情况，如果进入Eden区的是一个大对象，在触发YoungGC的时候，会直接存放到老年代</p>
+<p>当老年代满了之后，<strong>触发FullGC</strong>。<strong>FullGC同时回收新生代和老年代</strong>，当前只会存在一个FullGC的线程进行执行，其他的线程全部会被挂起。  我们在程序中要尽量避免FullGC的出现。</p>
+<h3 id="面试官：讲一下新生代、老年代、永久代的区别？"><a href="#面试官：讲一下新生代、老年代、永久代的区别？" class="headerlink" title="面试官：讲一下新生代、老年代、永久代的区别？"></a><strong>面试官</strong>：讲一下新生代、老年代、永久代的区别？</h3><p><strong>候选人:</strong></p>
+<p>嗯！是这样的，简单说就是</p>
+<p><strong>新生代</strong>主要用来存放新生的对象。</p>
+<p><strong>老年代</strong>主要存放应用中生命周期长的内存对象。</p>
+<p><strong>永久代</strong>指的是永久保存区域。主要存放Class和Meta（元数据）的信息。在Java8中，永久代已经被移除，取而代之的是一个称之为“元数据区”（<strong>元空间</strong>）的区域。元空间和永久代类似，不过元空间与永久代之间最大的区别在于：元空间并不在虚拟机中，而是使用本地内存。因此，默认情况下，元空间的大小仅受本地内存的限制。</p>
+<h3 id="面试官：说一下-JVM-有哪些垃圾回收器？"><a href="#面试官：说一下-JVM-有哪些垃圾回收器？" class="headerlink" title="面试官：说一下 JVM 有哪些垃圾回收器？"></a><strong>面试官</strong>：说一下 JVM 有哪些垃圾回收器？</h3><p><strong>候选人:</strong></p>
+<p>在jvm中，实现了多种垃圾收集器，包括：串行垃圾收集器、并行垃圾收集器（JDK8默认）、CMS（并发）垃圾收集器、G1垃圾收集器（JDK9默认）</p>
+<h3 id="面试官：Minor-GC、Major-GC、Full-GC是什么"><a href="#面试官：Minor-GC、Major-GC、Full-GC是什么" class="headerlink" title="面试官：Minor GC、Major GC、Full GC是什么"></a><strong>面试官</strong>：Minor GC、Major GC、Full GC是什么</h3><p><strong>候选人:</strong></p>
+<p>嗯，其实它们指的是不同代之间的垃圾回收</p>
+<p>Minor GC 发生在新生代的垃圾回收，暂停时间短</p>
+<p>Major GC 老年代区域的垃圾回收，老年代空间不足时，会先尝试触发Minor GC。Minor GC之后空间还不足，则会触发Major GC，Major GC速度比较慢，暂停时间长</p>
+<p>Full GC 新生代 + 老年代完整垃圾回收，暂停时间长，<strong>应尽力避免</strong></p>
+</blockquote>
+<h3 id="5-4-JVM实践（调优）"><a href="#5-4-JVM实践（调优）" class="headerlink" title="5.4 JVM实践（调优）"></a>5.4 JVM实践（调优）</h3><blockquote>
+<h3 id="面试官：JVM-调优的参数可以在哪里设置参数值？"><a href="#面试官：JVM-调优的参数可以在哪里设置参数值？" class="headerlink" title="面试官：JVM 调优的参数可以在哪里设置参数值？"></a><strong>面试官</strong>：JVM 调优的参数可以在哪里设置参数值？</h3><p><strong>候选人:</strong></p>
+<p>我们当时的项目是springboot项目，可以在项目启动的时候，java -jar中加入参数就行了</p>
+<h3 id="面试官：用的-JVM-调优的参数都有哪些？"><a href="#面试官：用的-JVM-调优的参数都有哪些？" class="headerlink" title="面试官：用的 JVM 调优的参数都有哪些？"></a><strong>面试官</strong>：用的 JVM 调优的参数都有哪些？</h3><p><strong>候选人:</strong></p>
+<p>嗯，这些参数是比较多的</p>
+<p>我记得当时我们设置过堆的大小，像-Xms和-Xmx</p>
+<p>还有就是可以设置年轻代中Eden区和两个Survivor区的大小比例</p>
+<p>还有就是可以设置使用哪种垃圾回收器等等。具体的指令还真记不太清楚。</p>
+<h3 id="面试官：嗯，好的，你们平时调试-JVM都用了哪些工具呢？"><a href="#面试官：嗯，好的，你们平时调试-JVM都用了哪些工具呢？" class="headerlink" title="面试官：嗯，好的，你们平时调试 JVM都用了哪些工具呢？"></a><strong>面试官</strong>：嗯，好的，你们平时调试 JVM都用了哪些工具呢？</h3><p><strong>候选人:</strong></p>
+<p>嗯，我们一般都是使用jdk自带的一些工具，比如</p>
+<p>jps 输出JVM中运行的进程状态信息</p>
+<p>jstack查看java进程内<strong>线程的堆栈</strong>信息。</p>
+<p>jmap 用于生成堆转存快照</p>
+<p>jstat用于JVM统计监测工具</p>
+<p>还有一些可视化工具，像jconsole和VisualVM等</p>
+<h3 id="面试官：假如项目中产生了java内存泄露，你说一下你的排查思路？"><a href="#面试官：假如项目中产生了java内存泄露，你说一下你的排查思路？" class="headerlink" title="面试官：假如项目中产生了java内存泄露，你说一下你的排查思路？"></a><strong>面试官</strong>：假如项目中产生了java内存泄露，你说一下你的排查思路？</h3><p><strong>候选人:</strong></p>
+<p>嗯，这个我在之前项目排查过</p>
+<p>第一呢可以通过jmap指定打印他的内存快照 dump文件，不过有的情况打印不了，我们会设置vm参数让程序自动生成dump文件</p>
+<p>第二，可以通过工具去分析 dump文件，jdk自带的VisualVM就可以分析</p>
+<p>第三，通过查看堆信息的情况，可以大概定位内存溢出是哪行代码出了问题</p>
+<p>第四，找到对应的代码，通过阅读上下文的情况，进行修复即可</p>
+<h3 id="面试官：好的，那现在再来说一种情况，就是说服务器CPU持续飙高，你的排查方案与思路？"><a href="#面试官：好的，那现在再来说一种情况，就是说服务器CPU持续飙高，你的排查方案与思路？" class="headerlink" title="面试官：好的，那现在再来说一种情况，就是说服务器CPU持续飙高，你的排查方案与思路？"></a><strong>面试官</strong>：好的，那现在再来说一种情况，就是说服务器CPU持续飙高，你的排查方案与思路？</h3><p><strong>候选人:</strong></p>
+<p>嗯，我思考一下~~</p>
+<p>可以这么做~~</p>
+<p>第一可以使用使用top命令查看占用cpu的情况</p>
+<p>第二通过top命令查看后，可以查看是哪一个进程占用cpu较高，记录这个进程id</p>
+<p>第三可以通过ps 查看当前进程中的线程信息，看看哪个线程的cpu占用较高</p>
+<p>第四可以jstack命令打印进行的id，找到这个线程，就可以进一步定位问题代码的行号</p>
+</blockquote>
+<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">【单例模式】</span><br><span class="line">确保一个类只有一个实例，并提供全局访问点</span><br><span class="line"></span><br><span class="line">【工厂方法模式】</span><br><span class="line">定义一个用于创建对象的接口，让子类决定实例化哪个类</span><br><span class="line"></span><br><span class="line">【抽象工厂模式】</span><br><span class="line">定义一个用于创建对象的接口，让子类决定实例化哪一个类，常用于对象的创建和解耦</span><br><span class="line"></span><br><span class="line">【建造者模式】</span><br><span class="line">提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们的具体类，</span><br><span class="line">常用于系统的构建和产品族的创建</span><br><span class="line"></span><br><span class="line">【原型模式】</span><br><span class="line">用原型实例指定创建对象的种类，并通过拷贝这些原型创建新的对象</span><br><span class="line"></span><br><span class="line">-------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">【适配器模式】</span><br><span class="line">将一个类的接口转换成客户希望的另一个接口，使得原本不兼容的类可以合作无间</span><br><span class="line"></span><br><span class="line">【桥接模式】</span><br><span class="line">将抽象部分与实现部分分离，使它们都可以独立地变化</span><br><span class="line"></span><br><span class="line">【组合模式】</span><br><span class="line">将对象组合成树形结构来表示“部分-整体”的层次结构，使得客户端对单个对象</span><br><span class="line">和组合对象的使用具有一致性</span><br><span class="line"></span><br><span class="line">【装饰器模式】</span><br><span class="line">动态地给一个对象添加一些额外的职责，就增加功能来说，装饰器模式比生成子类更为灵活</span><br><span class="line"></span><br><span class="line">【外观模式】</span><br><span class="line">为子系统中的一组接口提供一个一致的界面，此模式定义了一个高层接口，</span><br><span class="line">这个接口使得这一子系统更加容易使用</span><br><span class="line"></span><br><span class="line">【享元模式】</span><br><span class="line">运用共享技术有效地支持大量细粒度的对象</span><br><span class="line"></span><br><span class="line">【代理模式】</span><br><span class="line">由于某些原因需要给某对象提供一个代理以控制对该对象的访问。这时，</span><br><span class="line">访问对象不适合或者不能直接引用目标对象，代理对象作为访问对象和目标对象之间的中介</span><br><span class="line"></span><br><span class="line">-------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">【模板方法模式】</span><br><span class="line">定义一个操作中的算法骨架，而将一些步骤延迟到子类中</span><br><span class="line"></span><br><span class="line">【策略模式】</span><br><span class="line">定义一系列算法，将每个算法封装起来，并且使它们之间可以互换</span><br><span class="line"></span><br><span class="line">【命令模式】</span><br><span class="line">将请求封装成一个对象，从而使你可以用不同的请求对客户进行参数化</span><br><span class="line"></span><br><span class="line">【责任链模式】</span><br><span class="line">为解除请求的发送者和接收者之间耦合，而使多个对象都有机会处理这个请求</span><br><span class="line"></span><br><span class="line">【状态模式】</span><br><span class="line">允许一个对象在其内部状态改变时改变其行为</span><br><span class="line"></span><br><span class="line">【观察者模式】</span><br><span class="line">定义对象间的一种一对多的依赖关系，以便当一个对象状态改变时，</span><br><span class="line">所有依赖于它的对象都得到通知并自动刷新</span><br><span class="line"></span><br><span class="line">【中介者模式】</span><br><span class="line">用一个中介对象来封装一系列的对象交互。</span><br><span class="line">中介者使各个对象不需要显式地相互作用，从而使其松耦合</span><br><span class="line"></span><br><span class="line">【迭代器模式】</span><br><span class="line">提供一种方法来访问聚合对象中的各个元素，而又不暴露其内部的表示</span><br><span class="line"></span><br><span class="line">【访问者模式】</span><br><span class="line">封装一些施加于某种数据结构之上的操作。一旦这些操作需要修改，</span><br><span class="line">接受这个操作的数据结构可以保持不变</span><br><span class="line"></span><br><span class="line">【备忘录模式】</span><br><span class="line">在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态</span><br><span class="line"></span><br><span class="line">【解释器模式】</span><br><span class="line">给定一个语言，定义它的文法的一种表示，并定义一个解释器，</span><br><span class="line">该解释器使用该表示来解释语言中的句子</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>java</category>
@@ -6370,8 +6834,8 @@
       </tags>
   </entry>
   <entry>
-    <title>算法整理</title>
-    <url>/2024/04/07/%E7%AE%97%E6%B3%95/</url>
+    <title>算法</title>
+    <url>/2024/04/08/%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<h1 id="数字反转"><a href="#数字反转" class="headerlink" title="数字反转"></a>数字反转</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">* 输入一个不小于 <span class="number">100</span> 且小于 <span class="number">1000</span>，同时包括小数点后一位的一个浮点数，例如 <span class="number">123.4</span> ，要求把这个数字翻转过来，变成 <span class="number">4.321</span>并输出。</span><br><span class="line">* 输入格式</span><br><span class="line">* 一行一个浮点数</span><br><span class="line">* 输出格式</span><br><span class="line">* 一行一个浮点数</span><br><span class="line">    <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">            <span class="type">float</span> <span class="variable">t</span> <span class="operator">=</span> scanner.nextFloat();</span><br><span class="line">            <span class="type">int</span> <span class="variable">s</span> <span class="operator">=</span> (<span class="type">int</span>) (t*<span class="number">10</span>);</span><br><span class="line">            <span class="type">int</span> <span class="variable">ge</span> <span class="operator">=</span> s%<span class="number">10</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">shi</span> <span class="operator">=</span> s/<span class="number">10</span>%<span class="number">10</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">bai</span> <span class="operator">=</span> s/<span class="number">100</span>%<span class="number">10</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">qian</span> <span class="operator">=</span> s/<span class="number">1000</span>%<span class="number">10</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">s2</span> <span class="operator">=</span> ge*<span class="number">1000</span>+shi*<span class="number">100</span>+bai*<span class="number">10</span>+qian;</span><br><span class="line">            <span class="type">float</span> <span class="variable">ans</span> <span class="operator">=</span> (<span class="type">float</span>) (s2/<span class="number">1000.0</span>); <span class="comment">//直接强转</span></span><br><span class="line">            System.out.println(ans);</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
 
 <h1 id="String到单-多精度的转换"><a href="#String到单-多精度的转换" class="headerlink" title="String到单&#x2F;多精度的转换"></a>String到单&#x2F;多精度的转换</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">double</span> <span class="variable">s</span> <span class="operator">=</span> Math.sqrt(p*(p-a)*(p-b)*(p-c));</span><br><span class="line"><span class="type">String</span> <span class="variable">format</span> <span class="operator">=</span> String.format(<span class="string">&quot;%.1f&quot;</span>, s);</span><br><span class="line">System.out.println(format);</span><br><span class="line"><span class="comment">//或者直接 System.out.printf(&quot;%.1f\n&quot;, s);</span></span><br><span class="line"><span class="comment">//注意：</span></span><br><span class="line"><span class="comment">//System.out.printf()：用于格式化输出，可以指定输出的格式，如小数位数等。它的格式化字符串中可以使用 %f 来表示浮点数。</span></span><br><span class="line"><span class="comment">//System.out.println()：用于直接输出对象的字符串表示形式，并在末尾添加换行符。它不具有格式化的能力，所以不能直接指定输出的小数位数</span></span><br></pre></td></tr></table></figure>
@@ -6465,6 +6929,26 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//各进制间转换</span></span><br><span class="line"><span class="type">String</span> <span class="variable">x</span> <span class="operator">=</span> scanner.nextLine(); </span><br><span class="line"><span class="type">BigInteger</span> <span class="variable">bigInteger</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BigInteger</span>(x, <span class="number">16</span>);<span class="comment">//第一个参数是要转换的值，第二个参数是进制数</span></span><br><span class="line"><span class="type">String</span> <span class="variable">t</span> <span class="operator">=</span> bigInteger.toString(<span class="number">2</span>); <span class="comment">//要转换成的进制数</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 八进制判断</span></span><br><span class="line">       <span class="type">int</span> <span class="variable">eightFlag</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; eight.length(); i++) &#123;</span><br><span class="line">           <span class="comment">//取到八进制的每个字符</span></span><br><span class="line">           <span class="type">char</span> <span class="variable">c</span> <span class="operator">=</span> eight.charAt(i);</span><br><span class="line">           <span class="comment">//使用Character.isDigit()方法检查字符是否为数字。如果是数字，则直接将其转换为相应的整数值；</span></span><br><span class="line">           <span class="keyword">if</span>(Character.isDigit(c))&#123;</span><br><span class="line">               eightFlag+=c-<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">               <span class="comment">//如果不是数字，则将其转换为小写字母并减去字符&#x27;a&#x27;的值，然后再加上10（因为十六进制中的a到f分别代表10到15）</span></span><br><span class="line">               <span class="comment">//小写字母&#x27;a&#x27;对应的十进制ASCII码值为97，而大写字母&#x27;A&#x27;对应的十进制ASCII码值为65。</span></span><br><span class="line">           &#125;<span class="keyword">else</span> eightFlag+=Character.toLowerCase(c)-<span class="string">&#x27;a&#x27;</span>+<span class="number">10</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (x % eightFlag != <span class="number">0</span>) &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="数据里有-1-2-3-4-5-6-7-8-9-，请随机打乱顺序，生成一个新的数组"><a href="#数据里有-1-2-3-4-5-6-7-8-9-，请随机打乱顺序，生成一个新的数组" class="headerlink" title="数据里有{1,2,3,4,5,6,7,8,9}，请随机打乱顺序，生成一个新的数组"></a>数据里有{1,2,3,4,5,6,7,8,9}，请随机打乱顺序，生成一个新的数组</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> 算法题;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"><span class="comment">//使用洗牌算法，如Fisher-Yates算法</span></span><br><span class="line"><span class="comment">//通过迭代数组，每次随机选择一个位置与当前位置进行交换，从而实现了打乱顺序的效果。</span></span><br><span class="line"><span class="keyword">public</span> class 打乱数组 &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] array = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>&#125;;</span><br><span class="line"></span><br><span class="line">        shuffleArray(array);</span><br><span class="line"></span><br><span class="line">        System.out.println(Arrays.toString(array));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">shuffleArray</span><span class="params">(<span class="type">int</span>[] array)</span> &#123;</span><br><span class="line">        <span class="type">Random</span> <span class="variable">random</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> array.length - <span class="number">1</span>; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> random.nextInt(i + <span class="number">1</span>);</span><br><span class="line">            <span class="comment">// 交换位置</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> array[index];</span><br><span class="line">            array[index] = array[i];</span><br><span class="line">            array[i] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="假设今日是2015年3月1日，星期日，请算出13个月零6天后是星期几，距离现在多少天"><a href="#假设今日是2015年3月1日，星期日，请算出13个月零6天后是星期几，距离现在多少天" class="headerlink" title="假设今日是2015年3月1日，星期日，请算出13个月零6天后是星期几，距离现在多少天"></a>假设今日是2015年3月1日，星期日，请算出13个月零6天后是星期几，距离现在多少天</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> 算法题;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class 日期判断 &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String[] week = &#123;<span class="string">&quot;星期日&quot;</span>,<span class="string">&quot;星期一&quot;</span>,<span class="string">&quot;星期二&quot;</span>,<span class="string">&quot;星期三&quot;</span>,<span class="string">&quot;星期四&quot;</span>,<span class="string">&quot;星期五&quot;</span>,<span class="string">&quot;星期六&quot;</span>&#125;;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span>[] monthday1 = &#123;<span class="number">0</span>,<span class="number">31</span>,<span class="number">28</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>&#125;;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span>[] monthday2 = &#123;<span class="number">0</span>,<span class="number">31</span>,<span class="number">29</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>&#125;;</span><br><span class="line">    <span class="comment">//查看距离当前天数的差值</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">distance</span><span class="params">(<span class="type">int</span> year,<span class="type">int</span> month,<span class="type">int</span> day,<span class="type">int</span> newMonth,<span class="type">int</span> newDay)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>; <span class="comment">//设定初始距离天数</span></span><br><span class="line">        <span class="keyword">if</span> (month + newMonth &gt;= <span class="number">12</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (((year + <span class="number">1</span>) % <span class="number">4</span> == <span class="number">0</span> &amp;&amp; (year + <span class="number">1</span>) % <span class="number">100</span> != <span class="number">0</span>)||(year + <span class="number">1</span>) % <span class="number">400</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                sum += <span class="number">366</span> + newDay;</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i &lt; newMonth - <span class="number">12</span>;i++) &#123;</span><br><span class="line">                    sum += monthday1[month + i];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                sum += <span class="number">365</span> + newDay;</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i &lt; newMonth - <span class="number">12</span>;i++) &#123;</span><br><span class="line">                    sum += monthday1[month + i];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i &lt; newMonth;i++) &#123;</span><br><span class="line">                sum += monthday1[month + i];</span><br><span class="line">            &#125;</span><br><span class="line">            sum += newDay;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> week[sum%<span class="number">7</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入当前年份&quot;</span>);</span><br><span class="line">        <span class="type">int</span> <span class="variable">year</span> <span class="operator">=</span> scanner.nextInt();</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入当前月份&quot;</span>);</span><br><span class="line">        <span class="type">int</span> <span class="variable">month</span> <span class="operator">=</span> scanner.nextInt();</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入当前天数&quot;</span>);</span><br><span class="line">        <span class="type">int</span> <span class="variable">day</span> <span class="operator">=</span> scanner.nextInt();</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入当前是星期几：以数字表示，如：星期天 为 0&quot;</span>);</span><br><span class="line">        <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> scanner.nextInt();</span><br><span class="line">        System.out.println(<span class="string">&quot;今天是：&quot;</span> + year + <span class="string">&quot;-&quot;</span> + month + <span class="string">&quot;-&quot;</span> + day + <span class="string">&quot; &quot;</span> +</span><br><span class="line">                week[index]);</span><br><span class="line">        System.err.println(<span class="string">&quot;请输入相隔月份&quot;</span>);</span><br><span class="line">        <span class="type">int</span> <span class="variable">newMonth</span> <span class="operator">=</span> scanner.nextInt();</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入剩余天数&quot;</span>);</span><br><span class="line">        <span class="type">int</span> <span class="variable">newDay</span> <span class="operator">=</span> scanner.nextInt();</span><br><span class="line">        System.out.println(<span class="string">&quot;经过&quot;</span> + newMonth + <span class="string">&quot;月&quot;</span> + newDay + <span class="string">&quot;天后，是&quot;</span> +</span><br><span class="line">                distance(year,month,day,newMonth,newDay));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="排序与查找"><a href="#排序与查找" class="headerlink" title="排序与查找"></a>排序与查找</h1><h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//用于在一个已经排序好的数组中查找特定的元素。具体来说，它通过不断将搜索范围缩小为原来的一半，直到找到目标元素或者确定目标元素不存在为止。</span></span><br><span class="line"><span class="comment">//要求传入的数组 array 必须是已经按照升序排序好的，否则无法保证二分查找的正确性。    </span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">biSearch</span><span class="params">(<span class="type">int</span> []array,<span class="type">int</span> a)</span>&#123;</span><br><span class="line">        <span class="type">int</span> lo=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> hi=array.length-<span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> mid;</span><br><span class="line">        <span class="keyword">while</span>(lo&lt;=hi)&#123;</span><br><span class="line">            mid=(lo+hi)/<span class="number">2</span>;<span class="comment">//中间位置</span></span><br><span class="line">            <span class="keyword">if</span>(array[mid]==a)&#123;</span><br><span class="line">                <span class="keyword">return</span> mid+<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(array[mid]&lt;a)&#123; <span class="comment">//向右查找</span></span><br><span class="line">                lo=mid+<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123; <span class="comment">//向左查找</span></span><br><span class="line">                hi=mid-<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="冒泡排序算法-1"><a href="#冒泡排序算法-1" class="headerlink" title="冒泡排序算法"></a>冒泡排序算法</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// (1）比较前后相邻的二个数据，如果前面数据大于后面的数据，就将这二个数据交换。</span></span><br><span class="line"><span class="comment">//（2）这样对数组的第 0 个数据到 N-1 个数据进行一次遍历后，最大的一个数据就“沉” 到数组第N-1 个位置。</span></span><br><span class="line"><span class="comment">//（3） N=N-1，如果 N 不为 0 就重复前面二步，否则排序完成。    </span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">bubbleSort1</span><span class="params">(<span class="type">int</span> [] a, <span class="type">int</span> n)</span>&#123;</span><br><span class="line">        <span class="type">int</span> i, j;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;n; i++)&#123;<span class="comment">//表示 n 次排序过程。</span></span><br><span class="line">            <span class="keyword">for</span>(j=<span class="number">1</span>; j&lt;n-i; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(a[j-<span class="number">1</span>] &gt; a[j])&#123;<span class="comment">//前面的数字大于后面的数字就交换</span></span><br><span class="line">				  <span class="comment">//交换 a[j-1]和 a[j]</span></span><br><span class="line">                    <span class="type">int</span> temp;</span><br><span class="line">                    temp = a[j-<span class="number">1</span>];</span><br><span class="line">                    a[j-<span class="number">1</span>] = a[j];</span><br><span class="line">                    a[j]=temp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="插入排序算法"><a href="#插入排序算法" class="headerlink" title="插入排序算法"></a>插入排序算法</h2><p><img src="/assets/image-20240408103654325.png" alt="image-20240408103654325"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sort</span><span class="params">(<span class="type">int</span> arr[])</span> &#123;</span><br><span class="line">     <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line"><span class="comment">//插入的数</span></span><br><span class="line">         <span class="type">int</span> <span class="variable">insertVal</span> <span class="operator">=</span> arr[i];</span><br><span class="line"><span class="comment">//被插入的位置(准备和前一个数比较)</span></span><br><span class="line">         <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> i - <span class="number">1</span>;</span><br><span class="line"><span class="comment">//如果插入的数比被插入的数小</span></span><br><span class="line">         <span class="keyword">while</span> (index &gt;= <span class="number">0</span> &amp;&amp; insertVal &lt; arr[index]) &#123;</span><br><span class="line"><span class="comment">//将把 arr[index] 向后移动</span></span><br><span class="line">             arr[index + <span class="number">1</span>] = arr[index];</span><br><span class="line"><span class="comment">//让 index 向前移动</span></span><br><span class="line">             index--;</span><br><span class="line">         &#125;</span><br><span class="line"><span class="comment">//把插入的数放入合适位置</span></span><br><span class="line">         arr[index + <span class="number">1</span>] = insertVal;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="快速排序算法"><a href="#快速排序算法" class="headerlink" title="快速排序算法"></a>快速排序算法</h2><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">快速排序的原理：选择一个关键值作为基准值。比基准值小的都在左边序列（一般是无序的），比基准值大的都在右边（一般是无序的）。 一般选择序列的第一个元素。</span><br><span class="line">一次循环： 从后往前比较，用基准值和最后一个值比较，如果比基准值小的交换位置，如果没有继续比较下一个，直到找到第一个比基准值小的值才交换。 找到这个值之后，又</span><br><span class="line">从前往后开始比较，如果有比基准值大的，交换位置，如果没有继续比较下一个，直到找到第一个比基准值大的值才交换。直到从前往后的比较索引&gt;从后往前比较的索引，结束</span><br><span class="line">第一次循环，此时，对于基准值来说，左右两边就是有序的了。 </span><br></pre></td></tr></table></figure>
+
+<p><img src="/assets/image-20240408103845539.png" alt="image-20240408103845539"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sort</span><span class="params">(<span class="type">int</span>[] a,<span class="type">int</span> low,<span class="type">int</span> high)</span>&#123;</span><br><span class="line">      <span class="type">int</span> <span class="variable">start</span> <span class="operator">=</span> low;</span><br><span class="line">      <span class="type">int</span> <span class="variable">end</span> <span class="operator">=</span> high;</span><br><span class="line">      <span class="type">int</span> <span class="variable">key</span> <span class="operator">=</span> a[low];</span><br><span class="line">      <span class="keyword">while</span>(end&gt;start)&#123;</span><br><span class="line">	<span class="comment">//从后往前比较</span></span><br><span class="line">          <span class="keyword">while</span>(end&gt;start&amp;&amp;a[end]&gt;=key)</span><br><span class="line">	<span class="comment">//如果没有比关键值小的，比较下一个，直到有比关键值小的交换位置，然后又从前往后比较</span></span><br><span class="line">              end--;</span><br><span class="line">          <span class="keyword">if</span>(a[end]&lt;=key)&#123;</span><br><span class="line">              <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> a[end];</span><br><span class="line">              a[end] = a[start];</span><br><span class="line">              a[start] = temp;</span><br><span class="line">          &#125;</span><br><span class="line">	<span class="comment">//从前往后比较</span></span><br><span class="line">          <span class="keyword">while</span>(end&gt;start&amp;&amp;a[start]&lt;=key)&#123;</span><br><span class="line">	<span class="comment">//如果没有比关键值大的，比较下一个，直到有比关键值大的交换位置</span></span><br><span class="line">              start++;</span><br><span class="line">              <span class="keyword">if</span>(a[start]&gt;=key)&#123;</span><br><span class="line">                  <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> a[start];</span><br><span class="line">                  a[start] = a[end];</span><br><span class="line">                  a[end] = temp;</span><br><span class="line">              &#125;</span><br><span class="line">	<span class="comment">//此时第一次循环比较结束，关键值的位置已经确定了。左边的值都比关键值小，右边的值都比关键值大，但是两边的顺序还有可能是不一样的，进行下面的递归调用</span></span><br><span class="line">          &#125;</span><br><span class="line">	<span class="comment">//递归</span></span><br><span class="line">          <span class="keyword">if</span>(start&gt;low) sort(a,low,start-<span class="number">1</span>);<span class="comment">//左边序列。第一个索引位置到关键值索引-1</span></span><br><span class="line">          <span class="keyword">if</span>(end&lt;high) sort(a,end+<span class="number">1</span>,high);<span class="comment">//右边序列。从关键值索引+1 到最后一个</span></span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="桶排序算法"><a href="#桶排序算法" class="headerlink" title="桶排序算法"></a>桶排序算法</h2><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">桶排序的基本思想是： 把数组 arr 划分为 n 个大小相同子区间（桶），每个子区间各自排序，最后合并 。计数排序是桶排序的一种特殊情况，可以把计数排序当成每个桶里只有</span><br><span class="line">一个元素的情况。</span><br><span class="line">1.找出待排序数组中的最大值 max、最小值 min</span><br><span class="line">2.我们使用 动态数组 ArrayList 作为桶，桶里放的元素也用 ArrayList 存储。桶的数量为(maxmin)/arr.length+1</span><br><span class="line">3.遍历数组 arr，计算每个元素 arr[i] 放的桶</span><br><span class="line">4.每个桶各自排序 </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">bucketSort</span><span class="params">(<span class="type">int</span>[] arr)</span>&#123;</span><br><span class="line">      <span class="type">int</span> <span class="variable">max</span> <span class="operator">=</span> Integer.MIN_VALUE;</span><br><span class="line">      <span class="type">int</span> <span class="variable">min</span> <span class="operator">=</span> Integer.MAX_VALUE;</span><br><span class="line">      <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; arr.length; i++)&#123;</span><br><span class="line">          max = Math.max(max, arr[i]);</span><br><span class="line">          min = Math.min(min, arr[i]);</span><br><span class="line">      &#125;</span><br><span class="line"><span class="comment">//创建桶</span></span><br><span class="line">      <span class="type">int</span> <span class="variable">bucketNum</span> <span class="operator">=</span> (max - min) / arr.length + <span class="number">1</span>;</span><br><span class="line">      ArrayList&lt;ArrayList&lt;Integer&gt;&gt; bucketArr = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(bucketNum);</span><br><span class="line">      <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; bucketNum; i++)&#123;</span><br><span class="line">          bucketArr.add(<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Integer&gt;());</span><br><span class="line">      &#125;</span><br><span class="line"><span class="comment">//将每个元素放入桶</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; arr.length; i++)&#123;</span><br><span class="line">          <span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> (arr[i] - min) / (arr.length);</span><br><span class="line">          bucketArr.get(num).add(arr[i]);</span><br><span class="line">      &#125;</span><br><span class="line"><span class="comment">//对每个桶进行排序</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; bucketArr.size(); i++)&#123;</span><br><span class="line">          Collections.sort(bucketArr.get(i));</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>

@@ -203,6 +203,104 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://slowfever01.github.io/2024/04/08/%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/picture1.jpg">
+      <meta itemprop="name" content="SlowFever">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Smiling">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Smiling">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/08/%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">算法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2024-04-08 10:41:13 / Modified: 10:43:14" itemprop="dateCreated datePublished" datetime="2024-04-08T10:41:13+08:00">2024-04-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2024/04/08/%E7%AE%97%E6%B3%95/" class="post-meta-item leancloud_visitors" data-flag-title="算法" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="数字反转"><a href="#数字反转" class="headerlink" title="数字反转"></a>数字反转</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">* 输入一个不小于 <span class="number">100</span> 且小于 <span class="number">1000</span>，同时包括小数点后一位的一个浮点数，例如 <span class="number">123.4</span> ，要求把这个数字翻转过来，变成 <span class="number">4.321</span>并输出。</span><br><span class="line">* 输入格式</span><br><span class="line">* 一行一个浮点数</span><br><span class="line">* 输出格式</span><br><span class="line">* 一行一个浮点数</span><br><span class="line">    <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">            <span class="type">float</span> <span class="variable">t</span> <span class="operator">=</span> scanner.nextFloat();</span><br><span class="line">            <span class="type">int</span> <span class="variable">s</span> <span class="operator">=</span> (<span class="type">int</span>) (t*<span class="number">10</span>);</span><br><span class="line">            <span class="type">int</span> <span class="variable">ge</span> <span class="operator">=</span> s%<span class="number">10</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">shi</span> <span class="operator">=</span> s/<span class="number">10</span>%<span class="number">10</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">bai</span> <span class="operator">=</span> s/<span class="number">100</span>%<span class="number">10</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">qian</span> <span class="operator">=</span> s/<span class="number">1000</span>%<span class="number">10</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">s2</span> <span class="operator">=</span> ge*<span class="number">1000</span>+shi*<span class="number">100</span>+bai*<span class="number">10</span>+qian;</span><br><span class="line">            <span class="type">float</span> <span class="variable">ans</span> <span class="operator">=</span> (<span class="type">float</span>) (s2/<span class="number">1000.0</span>); <span class="comment">//直接强转</span></span><br><span class="line">            System.out.println(ans);</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+<h1 id="String到单-多精度的转换"><a href="#String到单-多精度的转换" class="headerlink" title="String到单&#x2F;多精度的转换"></a>String到单&#x2F;多精度的转换</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> <span class="variable">s</span> <span class="operator">=</span> Math.sqrt(p*(p-a)*(p-b)*(p-c));</span><br><span class="line"><span class="type">String</span> <span class="variable">format</span> <span class="operator">=</span> String.format(<span class="string">&quot;%.1f&quot;</span>, s);</span><br><span class="line">System.out.println(format);</span><br><span class="line"><span class="comment">//或者直接 System.out.printf(&quot;%.1f\n&quot;, s);</span></span><br><span class="line"><span class="comment">//注意：</span></span><br><span class="line"><span class="comment">//System.out.printf()：用于格式化输出，可以指定输出的格式，如小数位数等。它的格式化字符串中可以使用 %f 来表示浮点数。</span></span><br><span class="line"><span class="comment">//System.out.println()：用于直接输出对象的字符串表示形式，并在末尾添加换行符。它不具有格式化的能力，所以不能直接指定输出的小数位数</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="时间类型"><a href="#时间类型" class="headerlink" title="时间类型"></a>时间类型</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/04/08/%E7%AE%97%E6%B3%95/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://slowfever01.github.io/2024/04/07/java%E5%9F%BA%E7%A1%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -231,9 +329,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2024-04-07 23:08:19 / Modified: 23:08:37" itemprop="dateCreated datePublished" datetime="2024-04-07T23:08:19+08:00">2024-04-07</time>
+      <time title="Created: 2024-04-07 23:08:19" itemprop="dateCreated datePublished" datetime="2024-04-07T23:08:19+08:00">2024-04-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-04-08 10:14:32" itemprop="dateModified" datetime="2024-04-08T10:14:32+08:00">2024-04-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -268,104 +372,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2024/04/07/java%E5%9F%BA%E7%A1%80/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://slowfever01.github.io/2024/04/07/%E7%AE%97%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/picture1.jpg">
-      <meta itemprop="name" content="SlowFever">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Smiling">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Smiling">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/04/07/%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">算法整理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2024-04-07 23:08:19 / Modified: 23:10:02" itemprop="dateCreated datePublished" datetime="2024-04-07T23:08:19+08:00">2024-04-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/2024/04/07/%E7%AE%97%E6%B3%95/" class="post-meta-item leancloud_visitors" data-flag-title="算法整理" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="数字反转"><a href="#数字反转" class="headerlink" title="数字反转"></a>数字反转</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">* 输入一个不小于 <span class="number">100</span> 且小于 <span class="number">1000</span>，同时包括小数点后一位的一个浮点数，例如 <span class="number">123.4</span> ，要求把这个数字翻转过来，变成 <span class="number">4.321</span>并输出。</span><br><span class="line">* 输入格式</span><br><span class="line">* 一行一个浮点数</span><br><span class="line">* 输出格式</span><br><span class="line">* 一行一个浮点数</span><br><span class="line">    <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">            <span class="type">float</span> <span class="variable">t</span> <span class="operator">=</span> scanner.nextFloat();</span><br><span class="line">            <span class="type">int</span> <span class="variable">s</span> <span class="operator">=</span> (<span class="type">int</span>) (t*<span class="number">10</span>);</span><br><span class="line">            <span class="type">int</span> <span class="variable">ge</span> <span class="operator">=</span> s%<span class="number">10</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">shi</span> <span class="operator">=</span> s/<span class="number">10</span>%<span class="number">10</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">bai</span> <span class="operator">=</span> s/<span class="number">100</span>%<span class="number">10</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">qian</span> <span class="operator">=</span> s/<span class="number">1000</span>%<span class="number">10</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">s2</span> <span class="operator">=</span> ge*<span class="number">1000</span>+shi*<span class="number">100</span>+bai*<span class="number">10</span>+qian;</span><br><span class="line">            <span class="type">float</span> <span class="variable">ans</span> <span class="operator">=</span> (<span class="type">float</span>) (s2/<span class="number">1000.0</span>); <span class="comment">//直接强转</span></span><br><span class="line">            System.out.println(ans);</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
-
-<h1 id="String到单-多精度的转换"><a href="#String到单-多精度的转换" class="headerlink" title="String到单&#x2F;多精度的转换"></a>String到单&#x2F;多精度的转换</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> <span class="variable">s</span> <span class="operator">=</span> Math.sqrt(p*(p-a)*(p-b)*(p-c));</span><br><span class="line"><span class="type">String</span> <span class="variable">format</span> <span class="operator">=</span> String.format(<span class="string">&quot;%.1f&quot;</span>, s);</span><br><span class="line">System.out.println(format);</span><br><span class="line"><span class="comment">//或者直接 System.out.printf(&quot;%.1f\n&quot;, s);</span></span><br><span class="line"><span class="comment">//注意：</span></span><br><span class="line"><span class="comment">//System.out.printf()：用于格式化输出，可以指定输出的格式，如小数位数等。它的格式化字符串中可以使用 %f 来表示浮点数。</span></span><br><span class="line"><span class="comment">//System.out.println()：用于直接输出对象的字符串表示形式，并在末尾添加换行符。它不具有格式化的能力，所以不能直接指定输出的小数位数</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="时间类型"><a href="#时间类型" class="headerlink" title="时间类型"></a>时间类型</h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/04/07/%E7%AE%97%E6%B3%95/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
