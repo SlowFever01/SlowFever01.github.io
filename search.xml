@@ -6958,4 +6958,304 @@
         <tag>算法</tag>
       </tags>
   </entry>
+  <entry>
+    <title>博客面试题</title>
+    <url>/2024/04/08/%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h1><p>面试官您好，我是韩腾昊，今年22岁，是计算机科学与技术专业的学生。我对软件开发有着浓厚的兴趣，并且对Java语言非常熟悉，能熟练使用spring boot以及相关技术栈，如Spring Boot、MyBatis-Plus等。熟悉并使用过Linux环境和常用命令，以及版本控制工具Git的使用。我在前后端分离项目的开发中承担了多项核心功能的实现，包括用户登录、认证、文章发布、标签分类、评论列表等。</p>
+<h1 id="为什么做这个项目？"><a href="#为什么做这个项目？" class="headerlink" title="为什么做这个项目？"></a>为什么做这个项目？</h1><p>当时学习完mybatis、spring、springmvc等知识后，希望去用这些框架整合在一起写一个前后端分离的项目，巩固所学的知识，将所学的这些知识应用到真正的开发中去。</p>
+<h1 id="博客内容一般很大，在数据库中用String类型存放不了，怎么处理？"><a href="#博客内容一般很大，在数据库中用String类型存放不了，怎么处理？" class="headerlink" title="博客内容一般很大，在数据库中用String类型存放不了，怎么处理？"></a>博客内容一般很大，在数据库中用String类型存放不了，怎么处理？</h1><p>存储大文本内容的常用方法是使用数据库中的长文本类型，例如在关系型数据库中使用<code>TEXT</code>或<code>LONGTEXT</code>类型字段。我的项目中使用的LONGTEXT。这些字段类型可以存储大量文本数据，通常可以容纳数百至数千个字符。</p>
+<p>如果博客内容非常大，超出了数据库长文本类型的限制，一种常见的做法是将大文本内容存储在文件系统中，而不是直接存储在数据库中。在数据库中，您可以存储指向这些文件的路径或者文件名，这样可以减少数据库的负担，并且提高了系统的扩展性和性能。</p>
+<h1 id="登录页面输入密码时，密码隐藏了吗？"><a href="#登录页面输入密码时，密码隐藏了吗？" class="headerlink" title="登录页面输入密码时，密码隐藏了吗？"></a>登录页面输入密码时，密码隐藏了吗？</h1><p>密码加密了，在输入密码时看不到密码，看到的是小点点，这个取决于type这个属性的参数，再导入jquery的js文件后，在span标签中有一个type属性，参数填text时，显示的是文本，也就是能看到密码；参数为password时输入就是图片，隐藏密码与否就是通过这个参数实现的。</p>
+<h1 id="系统可以存储图片吗？"><a href="#系统可以存储图片吗？" class="headerlink" title="系统可以存储图片吗？"></a>系统可以存储图片吗？</h1><p>如果把图片视频等文件上传到自己的应用的Web服务器的某个目录下，在读取图片的时候会占用比较多的资源。影响应用服务器的性能。所以我们一般使用OSS(Object Storage Service对象存储服务)存储图片或视频</p>
+<h1 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h1><h2 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h2><h3 id="为什么会出现跨域问题"><a href="#为什么会出现跨域问题" class="headerlink" title="为什么会出现跨域问题"></a>为什么会出现跨域问题</h3><p>跨域问题是由浏览器的同源策略引起的。同源策略是浏览器的一种安全机制，限制了从一个源加载的文档或脚本如何与来自另一个源的资源进行交互。同源指的是协议、域名和端口号都相同。</p>
+<p>如果你的网页尝试从不同的域、不同的端口或不同的协议加载资源（如CSS、JavaScript、图片、iframe等），浏览器就会出现跨域问题，拒绝这些资源的加载或者交互。</p>
+<p>这种安全机制是为了防止恶意网站窃取用户信息或者进行 CSRF（跨站请求伪造）等攻击。然而，在开发Web应用时，有时候确实需要进行跨域请求，比如前后端分离的架构中，前端可能在不同的域上运行。</p>
+<h3 id="解决跨域"><a href="#解决跨域" class="headerlink" title="解决跨域"></a>解决跨域</h3><p>通过实现 <code>WebMvcConfigurer</code> 接口并覆盖其中的 <code>addCorsMappings</code> 方法来实现。以下是代码的功能解释：</p>
+<ul>
+<li><code>addCorsMappings</code> 方法用于配置跨域请求的规则。</li>
+<li><code>registry.addMapping(&quot;/**&quot;)</code>：允许所有的路径进行跨域请求。</li>
+<li><code>.allowedOriginPatterns(&quot;*&quot;)</code>：允许所有来源（域名）进行跨域请求。你也可以指定具体的域名，如 <code>&quot;http://example.com&quot;</code>。</li>
+<li><code>.allowCredentials(true)</code>：允许携带跨域请求中的认证信息（例如 Cookie）。</li>
+<li><code>.allowedMethods(&quot;GET&quot;,&quot;POST&quot;,&quot;DELETE&quot;,&quot;PUT&quot;)</code>：允许跨域请求的 HTTP 方法。在这个例子中，允许 GET、POST、DELETE、PUT 方法。</li>
+<li><code>.allowedHeaders(&quot;*&quot;)</code>：允许跨域请求携带的请求头。<code>*</code> 表示允许携带任意请求头。</li>
+<li><code>.maxAge(3600)</code>：设置预检请求的有效期，单位是秒。在这个例子中，设置为 3600 秒（1小时），即在此时间内不再发送预检请求。</li>
+</ul>
+<p>这段配置使得你的应用可以接受来自任意来源的跨域请求，并允许常见的 HTTP 方法，以及携带认证信息和任意请求头的请求。</p>
+<h2 id="日期问题"><a href="#日期问题" class="headerlink" title="日期问题"></a>日期问题</h2><h3 id="使用FastJson"><a href="#使用FastJson" class="headerlink" title="使用FastJson"></a>使用FastJson</h3><p>在Spring Boot应用中注册并配置了一个FastJsonHttpMessageConverter，使得应用能够将Java对象与JSON之间进行相互转换。配置了序列化特性、日期格式化以及Long类型的处理，最终将其添加到消息转换器列表中，以替换默认的转换器。</p>
+<h2 id="项目中用到了哪些设计模式？"><a href="#项目中用到了哪些设计模式？" class="headerlink" title="项目中用到了哪些设计模式？"></a>项目中用到了哪些设计模式？</h2><h2 id="你是如何实现文章的分页查询的"><a href="#你是如何实现文章的分页查询的" class="headerlink" title="你是如何实现文章的分页查询的"></a>你是如何实现文章的分页查询的</h2><p>在这个博客平台中，我使用了 MyBatis-Plus 提供的分页查询功能来实现文章的分页查询。</p>
+<ul>
+<li>创建了一个 <code>Page</code> 对象 <code>page</code>，用于指定分页查询的页码和每页记录数。</li>
+<li>调用 <code>page(page, articleWrapper)</code> 方法执行分页查询，将符合条件的文章数据放入 <code>page</code> 对象中。</li>
+</ul>
+<p>在前端页面中，我使用了 Vue.js 和 Element UI 框架来实现分页功能。具体来说，我在页面中使用了 Element UI 提供的 el-pagination 组件，并将该组件的属性 current-page 和 page-size 绑定到后端传递过来的分页参数上。这样，当用户点击分页组件中的页码时，前端会自动将新的页码和每页显示的记录数发送给后端，并重新渲染文章列表。</p>
+<p>综上所述，我通过使用 MyBatis-Plus 提供的分页查询功能和 Element UI 提供的分页组件，实现了文章的分页查询功能。</p>
+<h2 id="MyBatis的分页查询是如何实现的"><a href="#MyBatis的分页查询是如何实现的" class="headerlink" title="MyBatis的分页查询是如何实现的"></a>MyBatis的分页查询是如何实现的</h2><h2 id="MyBatisPlus的分页查询是如何实现的"><a href="#MyBatisPlus的分页查询是如何实现的" class="headerlink" title="MyBatisPlus的分页查询是如何实现的"></a>MyBatisPlus的分页查询是如何实现的</h2><ol>
+<li><strong>导入依赖：</strong> 首先，在项目的 Maven 或 Gradle 配置文件中导入 MyBatis-Plus 的依赖，确保项目能够使用 MyBatis-Plus。</li>
+<li><strong>配置分页插件：</strong> 创建一个配置类，用于配置 MyBatis-Plus 的分页插件，并添加到 Spring 容器中。</li>
+<li>在 Service接口中定义分页查询方法，并使用 MyBatis-Plus 提供的 <code>Page</code> 类来表示分页参数。</li>
+<li>在实现类进行具体方法的实现</li>
+<li>在 Controller 层中调用 Service 层的方法，获取分页查询结果，并返回给前端。</li>
+</ol>
+<h2 id="使用MyBatis-Plus的优点"><a href="#使用MyBatis-Plus的优点" class="headerlink" title="使用MyBatis-Plus的优点"></a>使用MyBatis-Plus的优点</h2><p>自动生成SQL语句：MyBatis-Plus可以根据实体类的属性自动生成相应的SQL语句，避免手动编写SQL语句的繁琐工作。</p>
+<p>自动映射实体类和数据库表：MyBatis-Plus可以自动将实体类和数据库表进行映射，避免手动编写映射关系的繁琐工作。</p>
+<p>分页查询：MyBatis-Plus提供了方便的分页查询功能，可以大大简化分页查询的代码。</p>
+<p>逻辑删除：MyBatis-Plus支持逻辑删除功能，可以方便地实现数据的软删除。</p>
+<p>乐观锁：MyBatis-Plus支持乐观锁功能，可以避免数据的并发修改问题。</p>
+<h2 id="SpringSecurity是如何基于JWT保证安全性的"><a href="#SpringSecurity是如何基于JWT保证安全性的" class="headerlink" title="SpringSecurity是如何基于JWT保证安全性的"></a>SpringSecurity是如何基于JWT保证安全性的</h2><p>Spring Security 可以与 JWT（JSON Web Token）结合使用来实现安全认证和授权。JWT 是一种基于 JSON 的开放标准，用于在网络上安全地传输数据。</p>
+<p>具体来说，JWT 由三部分组成：头部、载荷和签名。其中，头部包含算法和类型信息，载荷包含用户信息和其他数据，签名用于验证 JWT 的真实性。</p>
+<p>在使用 Spring Security 和 JWT 时，通常的流程如下：</p>
+<p>用户登录时，输入用户名和密码，Spring Security 对其进行验证，验证成功后生成 JWT，并将其返回给客户端。<br>客户端在之后的请求中携带 JWT，Spring Security 对其进行验证，如果验证通过，则允许访问受保护的资源。<br>如果 JWT 被篡改或过期，Spring Security 将拒绝访问请求，从而保证了博客平台的安全性。<br>使用 JWT 的好处在于它不需要在服务端存储会话信息，从而可以降低服务端的负担，并且可以轻松地实现跨域访问。同时，JWT 也可以包含用户信息和其他数据，方便进行用户身份认证和授权。</p>
+<h2 id="如何实现密码加密"><a href="#如何实现密码加密" class="headerlink" title="如何实现密码加密"></a>如何实现密码加密</h2><p>我在该博客平台项目中使用了BCrypt进行密码加密。BCrypt是一种密码哈希函数，可以将密码转换为散列值，从而保护用户密码的安全性。相比其他哈希函数，BCrypt还可以通过调整工作因子来增加哈希函数的计算成本，从而增加破解密码的难度。</p>
+<p>在该项目中，我使用Spring Security的BCryptPasswordEncoder对用户密码进行加密，并将加密后的密码存储在数据库中。当用户登录时，我使用相同的BCryptPasswordEncoder对用户输入的密码进行加密，并将加密后的密码与数据库中存储的密码进行比对，以实现用户认证</p>
+<h2 id="你在开发过程中使用MySQL设计了哪些表，为什么这么设置"><a href="#你在开发过程中使用MySQL设计了哪些表，为什么这么设置" class="headerlink" title="你在开发过程中使用MySQL设计了哪些表，为什么这么设置"></a>你在开发过程中使用MySQL设计了哪些表，为什么这么设置</h2><h1 id="mysql和redis"><a href="#mysql和redis" class="headerlink" title="mysql和redis"></a>mysql和redis</h1><p>MySQL和Redis都是非常流行的数据库，它们各自具有不同的优势和适用场景。以下是一些使用MySQL的优势：</p>
+<p>数据持久化：MySQL是一个关系型数据库，它可以将数据持久化到磁盘中。这意味着即使服务器崩溃或重启，数据仍然可以被恢复。相比之下，Redis是一个基于内存的数据库，它不能保证数据的持久性，因为如果服务器崩溃或重启，数据将会丢失。</p>
+<p>数据一致性：MySQL是一个ACID兼容的数据库，它可以保证数据的一致性。相比之下，Redis是一个非常快速的数据库，但是它不能保证数据的一致性，因为它在处理数据时可能会出现一些并发问题。</p>
+<p>支持复杂查询：MySQL是一个关系型数据库，它支持复杂的SQL查询语句，可以进行各种数据分析和处理。相比之下，Redis虽然也支持一些查询操作，但是它的查询能力相对较弱。</p>
+<p>当然，Redis也有自己的优势，比如：</p>
+<p>高性能：Redis是一个基于内存的数据库，它的读写速度非常快，可以处理大量的并发请求。</p>
+<p>支持缓存：Redis可以作为一个缓存数据库，可以帮助我们提高应用程序的性能。因为它的读写速度非常快，可以减少对后端数据库的访问次数。</p>
+<p>支持分布式：Redis可以很容易地进行分布式部署，可以帮助我们实现高可用性和负载均衡。</p>
+<p>综上所述，MySQL和Redis各自具有不同的优势和适用场景。在我的博客平台中，我选择使用MySQL作为数据库，因为它可以保证数据的持久性和一致性，并且支持复杂的SQL查询语句。当然，如果您的应用程序需要高性能和缓存功能，那么Redis也是一个非常不错的选择。<br>我在这个博客平台项目中同时使用了MySQL和Redis，将它们结合起来来实现不同的功能。</p>
+<p>具体来说，我使用MySQL作为主要的数据存储和管理工具，用于存储博客文章、评论、用户信息等数据，同时还使用MySQL来实现数据的查询、修改、删除等操作，保证了数据的一致性和可靠性。</p>
+<p>同时，我还使用Redis作为缓存，用于缓存经常访问的数据，如博客文章、评论、用户信息等，从而提高系统的响应速度和吞吐量。</p>
+<p>使用MySQL和Redis的组合，可以充分发挥它们各自的优点，同时弥补它们各自的不足，从而实现更加高效、可靠、稳定的博客平台系统。</p>
+<h2 id="项目中有对mysql进行调优吗，你是怎么做的"><a href="#项目中有对mysql进行调优吗，你是怎么做的" class="headerlink" title="项目中有对mysql进行调优吗，你是怎么做的"></a>项目中有对mysql进行调优吗，你是怎么做的</h2><ol>
+<li><strong>优化SQL语句</strong>：在编写SQL语句时，我们需要尽可能地避免全表扫描和子查询等操作，因为它们会影响查询的性能。在我的博客平台中，我优化了一些SQL语句，尽可能地避免了这些操作。</li>
+</ol>
+<h1 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h1><h3 id="为什么不使用消息队列"><a href="#为什么不使用消息队列" class="headerlink" title="为什么不使用消息队列"></a>为什么不使用消息队列</h3><p>在这个博客平台中，我没有使用消息队列的原因主要是因为这个平台的业务规模相对较小，消息处理的负载相对较轻，没有必要引入消息队列来增加复杂度。同时，使用消息队列也需要考虑到消息的可靠性和顺序性，以及消息队列的维护和管理等问题，这也需要投入一定的时间和精力来解决。</p>
+<p>如果这个博客平台的业务规模变大，消息处理的负载增加，或者需要引入一些异步处理的逻辑，那么使用消息队列是一种非常好的选择。消息队列可以帮助我们实现解耦、异步处理、削峰等功能，提高系统的可扩展性和可靠性，从而更好地满足业务需求。</p>
+<p>如果使用消息队列你会如何使用<br>如果在这个博客平台中需要使用消息队列，我会考虑使用RabbitMQ或Kafka来实现。</p>
+<p>例如，当用户发表一篇新的博客文章时，需要进行异步处理任务，将博客文章的内容保存到数据库中，并发送通知给订阅了该博客的用户。</p>
+<p>又如，当用户对博客文章进行评论时，需要进行服务解耦，将评论信息发送到消息队列中，然后由后台服务来处理评论信息，从而降低前端和后端的耦合度，提高系统的可扩展性和可维护性。</p>
+<p>还有，当博客系统中存在多个数据源需要进行同步时，可以使用消息队列来实现数据的同步，保证不同数据源之间的数据一致性和可靠性。</p>
+<p>当需要使用消息队列时，我会考虑在以下场景中使用：</p>
+<p>异步处理任务：如果某些任务需要在后台异步处理，可以使用消息队列来将任务添加到队列中，然后在后台异步处理这些任务，从而提高系统的并发性能和可靠性。</p>
+<p>服务解耦：如果系统中存在多个服务之间需要进行通信的情况，可以使用消息队列来实现服务之间的解耦，从而降低服务之间的依赖性，提高系统的可扩展性和可维护性。</p>
+<p>数据同步：如果系统中存在多个数据源需要进行同步的情况，可以使用消息队列来实现数据的同步，从而保证数据的一致性和可靠性。</p>
+<p>在使用消息队列时，我通常会选择使用Apache Kafka或者RabbitMQ作为消息队列的实现。在具体实现时，我会根据具体的业务需求和系统架构来选择使用哪种消息队列，并根据消息队列的特性来设计消息的格式和传输协议。同时，我还会考虑消息队列的可靠性和性能等方面的问题，从而保证系统的稳定性和可扩展性。</p>
+<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h3 id="有使用到redis吗"><a href="#有使用到redis吗" class="headerlink" title="有使用到redis吗"></a>有使用到redis吗</h3><p>是的，我们在这个博客平台中使用了 Redis。主要是用 Redis 来缓存一些数据，以提高系统的性能和响应速度。</p>
+<p>具体来说，我们使用 Redis 来缓存了以下数据：</p>
+<p>用户登录的 Token，以便快速验证用户身份，避免频繁地查询数据库；<br>热门文章、热门标签、热门分类等数据，以便快速展示给用户；<br>用户点赞、评论等操作的次数，以便快速更新相关数据。<br>通过使用 Redis 缓存这些数据，我们可以大大减少对数据库的访问次数，从而提高系统的性能和响应速度。同时，由于 Redis 具有高速读写、高并发等特点，因此非常适合用来作为缓存数据库。</p>
+<h3 id="Redis缓存机制了解吗"><a href="#Redis缓存机制了解吗" class="headerlink" title="Redis缓存机制了解吗"></a>Redis缓存机制了解吗</h3><p>是的，我对Redis的缓存机制比较了解。Redis的缓存机制主要有以下几个方面：</p>
+<p>缓存淘汰策略：Redis支持多种缓存淘汰策略，包括LRU（最近最少使用）、LFU（最不经常使用）、TTL（过期时间）等。其中，LRU是最常用的淘汰策略，它会淘汰最近最少使用的缓存数据，从而保证缓存中存储的数据是经常访问的数据。</p>
+<p>缓存预热：为了提高缓存的命中率，我们可以在系统启动时预先将一些经常访问的数据加载到缓存中，从而减少缓存的冷启动时间，提高缓存的效率和性能。</p>
+<p>缓存穿透和缓存击穿：缓存穿透是指查询一个不存在的数据，从而导致缓存无法命中，需要访问数据库来获取数据；缓存击穿是指查询一个缓存中不存在但数据库中存在的数据，从而导致大量请求直接访问数据库，从而导致数据库压力过大。为了避免缓存穿透和缓存击穿，我们可以使用布隆过滤器等技术进行过滤，或者使用互斥锁等技术来保证缓存的一致性和可靠性。</p>
+<p>缓存雪崩：缓存雪崩是指缓存中大量数据同时过期或者失效，从而导致大量请求直接访问数据库，从而导致数据库压力过大。为了避免缓存雪崩，我们可以使用分布式锁等技术来保证缓存的一致性和可靠性，或者使用多级缓存等技术来减少缓存失效的风险。</p>
+<p>总之，Redis的缓存机制是非常灵活和强大的，可以帮助我们提高系统的性能和可靠性，同时还可以支持多种缓存淘汰策略、缓存预热、缓存穿透和缓存击穿等技术，从而保证了缓存的一致性和可靠性。</p>
+<h3 id="Redis为什么这么快"><a href="#Redis为什么这么快" class="headerlink" title="Redis为什么这么快"></a>Redis为什么这么快</h3><p>Redis 之所以能够拥有如此快的性能，是因为它采用了以下几种优化策略：</p>
+<p>数据结构优化：Redis 内置了多种高效的数据结构，例如哈希表、有序集合等，可以在内存中高效地存储和访问数据。<br>内存优化：Redis 将所有数据存储在内存中，避免了磁盘 I&#x2F;O 的开销，并且采用了多种内存优化技术，例如内存分配器、内存池等，可以减少内存碎片和内存泄漏的风险。<br>网络优化：Redis 使用单线程模型，避免了多线程之间的上下文切换和锁竞争，同时采用了事件驱动的网络模型，可以高效地处理大量的并发连接。<br>持久化优化：Redis 提供了多种持久化方式，例如 RDB 和 AOF，可以在保证数据安全的同时，尽可能地减少持久化的开销。<br>综合以上优化策略，Redis 可以实现非常高的性能和吞吐量，成为了一种非常受欢迎的内存数据库。</p>
+<h2 id="如果请求的数据丢失该怎么办？有什么解决方法吗？"><a href="#如果请求的数据丢失该怎么办？有什么解决方法吗？" class="headerlink" title="如果请求的数据丢失该怎么办？有什么解决方法吗？"></a>如果请求的数据丢失该怎么办？有什么解决方法吗？</h2><p><strong>重新发送请求：</strong> 如果客户端检测到数据丢失或请求超时，可以尝试重新发送请求。在客户端实现重试逻辑，当检测到请求失败或超时时，自动重新发送相同的请求，直到收到正确的响应为止。</p>
+<p><strong>使用消息队列：</strong> 在分布式系统中，可以使用消息队列来处理请求，确保请求的可靠传递和处理。当客户端发送请求时，将请求发送到消息队列中，然后由后台服务消费消息并处理请求。即使消息在传递过程中丢失，消息队列也会保证消息的可靠传递和处理。</p>
+<p><strong>记录日志和监控：</strong> 在服务端记录请求日志，包括请求内容、请求时间和处理结果等信息。通过监控系统实时监控请求的处理情况，及时发现和处理请求丢失的问题。</p>
+<h2 id="如果让你对这个博客项目优化，你会从哪几个点来优化呢？"><a href="#如果让你对这个博客项目优化，你会从哪几个点来优化呢？" class="headerlink" title="如果让你对这个博客项目优化，你会从哪几个点来优化呢？"></a>如果让你对这个博客项目优化，你会从哪几个点来优化呢？</h2><ul>
+<li><strong>数据库索引优化：</strong> 对于经常被查询的字段，建立索引可以加快查询速度。</li>
+<li><strong>SQL 查询优化：</strong> 使用合适的 SQL 查询语句，避免不必要的全表扫描和数据加载，以提高查询效率。</li>
+<li><strong>缓存优化：</strong> 使用缓存技术（如 Redis）缓存热点数据，减少数据库访问次数，提高数据读取速度。</li>
+<li><strong>图片、静态资源优化：</strong> 对于页面中的图片和其他静态资源，使用合适的压缩算法和 CDN 加速，减少页面加载时间。</li>
+<li><strong>日志记录：</strong> 合理记录系统运行日志，包括异常日志、访问日志等，方便排查问题和性能优化。</li>
+</ul>
+<h1 id="登录流程"><a href="#登录流程" class="headerlink" title="登录流程"></a>登录流程</h1><p>登录</p>
+<ul>
+<li><p>自定义登录接口：实现了 Spring Security 的 <code>UserDetails</code> 接口的自定义用户类。它主要用于封装用户的认证信息，包括用户名、密码以及用户状态等。</p>
+</li>
+<li><p>自定义UserDetailsService，通过实现 <code>UserDetailsService</code> 接口并重写 <code>loadUserByUsername</code> 方法，可以实现根据用户名加载用户信息的功能，从而支持 Spring Security 进行用户认证和授权操作。</p>
+</li>
+<li><p>通过 <code>AuthenticationManager</code> 对象进行认证，该对象会调用 <code>UserDetailsServiceImpl</code> 中的方法对用户进行认证。如果认证成功，会返回一个 <code>Authentication</code> 对象，如果认证对象为 null，说明认证失败，抛出异常。</p>
+</li>
+<li><p>如果认证成功，从认证对象中获取到用户信息，并生成一个 JWT（JSON Web Token），然后将 JWT 保存到 Redis 缓存中，以便后续的认证和授权操作。客户端收到JWT后，会在每次与服务器通信时将其发送给服务器。服务器收到JWT后，会验证其有效性，包括检查JWT的签名是否有效以及是否过期。如果JWT过期了，服务器就会拒绝该JWT并要求客户端重新进行登录，以获取一个新的JWT。</p>
+</li>
+<li><p>最后，将用户信息封装成 <code>UserInfoVo</code> 对象，与生成的 JWT 一同封装到 <code>BlogUserLoginVo</code> 对象中，并返回一个成功的响应结果。</p>
+</li>
+</ul>
+<p>校验：</p>
+<ul>
+<li><p>定义Jwt身份认证过滤器，用于对用户请求进行身份验证</p>
+</li>
+<li><p>首先从请求头中获取 JWT 令牌 <code>token</code>。</p>
+</li>
+<li><p>如果请求头中没有 <code>token</code>，则说明该接口不需要身份认证，直接放行请求。</p>
+</li>
+<li><p>如果获取到了 <code>token</code>，则尝试解析 <code>token</code> 获取其中的用户信息。如果解析失败，可能是因为 <code>token</code> 过期或者非法，这时会返回需要重新登录的错误响应。</p>
+</li>
+<li><p>如果成功解析 <code>token</code>，则从 <code>token</code> 中获取用户的标识信息（userid），然后根据用户标识从 Redis 缓存中获取用户信息。</p>
+</li>
+<li><p>如果用户身份验证通过，则将用户信息存入 Spring Security 的上下文中（<code>SecurityContextHolder</code> 是 Spring Security 提供的一个全局存储容器，用于保存当前用户的安全上下文信息。），否则返回需要重新登录的错误响应。</p>
+</li>
+</ul>
+<h2 id="工具类"><a href="#工具类" class="headerlink" title="工具类"></a>工具类</h2><ol>
+<li>创建工具类实现 RedisSerializer 接口的 FastJson 序列化器，主要用于将对象序列化成字节数组并存储到 Redis 中，以及从 Redis 中取出字节数组并反序列化为对象。</li>
+<li>创建RedisConfig类用于创建和配置 RedisTemplate 对象，以便在 Spring Boot 应用中方便地对 Redis 进行读写操作，并使用 FastJson 进行对象的序列化和反序列化。</li>
+<li>新建JwtUtil类，用于生成、解析 JWT，以及生成加密的秘钥。</li>
+<li>新建RedisCache类，封装了对 Redis 缓存进行操作的工具类。它提供了一系列方法用于设置缓存、获取缓存、删除缓存等操作，包括对基本类型、List、Set、Map、Hash等数据结构的操作。</li>
+<li>新建WebUtils类，封装了一些常用的 Web 操作，例如将字符串渲染到客户端或设置文件下载的响应头信息，可以方便地在 Web 应用中使用。</li>
+</ol>
+<h2 id="SecurityConfig类"><a href="#SecurityConfig类" class="headerlink" title="SecurityConfig类"></a>SecurityConfig类</h2><p>继承了WebSecurityConfigurerAdapter类，重写方法，用于配置 Spring Security 的安全策略和认证管理器，包括配置密码加密方式、关闭 CSRF 保护、设置认证规则等。</p>
+<h2 id="相关面试题"><a href="#相关面试题" class="headerlink" title="相关面试题"></a>相关面试题</h2><ol>
+<li><p><strong>Spring Security配置理解</strong>：</p>
+<ul>
+<li>你能解释一下 <code>WebSecurityConfigurerAdapter</code> 的作用吗？为什么要继承它来配置安全性？</li>
+</ul>
+<p><code>WebSecurityConfigurerAdapter</code> 是 Spring Security 提供的用于配置 Web 安全的适配器类，它提供了一系列的方法用于配置安全策略、认证管理器等。继承它可以方便地进行安全配置。</p>
+<ul>
+<li>为什么要配置 <code>AuthenticationManager</code> 和 <code>PasswordEncoder</code>？它们的作用是什么？</li>
+</ul>
+<p><code>AuthenticationManager</code> 负责处理认证相关的操作，例如验证用户的身份。而 <code>PasswordEncoder</code> 则用于对密码进行加密和验证。配置它们的目的是为了提供安全的身份认证机制和密码加密方式。</p>
+</li>
+<li><p><strong>安全策略配置</strong>：</p>
+<ul>
+<li>为什么要关闭 CSRF 保护？这样做有什么风险吗？</li>
+</ul>
+<p>关闭 CSRF 保护是因为我们可能不使用基于 session 的认证方式，而采用了基于 token 的认证方式，所以可以关闭 CSRF 以减少安全风险。</p>
+<ul>
+<li><code>sessionCreationPolicy(SessionCreationPolicy.STATELESS)</code> 的作用是什么？为什么要使用 <code>STATELESS</code> 选项？</li>
+</ul>
+<p>作用是禁用 session，因为我们使用了基于 token 的认证方式，不需要在服务器端保存用户的会话状态。</p>
+<ul>
+<li>为什么允许匿名访问登录接口 <code>/login</code>？这样做的安全性如何？</li>
+</ul>
+<p>允许匿名访问登录接口 <code>/login</code> 是因为登录接口需要在用户未认证时访问，以便用户进行身份验证。</p>
+</li>
+<li><p><strong>密码加密</strong>：</p>
+<ul>
+<li>为什么要使用 <code>BCryptPasswordEncoder</code> 作为密码加密方式？它相对于其他加密方式有什么优势？</li>
+</ul>
+<p>使用 <code>BCryptPasswordEncoder</code> 作为密码加密方式是因为它是一种密码哈希算法，能够提供更高的安全性。相比于其他加密方式，如 MD5 或 SHA-1，BCrypt 更难以被破解，因此更适合存储用户密码等敏感信息。</p>
+</li>
+<li><p><strong>JWT（JSON Web Token）：</strong></p>
+<ul>
+<li><p>JWT是一种开放标准，定义了一种紧凑且自包含的方式，用于在各方之间安全地传输信息。它由三部分组成：头部、载荷和签名。</p>
+</li>
+<li><p>JWT的工作原理是在用户登录成功后生成一个JWT并返回给客户端，客户端在后续的请求中将JWT放在请求头中发送给服务器，服务器验证JWT的有效性并根据其中的信息进行操作。</p>
+</li>
+<li><p><strong>优点：</strong></p>
+<ol>
+<li><strong>无状态性（Stateless）：</strong> JWT是无状态的，服务器不需要在后端存储会话信息。所有必要的信息都包含在JWT中，因此可以轻松地在多个服务器之间共享用户认证信息。</li>
+<li><strong>跨域通信（Cross-Origin Communication）：</strong> 由于JWT是基于标准的JSON格式，因此易于在不同域之间传递和使用。</li>
+<li><strong>安全性（Security）：</strong> JWT使用签名机制确保令牌的完整性和真实性。签名是使用密钥生成的，因此只有拥有密钥的服务器才能生成有效的JWT。</li>
+<li><strong>灵活性（Flexibility）：</strong> JWT支持自定义的载荷数据，开发人员可以根据需要在令牌中包含任意信息。</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li><strong>令牌过期管理：</strong> 一旦JWT生成，其有效期就开始计算，服务器无法在令牌过期前使其失效。因此，令牌的过期时间应该谨慎设置，过长的过期时间会增加安全风险，而过短的过期时间会增加客户端的负担。</li>
+<li><strong>信息泄露风险：</strong> JWT中的信息是以明文形式进行传输的，虽然可以对载荷中的数据进行加密，但签名部分仍然是以明文形式存在。因此，JWT在传输过程中存在信息泄露的风险，尤其是如果载荷中包含敏感信息。</li>
+<li><strong>无法撤销令牌：</strong> 一旦JWT生成，除非等待其过期，否则无法在服务器端主动撤销令牌。这意味着如果用户的令牌被盗取，服务器无法立即使其失效，而必须等待令牌过期。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>其他问题</strong>：</p>
+<ul>
+<li>在配置中还有哪些常见的安全策略需要考虑？例如身份验证、授权等。</li>
+</ul>
+<p>其他常见的安全策略包括授权、HTTPS 配置、CSRF 防护、安全头部设置等。在实际项目中，我们还需要考虑如何处理用户认证失败、会话管理、注销等安全问题。</p>
+<ul>
+<li>在实际项目中，你遇到过哪些与 Spring Security 相关的挑战？如何解决的？</li>
+</ul>
+<p>处理跨域问题。通过阅读官方文档、查阅相关资料和尝试不同的解决方案来解决。</p>
+</li>
+</ol>
+<h1 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h1><h2 id="认证出错或者权限不足"><a href="#认证出错或者权限不足" class="headerlink" title="认证出错或者权限不足"></a>认证出错或者权限不足</h2><p>我们的项目在认证出错或者权限不足的时候响应回来的Json，默认是使用Security官方提供的响应的格式，但是这种响应的格式肯定是不符合我们项目的接口规范的。所以需要自定义异常处理，我们需要去实现AuthenticationEntryPoint(官方提供的认证失败处理器)类（重写 <code>commence</code> 方法，处理未经身份验证的用户访问受保护资源时的情况。）、AccessDeniedHandler(官方提供的授权失败处理器)类（重写 <code>handle</code> 方法，处理访问被拒绝的情况。），然后配置给Security，</p>
+<h2 id="统一异常处理"><a href="#统一异常处理" class="headerlink" title="统一异常处理"></a>统一异常处理</h2><p>定义了一个全局异常处理类 <code>GlobalExceptionHandler</code>，统一处理系统中出现的异常情况，将异常信息转换为统一的响应格式返回给客户端。</p>
+<h1 id="退出登录"><a href="#退出登录" class="headerlink" title="退出登录"></a>退出登录</h1><p>首先从当前的安全上下文（<code>SecurityContextHolder</code>）中获取认证对象（<code>Authentication</code>），然后从认证对象中获取用户信息。在这里，用户信息是 <code>LoginUser</code> 类的实例，其中包含了用户的 ID。接着，根据用户的 ID，删除了 Redis 中存储的用户信息，这样用户就被成功注销了。</p>
+<h1 id="如何获取文章评论列表"><a href="#如何获取文章评论列表" class="headerlink" title="如何获取文章评论列表"></a>如何获取文章评论列表</h1><ol>
+<li>对articleId进行判断，作用是得到指定的文章。</li>
+<li>对评论区的某条评论的rootID进行判断，如果为-1，就表示是根评论。</li>
+<li>分页查询。查的是整个评论区的每一条根评论</li>
+<li>根据根评论的id，来查询对应的所有子评论</li>
+</ol>
+<h1 id="AOP实现日志记录"><a href="#AOP实现日志记录" class="headerlink" title="AOP实现日志记录"></a>AOP实现日志记录</h1><ol>
+<li><strong>声明自定义注解 <code>@mySystemlog</code></strong>:<ul>
+<li>定义一个注解类 <code>@mySystemlog</code>，并在其中添加描述接口信息的属性 <code>xxxBusinessName()</code>。</li>
+</ul>
+</li>
+<li><strong>编写切面类 <code>myLogAspect</code></strong>:<ul>
+<li>使用 <code>@Component</code> 注解将类声明为一个 Spring 组件，由 Spring 管理。</li>
+<li>使用 <code>@Aspect</code> 注解标注该类为一个切面类，用于定义通知和切点。</li>
+<li>使用 <code>@Pointcut</code> 注解定义切点表达式，指定所有被 <code>@mySystemlog</code> 注解标注的方法作为切点。</li>
+<li>定义环绕通知方法 <code>xxPrintLog(ProceedingJoinPoint joinPoint)</code>，在目标方法执行前后执行额外的逻辑。</li>
+<li>在环绕通知方法中，调用 <code>xxHandleBefore()</code> 方法记录请求前的日志信息，然后调用目标方法 <code>proceed()</code> 执行目标方法，再调用 <code>xxhandleAfter()</code> 方法记录请求后的日志信息。</li>
+<li>编写 <code>xxHandleBefore(ProceedingJoinPoint joinPoint)</code> 方法用于记录请求前的日志信息，如请求URL、请求方式、参数等。</li>
+<li>编写 <code>xxhandleAfter(Object ret)</code> 方法用于记录请求后的日志信息，如返回结果等。</li>
+<li>编写 <code>getSystemlog(ProceedingJoinPoint joinPoint)</code> 方法用于获取被增强方法的 <code>@mySystemlog</code> 注解对象。</li>
+</ul>
+</li>
+<li><strong>在Controller中使用自定义注解</strong>:<ul>
+<li>在需要记录日志的控制器方法上添加 <code>@mySystemlog</code> 注解，并传入对应的业务描述信息。</li>
+</ul>
+</li>
+<li><strong>AOP切面的织入</strong>:<ul>
+<li>在Spring配置文件中启用AOP，确保切面类 <code>myLogAspect</code> 能够被Spring扫描到并织入到相应的目标方法中。</li>
+</ul>
+</li>
+<li><strong>运行时</strong>:<ul>
+<li>当请求到达被 <code>@mySystemlog</code> 注解标注的控制器方法时，AOP切面会捕获到该方法的执行，并根据切面中定义的逻辑记录日志。</li>
+<li>在执行控制器方法之前，记录请求的相关信息。</li>
+<li>在执行控制器方法之后，记录返回结果的相关信息。</li>
+</ul>
+</li>
+</ol>
+<p>通过上述流程，实现了在指定方法执行前后记录日志的功能，提高了系统的可维护性和可追踪性。</p>
+<h1 id="浏览次数"><a href="#浏览次数" class="headerlink" title="浏览次数"></a>浏览次数</h1><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>如果直接操作博客表的浏览量的话，在并发量大的情况下会出现什么问题呢？如何去优化呢？</p>
+<h2 id="优化："><a href="#优化：" class="headerlink" title="优化："></a>优化：</h2><p>①在应用启动时把博客的浏览量存储到redis中 - 项目启动的预处理功能，实现接口-&gt;（CommandLineRunner）</p>
+<p>②更新浏览量时去更新redis中的数据</p>
+<p>③创建一个定时任务，定时从Redis中获取文章的浏览次数，并将其同步到数据库中。这一步可以通过使用Spring的<code>@Scheduled</code>注解实现定时任务。</p>
+<p>④读取文章浏览量时从redis读取</p>
+<h1 id="后台"><a href="#后台" class="headerlink" title="后台"></a>后台</h1><h2 id="什么是RBAC"><a href="#什么是RBAC" class="headerlink" title="什么是RBAC"></a>什么是RBAC</h2><p>RBAC（Role-Based Access Control）模型是一种常见的权限管理模型，它基于角色来管理用户的权限。该模型中，用户通过被分配到不同的角色，而角色则被赋予特定的权限。RBAC模型的工作原理是将权限分配给角色，然后再将角色分配给用户，这样用户就继承了相应的权限。</p>
+<h2 id="用户权限和角色信息的实现逻辑和流程如下："><a href="#用户权限和角色信息的实现逻辑和流程如下：" class="headerlink" title="用户权限和角色信息的实现逻辑和流程如下："></a>用户权限和角色信息的实现逻辑和流程如下：</h2><ol>
+<li><strong>用户登录：</strong> 用户使用用户名和密码进行登录。</li>
+<li><strong>权限和角色查询：</strong> 当用户登录成功后，系统会根据用户的身份信息（通常是用户ID）查询用户所具有的权限和角色信息。</li>
+<li><strong>权限信息查询：</strong> 系统根据用户ID查询用户所具有的权限信息。通常情况下，权限信息存储在数据库中的权限表中。系统会根据用户ID关联用户角色表和角色权限表，最终获取到用户的权限信息。</li>
+<li><strong>角色信息查询：</strong> 系统根据用户ID查询用户所具有的角色信息。角色信息也通常存储在数据库中的角色表中。系统会直接查询用户角色表，获取用户所拥有的角色信息。</li>
+<li><strong>权限和角色的返回：</strong> 查询到用户的权限和角色信息后，系统将以JSON格式返回给客户端。</li>
+<li><strong>权限控制：</strong> 接收到权限信息后，前端或后端系统会根据这些权限信息进行权限控制。例如，前端根据用户的权限信息动态展示页面中的功能按钮或者菜单项；后端在接收到用户的请求时，根据用户的权限信息来验证用户是否有权限执行该请求。</li>
+</ol>
+<h2 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h2><ol>
+<li><p><strong>菜单树的构建流程：</strong></p>
+<ul>
+<li><code>selectRouterMenuTreeByUserId</code>方法首先从数据库中获取所有菜单数据，然后根据用户ID过滤出当前用户所具有的菜单数据。接着，它调用<code>builderMenuTree</code>方法，传入当前用户的菜单数据和一个顶层菜单ID（通常为0），构建用户的菜单树。</li>
+</ul>
+</li>
+<li><p><strong>递归方法的设计：</strong></p>
+<ul>
+<li><code>builderMenuTree</code>方法负责构建菜单树，遍历菜单数据列表，过滤出当前菜单的子菜单，getChildren&#96;方法则负责获取指定菜单的子菜单列表，通过递归方式实现。</li>
+</ul>
+</li>
+<li><p><strong>性能优化和扩展考虑：</strong></p>
+<ul>
+<li><p>目前的菜单树构建算法是基于递归的方式实现的，如果菜单数据量非常大，可能会导致性能问题。为了优化性能，可以考虑使用迭代方式实现菜单树的构建，或者在数据库层面进行分页查询和数据缓存。</p>
+</li>
+<li><p>对于大型菜单数据，可以考虑实现分页加载或者按需加载的功能，以减少页面加载时间和系统资源占用。</p>
+</li>
+<li><p>分页查询：</p>
+</li>
+</ul>
+<ol>
+<li>首先，在服务端，我们需要修改查询菜单数据的方法，支持根据分页参数查询相应的菜单数据。</li>
+<li>然后，在菜单服务中调用这个分页查询方法来获取当前页面所需的菜单数据。</li>
+<li>接着，在前端，我们需要通过 AJAX 请求来动态加载菜单数据。当用户切换页面或者滚动到菜单列表底部时，再发起请求加载下一页的菜单数据。</li>
+</ol>
+</li>
+<li><p><strong>权限控制与菜单展示：</strong></p>
+<ul>
+<li>这段代码中，根据用户的权限动态展示菜单是通过查询当前用户所具有的菜单数据，并构建成菜单树的方式实现的。权限控制是在获取菜单数据时进行的，确保只展示用户具有权限的菜单项。</li>
+<li>如果用户有多个角色，系统会根据用户所拥有的所有角色，汇总用户的权限，并展示所有角色所具有的菜单项。</li>
+<li>菜单数据首次查询时会被存储在Redis缓存中，后续请求可以直接从Redis缓存中获取，避免了对数据库的重复查询，从而提高了系统的响应速度和性能。</li>
+</ul>
+</li>
+<li><p><strong>错误处理与边界情况：</strong></p>
+<ul>
+<li>增加了对可能出现的异常情况的处理，包括空值判断和异常捕获。如果发生异常，会记录错误日志并返回空列表，避免了系统崩溃或者返回空指针异常。同时，针对查询结果为空的情况，我们返回了一个空列表而不是null，这样可以简化客户端代码的处理逻辑。</li>
+</ul>
+<h2 id="新增角色需要关联菜单"><a href="#新增角色需要关联菜单" class="headerlink" title="新增角色需要关联菜单"></a>新增角色需要关联菜单</h2><h2 id="修改角色需要修改菜单"><a href="#修改角色需要修改菜单" class="headerlink" title="修改角色需要修改菜单"></a>修改角色需要修改菜单</h2><h2 id="新增用户的时候可以设置角色信息"><a href="#新增用户的时候可以设置角色信息" class="headerlink" title="新增用户的时候可以设置角色信息"></a>新增用户的时候可以设置角色信息</h2><p>新增用户时需要判断用户名电话等是否已存在，并且密钥要进行加密处理</p>
+<p>修改用户的时候需要根据用户信息查询角色信息，并且删除用户与角色关联，然后新增用户与角色关联</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>springboot java</category>
+      </categories>
+      <tags>
+        <tag>面试</tag>
+      </tags>
+  </entry>
 </search>

@@ -6,7 +6,7 @@
   <link href="https://slowfever01.github.io/atom.xml" rel="self"/>
   
   <link href="https://slowfever01.github.io/"/>
-  <updated>2024-04-08T02:43:14.303Z</updated>
+  <updated>2024-04-08T08:14:49.524Z</updated>
   <id>https://slowfever01.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>博客面试题</title>
+    <link href="https://slowfever01.github.io/2024/04/08/%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <id>https://slowfever01.github.io/2024/04/08/%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE%E9%9D%A2%E8%AF%95%E9%A2%98/</id>
+    <published>2024-04-08T08:14:32.000Z</published>
+    <updated>2024-04-08T08:14:49.524Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;自我介绍&quot;&gt;&lt;a href=&quot;#自我介绍&quot; class=&quot;headerlink&quot; title=&quot;自我介绍&quot;&gt;&lt;/a&gt;自我介绍&lt;/h1&gt;&lt;p&gt;面试官您好，我是韩腾昊，今年22岁，是计算机科学与技术专业的学生。我对软件开发有着浓厚的兴趣，并且对Java语言非常熟悉，能熟练使用spring boot以及相关技术栈，如Spring Boot、MyBatis-Plus等。熟悉并使用过Linux环境和常用命令，以及版本控制工具Git的使用。我在前后端分离项目的开发中承担了多项核心功能的实现，包括用户登录、认证、文章发布、标签分类、评论列表等。&lt;/p&gt;
+&lt;h1 id=&quot;为什么做这个项目？&quot;&gt;&lt;a href=&quot;#为什么做这个项目？&quot; class=&quot;headerlink&quot; title=&quot;为什么做这个项目？&quot;&gt;&lt;/a&gt;为什么做这个项目？&lt;/h1&gt;&lt;p&gt;当时学习完mybatis、spring、springmvc等知识后，希望去用这些框架整合在一起写一个前后端分离的项目，巩固所学的知识，将所学的这些知识应用到真正的开发中去。&lt;/p&gt;
+&lt;h1 id=&quot;博客内容一般很大，在数据库中用String类型存放不了，怎么处理？&quot;&gt;&lt;a href=&quot;#博客内容一般很大，在数据库中用String类型存放不了，怎么处理？&quot; class=&quot;headerlink&quot; title=&quot;博客内容一般很大，在数据库中用String类型存放不了，怎么处理？&quot;&gt;&lt;/a&gt;博客内容一般很大，在数据库中用String类型存放不了，怎么处理？&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="springboot java" scheme="https://slowfever01.github.io/categories/springboot-java/"/>
+    
+    
+    <category term="面试" scheme="https://slowfever01.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>算法</title>
