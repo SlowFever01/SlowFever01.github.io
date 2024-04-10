@@ -24,9 +24,13 @@
     <updated>2024-04-08T08:14:49.524Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;自我介绍&quot;&gt;&lt;a href=&quot;#自我介绍&quot; class=&quot;headerlink&quot; title=&quot;自我介绍&quot;&gt;&lt;/a&gt;自我介绍&lt;/h1&gt;&lt;p&gt;面试官您好，我是韩腾昊，今年22岁，是计算机科学与技术专业的学生。我对软件开发有着浓厚的兴趣，并且对Java语言非常熟悉，能熟练使用spring boot以及相关技术栈，如Spring Boot、MyBatis-Plus等。熟悉并使用过Linux环境和常用命令，以及版本控制工具Git的使用。我在前后端分离项目的开发中承担了多项核心功能的实现，包括用户登录、认证、文章发布、标签分类、评论列表等。&lt;/p&gt;
-&lt;h1 id=&quot;为什么做这个项目？&quot;&gt;&lt;a href=&quot;#为什么做这个项目？&quot; class=&quot;headerlink&quot; title=&quot;为什么做这个项目？&quot;&gt;&lt;/a&gt;为什么做这个项目？&lt;/h1&gt;&lt;p&gt;当时学习完mybatis、spring、springmvc等知识后，希望去用这些框架整合在一起写一个前后端分离的项目，巩固所学的知识，将所学的这些知识应用到真正的开发中去。&lt;/p&gt;
-&lt;h1 id=&quot;博客内容一般很大，在数据库中用String类型存放不了，怎么处理？&quot;&gt;&lt;a href=&quot;#博客内容一般很大，在数据库中用String类型存放不了，怎么处理？&quot; class=&quot;headerlink&quot; title=&quot;博客内容一般很大，在数据库中用String类型存放不了，怎么处理？&quot;&gt;&lt;/a&gt;博客内容一般很大，在数据库中用String类型存放不了，怎么处理？&lt;/h1&gt;</summary>
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;自我介绍&quot;&gt;&lt;a href=&quot;#自我介绍&quot; class=&quot;headerlink&quot;</summary>
+        
+      
     
     
     
@@ -45,11 +49,13 @@
     <updated>2024-04-08T02:43:14.303Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;数字反转&quot;&gt;&lt;a href=&quot;#数字反转&quot; class=&quot;headerlink&quot; title=&quot;数字反转&quot;&gt;&lt;/a&gt;数字反转&lt;/h1&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;* 输入一个不小于 &lt;span class=&quot;number&quot;&gt;100&lt;/span&gt; 且小于 &lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;，同时包括小数点后一位的一个浮点数，例如 &lt;span class=&quot;number&quot;&gt;123.4&lt;/span&gt; ，要求把这个数字翻转过来，变成 &lt;span class=&quot;number&quot;&gt;4.321&lt;/span&gt;并输出。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* 输入格式&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* 一行一个浮点数&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* 输出格式&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* 一行一个浮点数&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;type&quot;&gt;Scanner&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;scanner&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;title class_&quot;&gt;Scanner&lt;/span&gt;(System.in);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;type&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; scanner.nextFloat();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; (&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt;) (t*&lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;ge&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; s%&lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;shi&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; s/&lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;%&lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;bai&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; s/&lt;span class=&quot;number&quot;&gt;100&lt;/span&gt;%&lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;qian&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; s/&lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;%&lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;s2&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; ge*&lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;+shi*&lt;span class=&quot;number&quot;&gt;100&lt;/span&gt;+bai*&lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;+qian;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;type&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;ans&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; (&lt;span class=&quot;type&quot;&gt;float&lt;/span&gt;) (s2/&lt;span class=&quot;number&quot;&gt;1000.0&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;//直接强转&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            System.out.println(ans);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;h1 id=&quot;String到单-多精度的转换&quot;&gt;&lt;a href=&quot;#String到单-多精度的转换&quot; class=&quot;headerlink&quot; title=&quot;String到单&amp;#x2F;多精度的转换&quot;&gt;&lt;/a&gt;String到单&amp;#x2F;多精度的转换&lt;/h1&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; Math.sqrt(p*(p-a)*(p-b)*(p-c));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;format&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; String.format(&lt;span class=&quot;string&quot;&gt;&amp;quot;%.1f&amp;quot;&lt;/span&gt;, s);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;System.out.println(format);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//或者直接 System.out.printf(&amp;quot;%.1f&#92;n&amp;quot;, s);&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//注意：&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//System.out.printf()：用于格式化输出，可以指定输出的格式，如小数位数等。它的格式化字符串中可以使用 %f 来表示浮点数。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//System.out.println()：用于直接输出对象的字符串表示形式，并在末尾添加换行符。它不具有格式化的能力，所以不能直接指定输出的小数位数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;h1 id=&quot;时间类型&quot;&gt;&lt;a href=&quot;#时间类型&quot; class=&quot;headerlink&quot; title=&quot;时间类型&quot;&gt;&lt;/a&gt;时间类型&lt;/h1&gt;</summary>
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;数字反转&quot;&gt;&lt;a href=&quot;#数字反转&quot; class=&quot;headerlink&quot; title=&quot;数字反转&quot;&gt;&lt;/a&gt;数字反转&lt;/h1&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
+        
+      
     
     
     
@@ -65,11 +71,16 @@
     <link href="https://slowfever01.github.io/2024/04/07/java%E5%9F%BA%E7%A1%80/"/>
     <id>https://slowfever01.github.io/2024/04/07/java%E5%9F%BA%E7%A1%80/</id>
     <published>2024-04-07T15:08:19.000Z</published>
-    <updated>2024-04-08T02:14:32.122Z</updated>
+    <updated>2024-04-10T13:04:43.673Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;面试八股&quot;&gt;&lt;a href=&quot;#面试八股&quot; class=&quot;headerlink&quot; title=&quot;面试八股&quot;&gt;&lt;/a&gt;面试八股&lt;/h1&gt;&lt;h1 id=&quot;java基础&quot;&gt;&lt;a href=&quot;#java基础&quot; class=&quot;headerlink&quot; title=&quot;java基础&quot;&gt;&lt;/a&gt;java基础&lt;/h1&gt;&lt;h2 id=&quot;面向对象的特征有哪些方面&quot;&gt;&lt;a href=&quot;#面向对象的特征有哪些方面&quot; class=&quot;headerlink&quot; title=&quot;面向对象的特征有哪些方面?&quot;&gt;&lt;/a&gt;面向对象的特征有哪些方面?&lt;/h2&gt;&lt;p&gt;抽象（包括数据抽象和行为抽象，只关注属性和行为，不关注细节）、封装（隐藏一切可隐藏的东西， 只向外界提供最简单的编程接口）、继承（从父类得到继承信息创建子类的过程）、多态（允许不同子类型的对象对同一消息作出不同的响应，要实现多态需要做两件事：1). 方法重写（子类继承父类并重写父类中已 有的或抽象的方法）；2). 对象造型（用父类型引用引用子类型对象，这样同样 的引用调用同样的方法就会根据子类对象的不同而表现出不同的行为）。&lt;/p&gt;
-&lt;h2 id=&quot;重载和重写的区别&quot;&gt;&lt;a href=&quot;#重载和重写的区别&quot; class=&quot;headerlink&quot; title=&quot;重载和重写的区别&quot;&gt;&lt;/a&gt;重载和重写的区别&lt;/h2&gt;</summary>
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;面试八股&quot;&gt;&lt;a href=&quot;#面试八股&quot; class=&quot;headerlink&quot; title=&quot;面试八股&quot;&gt;&lt;/a&gt;面试八股&lt;/h1&gt;&lt;h1 id=&quot;java基础&quot;&gt;&lt;a href=&quot;#java基础&quot; class=&quot;headerlink&quot;</summary>
+        
+      
     
     
     
@@ -88,15 +99,13 @@
     <updated>2024-04-02T12:50:06.740Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;基于Springboot和Vue的个人博客搭建项目&quot;&gt;&lt;a href=&quot;#基于Springboot和Vue的个人博客搭建项目&quot; class=&quot;headerlink&quot; title=&quot;基于Springboot和Vue的个人博客搭建项目&quot;&gt;&lt;/a&gt;基于Springboot和Vue的个人博客搭建项目&lt;/h1&gt;&lt;h1 id=&quot;技术栈&quot;&gt;&lt;a href=&quot;#技术栈&quot; class=&quot;headerlink&quot; title=&quot;技术栈&quot;&gt;&lt;/a&gt;技术栈&lt;/h1&gt;&lt;p&gt;Springboot  Mybatis mysql redis swagger2 EasyExcel SpringSecurity Vue ElementUI&lt;/p&gt;
-&lt;h1 id=&quot;项目介绍&quot;&gt;&lt;a href=&quot;#项目介绍&quot; class=&quot;headerlink&quot; title=&quot;项目介绍&quot;&gt;&lt;/a&gt;项目介绍&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;博客项目，分为前后端，前端有两个系统界面：前台系统负责博客页面，后台系统负责用户和页面管理。后端也有两个系统，分别是前端两个界面的具体实现。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;本项目创建了三个模块：博客模块(hth-blog）、管理模块(hth-admin)、公共模块(hth&amp;#x3D;framework)。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;将三个模块放到父模块下(hthBlog)。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</summary>
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;基于Springboot和Vue的个人博客搭建项目&quot;&gt;&lt;a href=&quot;#基于Springboot和Vue的个人博客搭建项目&quot; class=&quot;headerlink&quot;</summary>
+        
+      
     
     
     
@@ -115,8 +124,13 @@
     <updated>2024-01-20T04:38:23.918Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;RabbitMQ部署指南&quot;&gt;&lt;a href=&quot;#RabbitMQ部署指南&quot; class=&quot;headerlink&quot; title=&quot;RabbitMQ部署指南&quot;&gt;&lt;/a&gt;RabbitMQ部署指南&lt;/h1&gt;&lt;h1 id=&quot;1-单机部署&quot;&gt;&lt;a href=&quot;#1-单机部署&quot; class=&quot;headerlink&quot; title=&quot;1.单机部署&quot;&gt;&lt;/a&gt;1.单机部署&lt;/h1&gt;&lt;p&gt;我们在Centos7虚拟机中使用Docker来安装。&lt;/p&gt;
-&lt;h2 id=&quot;1-1-下载镜像&quot;&gt;&lt;a href=&quot;#1-1-下载镜像&quot; class=&quot;headerlink&quot; title=&quot;1.1.下载镜像&quot;&gt;&lt;/a&gt;1.1.下载镜像&lt;/h2&gt;&lt;p&gt;方式一：在线拉取&lt;/p&gt;</summary>
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;RabbitMQ部署指南&quot;&gt;&lt;a href=&quot;#RabbitMQ部署指南&quot; class=&quot;headerlink&quot; title=&quot;RabbitMQ部署指南&quot;&gt;&lt;/a&gt;RabbitMQ部署指南&lt;/h1&gt;&lt;h1 id=&quot;1-单机部署&quot;&gt;&lt;a</summary>
+        
+      
     
     
     
@@ -135,10 +149,13 @@
     <updated>2024-01-21T12:31:34.016Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;RabbitMQ&quot;&gt;&lt;a href=&quot;#RabbitMQ&quot; class=&quot;headerlink&quot; title=&quot;RabbitMQ&quot;&gt;&lt;/a&gt;RabbitMQ&lt;/h1&gt;&lt;h1 id=&quot;1-初识MQ&quot;&gt;&lt;a href=&quot;#1-初识MQ&quot; class=&quot;headerlink&quot; title=&quot;1.初识MQ&quot;&gt;&lt;/a&gt;1.初识MQ&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;注：ctrl+p查看参数列表&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;1-1-同步和异步通讯&quot;&gt;&lt;a href=&quot;#1-1-同步和异步通讯&quot; class=&quot;headerlink&quot; title=&quot;1.1.同步和异步通讯&quot;&gt;&lt;/a&gt;1.1.同步和异步通讯&lt;/h2&gt;&lt;p&gt;微服务间通讯有同步和异步两种方式：&lt;/p&gt;</summary>
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;RabbitMQ&quot;&gt;&lt;a href=&quot;#RabbitMQ&quot; class=&quot;headerlink&quot; title=&quot;RabbitMQ&quot;&gt;&lt;/a&gt;RabbitMQ&lt;/h1&gt;&lt;h1 id=&quot;1-初识MQ&quot;&gt;&lt;a href=&quot;#1-初识MQ&quot;</summary>
+        
+      
     
     
     
@@ -157,7 +174,13 @@
     <updated>2024-01-20T04:33:40.131Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;Docker实用篇&quot;&gt;&lt;a href=&quot;#Docker实用篇&quot; class=&quot;headerlink&quot; title=&quot;Docker实用篇&quot;&gt;&lt;/a&gt;Docker实用篇&lt;/h1&gt;&lt;h1 id=&quot;0-学习目标&quot;&gt;&lt;a href=&quot;#0-学习目标&quot; class=&quot;headerlink&quot; title=&quot;0.学习目标&quot;&gt;&lt;/a&gt;0.学习目标&lt;/h1&gt;&lt;h1 id=&quot;1-初识Docker&quot;&gt;&lt;a href=&quot;#1-初识Docker&quot; class=&quot;headerlink&quot; title=&quot;1.初识Docker&quot;&gt;&lt;/a&gt;1.初识Docker&lt;/h1&gt;&lt;h2 id=&quot;1-1-什么是Docker&quot;&gt;&lt;a href=&quot;#1-1-什么是Docker&quot; class=&quot;headerlink&quot; title=&quot;1.1.什么是Docker&quot;&gt;&lt;/a&gt;1.1.什么是Docker&lt;/h2&gt;&lt;p&gt;微服务虽然具备各种各样的优势，但服务的拆分通用给部署带来了很大的麻烦。&lt;/p&gt;</summary>
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Docker实用篇&quot;&gt;&lt;a href=&quot;#Docker实用篇&quot; class=&quot;headerlink&quot; title=&quot;Docker实用篇&quot;&gt;&lt;/a&gt;Docker实用篇&lt;/h1&gt;&lt;h1 id=&quot;0-学习目标&quot;&gt;&lt;a href=&quot;#0-学习目标&quot;</summary>
+        
+      
     
     
     
@@ -176,10 +199,13 @@
     <updated>2024-01-20T04:33:33.335Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;0-安装Docker&quot;&gt;&lt;a href=&quot;#0-安装Docker&quot; class=&quot;headerlink&quot; title=&quot;0.安装Docker&quot;&gt;&lt;/a&gt;0.安装Docker&lt;/h1&gt;&lt;p&gt;Docker 分为 CE 和 EE 两大版本。CE 即社区版（免费，支持周期 7 个月），EE 即企业版，强调安全，付费使用，支持周期 24 个月。&lt;/p&gt;
-&lt;p&gt;Docker CE 分为 &lt;code&gt;stable&lt;/code&gt; &lt;code&gt;test&lt;/code&gt; 和 &lt;code&gt;nightly&lt;/code&gt; 三个更新频道。&lt;/p&gt;
-&lt;p&gt;官方网站上有各种环境下的 &lt;a href=&quot;https://docs.docker.com/install/&quot;&gt;安装指南&lt;/a&gt;，这里主要介绍 Docker CE 在 CentOS上的安装。&lt;/p&gt;
-&lt;h1 id=&quot;1-CentOS安装Docker&quot;&gt;&lt;a href=&quot;#1-CentOS安装Docker&quot; class=&quot;headerlink&quot; title=&quot;1.CentOS安装Docker&quot;&gt;&lt;/a&gt;1.CentOS安装Docker&lt;/h1&gt;</summary>
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;0-安装Docker&quot;&gt;&lt;a href=&quot;#0-安装Docker&quot; class=&quot;headerlink&quot; title=&quot;0.安装Docker&quot;&gt;&lt;/a&gt;0.安装Docker&lt;/h1&gt;&lt;p&gt;Docker 分为 CE 和 EE 两大版本。CE</summary>
+        
+      
     
     
     
@@ -198,12 +224,13 @@
     <updated>2024-01-21T12:52:35.029Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;分布式搜索引擎03&quot;&gt;&lt;a href=&quot;#分布式搜索引擎03&quot; class=&quot;headerlink&quot; title=&quot;分布式搜索引擎03&quot;&gt;&lt;/a&gt;分布式搜索引擎03&lt;/h1&gt;&lt;h1 id=&quot;0-学习目标&quot;&gt;&lt;a href=&quot;#0-学习目标&quot; class=&quot;headerlink&quot; title=&quot;0.学习目标&quot;&gt;&lt;/a&gt;0.学习目标&lt;/h1&gt;&lt;h1 id=&quot;1-数据聚合&quot;&gt;&lt;a href=&quot;#1-数据聚合&quot; class=&quot;headerlink&quot; title=&quot;1.数据聚合&quot;&gt;&lt;/a&gt;1.数据聚合&lt;/h1&gt;&lt;p&gt;**&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html&quot;&gt;聚合（&lt;/a&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html&quot;&gt;aggregations&lt;/a&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html&quot;&gt;）&lt;/a&gt;**可以让我们极其方便的实现对数据的统计、分析、运算。例如：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;什么品牌的手机最受欢迎？&lt;/li&gt;
-&lt;li&gt;这些手机的平均价格、最高价格、最低价格？&lt;/li&gt;
-&lt;li&gt;这些手机每月的销售情况如何？&lt;/li&gt;
-&lt;/ul&gt;</summary>
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;分布式搜索引擎03&quot;&gt;&lt;a href=&quot;#分布式搜索引擎03&quot; class=&quot;headerlink&quot; title=&quot;分布式搜索引擎03&quot;&gt;&lt;/a&gt;分布式搜索引擎03&lt;/h1&gt;&lt;h1 id=&quot;0-学习目标&quot;&gt;&lt;a href=&quot;#0-学习目标&quot;</summary>
+        
+      
     
     
     
@@ -222,9 +249,13 @@
     <updated>2024-01-21T12:52:41.210Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;分布式搜索引擎02&quot;&gt;&lt;a href=&quot;#分布式搜索引擎02&quot; class=&quot;headerlink&quot; title=&quot;分布式搜索引擎02&quot;&gt;&lt;/a&gt;分布式搜索引擎02&lt;/h1&gt;&lt;p&gt;在昨天的学习中，我们已经导入了大量数据到elasticsearch中，实现了elasticsearch的数据存储功能。但elasticsearch最擅长的还是搜索和数据分析。&lt;/p&gt;
-&lt;p&gt;所以今天，我们研究下elasticsearch的数据搜索功能。我们会分别使用&lt;strong&gt;DSL&lt;/strong&gt;和&lt;strong&gt;RestClient&lt;/strong&gt;实现搜索。&lt;/p&gt;
-&lt;h1 id=&quot;0-学习目标&quot;&gt;&lt;a href=&quot;#0-学习目标&quot; class=&quot;headerlink&quot; title=&quot;0.学习目标&quot;&gt;&lt;/a&gt;0.学习目标&lt;/h1&gt;&lt;h1 id=&quot;1-DSL查询文档&quot;&gt;&lt;a href=&quot;#1-DSL查询文档&quot; class=&quot;headerlink&quot; title=&quot;1.DSL查询文档&quot;&gt;&lt;/a&gt;1.DSL查询文档&lt;/h1&gt;</summary>
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;分布式搜索引擎02&quot;&gt;&lt;a href=&quot;#分布式搜索引擎02&quot; class=&quot;headerlink&quot;</summary>
+        
+      
     
     
     
@@ -243,8 +274,14 @@
     <updated>2024-01-21T12:52:01.703Z</updated>
     
     
+      
+      
+        
+        
     <summary type="html">&lt;h1 id=&quot;分布式搜索引擎01&quot;&gt;&lt;a href=&quot;#分布式搜索引擎01&quot; class=&quot;headerlink&quot; title=&quot;分布式搜索引擎01&quot;&gt;&lt;/a&gt;分布式搜索引擎01&lt;/h1&gt;&lt;p&gt;– elasticsearch基础&lt;/p&gt;
-&lt;h1 id=&quot;0-学习目标&quot;&gt;&lt;a href=&quot;#0-学习目标&quot; class=&quot;headerlink&quot; title=&quot;0.学习目标&quot;&gt;&lt;/a&gt;0.学习目标&lt;/h1&gt;&lt;h1 id=&quot;1-初识elasticsearch&quot;&gt;&lt;a href=&quot;#1-初识elasticsearch&quot; class=&quot;headerlink&quot; title=&quot;1.初识elasticsearch&quot;&gt;&lt;/a&gt;1.初识elasticsearch&lt;/h1&gt;&lt;h2 id=&quot;1-1-了解ES&quot;&gt;&lt;a href=&quot;#1-1-了解ES&quot; class=&quot;headerlink&quot; title=&quot;1.1.了解ES&quot;&gt;&lt;/a&gt;1.1.了解ES&lt;/h2&gt;</summary>
+&lt;h1 id=&quot;0-学习目标&quot;&gt;&lt;a</summary>
+        
+      
     
     
     
@@ -263,8 +300,13 @@
     <updated>2024-01-21T12:51:21.370Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;安装elasticsearch&quot;&gt;&lt;a href=&quot;#安装elasticsearch&quot; class=&quot;headerlink&quot; title=&quot;安装elasticsearch&quot;&gt;&lt;/a&gt;安装elasticsearch&lt;/h1&gt;&lt;h1 id=&quot;1-部署单点es&quot;&gt;&lt;a href=&quot;#1-部署单点es&quot; class=&quot;headerlink&quot; title=&quot;1.部署单点es&quot;&gt;&lt;/a&gt;1.部署单点es&lt;/h1&gt;&lt;h2 id=&quot;1-1-创建网络&quot;&gt;&lt;a href=&quot;#1-1-创建网络&quot; class=&quot;headerlink&quot; title=&quot;1.1.创建网络&quot;&gt;&lt;/a&gt;1.1.创建网络&lt;/h2&gt;&lt;p&gt;因为我们还需要部署kibana容器，因此需要让es和kibana容器互联。这里先创建一个网络：&lt;/p&gt;
-&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;docker network create es-net&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;安装elasticsearch&quot;&gt;&lt;a href=&quot;#安装elasticsearch&quot; class=&quot;headerlink&quot; title=&quot;安装elasticsearch&quot;&gt;&lt;/a&gt;安装elasticsearch&lt;/h1&gt;&lt;h1 id=&quot;1-部署单点es&quot;&gt;&lt;a</summary>
+        
+      
     
     
     
@@ -283,8 +325,13 @@
     <updated>2024-01-20T04:38:51.610Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;Nacos安装指南&quot;&gt;&lt;a href=&quot;#Nacos安装指南&quot; class=&quot;headerlink&quot; title=&quot;Nacos安装指南&quot;&gt;&lt;/a&gt;Nacos安装指南&lt;/h1&gt;&lt;h1 id=&quot;1-Windows安装&quot;&gt;&lt;a href=&quot;#1-Windows安装&quot; class=&quot;headerlink&quot; title=&quot;1.Windows安装&quot;&gt;&lt;/a&gt;1.Windows安装&lt;/h1&gt;&lt;p&gt;开发阶段采用单机安装即可。&lt;/p&gt;
-&lt;h2 id=&quot;1-1-下载安装包&quot;&gt;&lt;a href=&quot;#1-1-下载安装包&quot; class=&quot;headerlink&quot; title=&quot;1.1.下载安装包&quot;&gt;&lt;/a&gt;1.1.下载安装包&lt;/h2&gt;&lt;p&gt;在Nacos的GitHub页面，提供有下载链接，可以下载编译好的Nacos服务端或者源代码：&lt;/p&gt;</summary>
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Nacos安装指南&quot;&gt;&lt;a href=&quot;#Nacos安装指南&quot; class=&quot;headerlink&quot; title=&quot;Nacos安装指南&quot;&gt;&lt;/a&gt;Nacos安装指南&lt;/h1&gt;&lt;h1 id=&quot;1-Windows安装&quot;&gt;&lt;a href=&quot;#1-Windows安装&quot;</summary>
+        
+      
     
     
     
@@ -303,8 +350,13 @@
     <updated>2024-01-14T13:58:33.398Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;SpringCloud-day1&quot;&gt;&lt;a href=&quot;#SpringCloud-day1&quot; class=&quot;headerlink&quot; title=&quot;SpringCloud day1&quot;&gt;&lt;/a&gt;SpringCloud day1&lt;/h1&gt;&lt;h1 id=&quot;1-认识微服务&quot;&gt;&lt;a href=&quot;#1-认识微服务&quot; class=&quot;headerlink&quot; title=&quot;1.认识微服务&quot;&gt;&lt;/a&gt;1.认识微服务&lt;/h1&gt;&lt;p&gt;随着互联网行业的发展，对服务的要求也越来越高，服务架构也从单体架构逐渐演变为现在流行的微服务架构。这些架构之间有怎样的差别呢？&lt;/p&gt;
-&lt;h2 id=&quot;1-0-学习目标&quot;&gt;&lt;a href=&quot;#1-0-学习目标&quot; class=&quot;headerlink&quot; title=&quot;1.0.学习目标&quot;&gt;&lt;/a&gt;1.0.学习目标&lt;/h2&gt;&lt;p&gt;了解微服务架构的优缺点&lt;/p&gt;</summary>
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;SpringCloud-day1&quot;&gt;&lt;a href=&quot;#SpringCloud-day1&quot; class=&quot;headerlink&quot; title=&quot;SpringCloud day1&quot;&gt;&lt;/a&gt;SpringCloud day1&lt;/h1&gt;&lt;h1</summary>
+        
+      
     
     
     
@@ -323,8 +375,13 @@
     <updated>2024-01-14T13:59:12.376Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;SpringCloud-day2&quot;&gt;&lt;a href=&quot;#SpringCloud-day2&quot; class=&quot;headerlink&quot; title=&quot;SpringCloud day2&quot;&gt;&lt;/a&gt;SpringCloud day2&lt;/h1&gt;&lt;h1 id=&quot;0-学习目标&quot;&gt;&lt;a href=&quot;#0-学习目标&quot; class=&quot;headerlink&quot; title=&quot;0.学习目标&quot;&gt;&lt;/a&gt;0.学习目标&lt;/h1&gt;&lt;h1 id=&quot;1-Nacos配置管理&quot;&gt;&lt;a href=&quot;#1-Nacos配置管理&quot; class=&quot;headerlink&quot; title=&quot;1.Nacos配置管理&quot;&gt;&lt;/a&gt;1.Nacos配置管理&lt;/h1&gt;&lt;p&gt;Nacos除了可以做注册中心，同样可以做配置管理来使用。&lt;/p&gt;
-&lt;h2 id=&quot;1-1-统一配置管理&quot;&gt;&lt;a href=&quot;#1-1-统一配置管理&quot; class=&quot;headerlink&quot; title=&quot;1.1.统一配置管理&quot;&gt;&lt;/a&gt;1.1.统一配置管理&lt;/h2&gt;</summary>
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;SpringCloud-day2&quot;&gt;&lt;a href=&quot;#SpringCloud-day2&quot; class=&quot;headerlink&quot; title=&quot;SpringCloud day2&quot;&gt;&lt;/a&gt;SpringCloud day2&lt;/h1&gt;&lt;h1</summary>
+        
+      
     
     
     
@@ -343,9 +400,13 @@
     <updated>2024-01-14T13:57:30.616Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;Nacos集群搭建&quot;&gt;&lt;a href=&quot;#Nacos集群搭建&quot; class=&quot;headerlink&quot; title=&quot;Nacos集群搭建&quot;&gt;&lt;/a&gt;Nacos集群搭建&lt;/h1&gt;&lt;h1 id=&quot;1-集群结构图&quot;&gt;&lt;a href=&quot;#1-集群结构图&quot; class=&quot;headerlink&quot; title=&quot;1.集群结构图&quot;&gt;&lt;/a&gt;1.集群结构图&lt;/h1&gt;&lt;p&gt;官方给出的Nacos集群图：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/assets/image-20210409210621117.png&quot; alt=&quot;image-20210409210621117&quot;&gt;&lt;/p&gt;
-&lt;p&gt;其中包含3个nacos节点，然后一个负载均衡器代理3个Nacos。这里负载均衡器可以使用nginx。&lt;/p&gt;</summary>
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Nacos集群搭建&quot;&gt;&lt;a href=&quot;#Nacos集群搭建&quot; class=&quot;headerlink&quot; title=&quot;Nacos集群搭建&quot;&gt;&lt;/a&gt;Nacos集群搭建&lt;/h1&gt;&lt;h1 id=&quot;1-集群结构图&quot;&gt;&lt;a href=&quot;#1-集群结构图&quot;</summary>
+        
+      
     
     
     
