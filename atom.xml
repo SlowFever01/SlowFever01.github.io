@@ -64,11 +64,12 @@
     <link href="https://slowfever01.github.io/2024/04/07/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1/"/>
     <id>https://slowfever01.github.io/2024/04/07/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1/</id>
     <published>2024-04-07T15:08:19.000Z</published>
-    <updated>2024-04-14T08:09:44.985Z</updated>
+    <updated>2024-04-14T08:14:14.039Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;面试八股&quot;&gt;&lt;a href=&quot;#面试八股&quot; class=&quot;headerlink&quot; title=&quot;面试八股&quot;&gt;&lt;/a&gt;面试八股&lt;/h1&gt;&lt;h1 id=&quot;java基础&quot;&gt;&lt;a href=&quot;#java基础&quot; class=&quot;headerlink&quot; title=&quot;java基础&quot;&gt;&lt;/a&gt;java基础&lt;/h1&gt;&lt;h2 id=&quot;面向对象的特征有哪些方面&quot;&gt;&lt;a href=&quot;#面向对象的特征有哪些方面&quot; class=&quot;headerlink&quot; title=&quot;面向对象的特征有哪些方面?&quot;&gt;&lt;/a&gt;面向对象的特征有哪些方面?&lt;/h2&gt;&lt;p&gt;抽象（包括数据抽象和行为抽象，只关注属性和行为，不关注细节）、封装（隐藏一切可隐藏的东西， 只向外界提供最简单的编程接口）、继承（从父类得到继承信息创建子类的过程）、多态（允许不同子类型的对象对同一消息作出不同的响应，要实现多态需要做两件事：1). 方法重写（子类继承父类并重写父类中已 有的或抽象的方法）；2). 对象造型（用父类型引用引用子类型对象，这样同样 的引用调用同样的方法就会根据子类对象的不同而表现出不同的行为）。&lt;/p&gt;
-&lt;h2 id=&quot;重载和重写的区别&quot;&gt;&lt;a href=&quot;#重载和重写的区别&quot; class=&quot;headerlink&quot; title=&quot;重载和重写的区别&quot;&gt;&lt;/a&gt;重载和重写的区别&lt;/h2&gt;</summary>
+    <summary type="html">&lt;h1 id=&quot;面试八股&quot;&gt;&lt;a href=&quot;#面试八股&quot; class=&quot;headerlink&quot; title=&quot;面试八股&quot;&gt;&lt;/a&gt;面试八股&lt;/h1&gt;&lt;h2 id=&quot;前端知识点：&quot;&gt;&lt;a href=&quot;#前端知识点：&quot; class=&quot;headerlink&quot; title=&quot;前端知识点：&quot;&gt;&lt;/a&gt;前端知识点：&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://vue3js.cn/interview/&quot;&gt;https://vue3js.cn/interview/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://fe.ecool.fun/&quot;&gt;https://fe.ecool.fun/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;后端知识点&quot;&gt;&lt;a href=&quot;#后端知识点&quot; class=&quot;headerlink&quot; title=&quot;后端知识点&quot;&gt;&lt;/a&gt;后端知识点&lt;/h2&gt;</summary>
     
     
     
