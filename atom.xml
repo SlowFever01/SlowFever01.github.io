@@ -6,7 +6,7 @@
   <link href="https://slowfever01.github.io/atom.xml" rel="self"/>
   
   <link href="https://slowfever01.github.io/"/>
-  <updated>2024-04-17T00:04:56.662Z</updated>
+  <updated>2024-06-29T03:21:44.607Z</updated>
   <id>https://slowfever01.github.io/</id>
   
   <author>
@@ -15,6 +15,59 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>分布式存储系统</title>
+    <link href="https://slowfever01.github.io/2024/06/20/SpringBoot+Vue3%20+Element%20Plus%20%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/"/>
+    <id>https://slowfever01.github.io/2024/06/20/SpringBoot+Vue3%20+Element%20Plus%20%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/</id>
+    <published>2024-06-20T03:49:19.000Z</published>
+    <updated>2024-06-29T03:21:44.607Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;SpringBoot-Vue3-Element-Plus-的分布式存储系统&quot;&gt;&lt;a href=&quot;#SpringBoot-Vue3-Element-Plus-的分布式存储系统&quot; class=&quot;headerlink&quot; title=&quot;SpringBoot+Vue3 +Element Plus 的分布式存储系统&quot;&gt;&lt;/a&gt;SpringBoot+Vue3 +Element Plus 的分布式存储系统&lt;/h1&gt;&lt;h1 id=&quot;为什么要做这个项目&quot;&gt;&lt;a href=&quot;#为什么要做这个项目&quot; class=&quot;headerlink&quot; title=&quot;为什么要做这个项目&quot;&gt;&lt;/a&gt;为什么要做这个项目&lt;/h1&gt;&lt;h3 id=&quot;数据存取与安全是数据时代的基石，个人隐私现在愈发重要，拥有属于自己的高安全性存储系统迫在眉睫。本项目从项目设计、实现、优化、压力与并发安全测试、部署上线全流程实现业务俱全的网盘系统，并解决数据存储安全问题。&quot;&gt;&lt;a href=&quot;#数据存取与安全是数据时代的基石，个人隐私现在愈发重要，拥有属于自己的高安全性存储系统迫在眉睫。本项目从项目设计、实现、优化、压力与并发安全测试、部署上线全流程实现业务俱全的网盘系统，并解决数据存储安全问题。&quot; class=&quot;headerlink&quot; title=&quot;数据存取与安全是数据时代的基石，个人隐私现在愈发重要，拥有属于自己的高安全性存储系统迫在眉睫。本项目从项目设计、实现、优化、压力与并发安全测试、部署上线全流程实现业务俱全的网盘系统，并解决数据存储安全问题。&quot;&gt;&lt;/a&gt;数据存取与安全是数据时代的基石，个人隐私现在愈发重要，拥有属于自己的高安全性存储系统迫在眉睫。本项目从项目设计、实现、优化、压力与并发安全测试、部署上线全流程实现业务俱全的网盘系统，并解决数据存储安全问题。&lt;/h3&gt;&lt;h1 id=&quot;使用到的技术&quot;&gt;&lt;a href=&quot;#使用到的技术&quot; class=&quot;headerlink&quot; title=&quot;使用到的技术&quot;&gt;&lt;/a&gt;使用到的技术&lt;/h1&gt;&lt;p&gt;Web端：VUE 3      Eelment Plus     pinia&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Java SpringBoot Vue3 MybatisPlus" scheme="https://slowfever01.github.io/categories/Java-SpringBoot-Vue3-MybatisPlus/"/>
+    
+    
+    <category term="项目" scheme="https://slowfever01.github.io/tags/%E9%A1%B9%E7%9B%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>云盘项目</title>
+    <link href="https://slowfever01.github.io/2024/06/02/hthPan/"/>
+    <id>https://slowfever01.github.io/2024/06/02/hthPan/</id>
+    <published>2024-06-02T03:20:19.000Z</published>
+    <updated>2024-06-29T03:20:26.868Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;hthPan&quot;&gt;&lt;a href=&quot;#hthPan&quot; class=&quot;headerlink&quot; title=&quot;hthPan&quot;&gt;&lt;/a&gt;hthPan&lt;/h1&gt;&lt;h3 id=&quot;切面实现原理&quot;&gt;&lt;a href=&quot;#切面实现原理&quot; class=&quot;headerlink&quot; title=&quot;切面实现原理&quot;&gt;&lt;/a&gt;切面实现原理&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;切点定义&lt;/strong&gt;： 切点 &lt;code&gt;requestInterceptor&lt;/code&gt; 定义了哪些方法需要被拦截，这里是所有带有 &lt;code&gt;@GlobalInterceptor&lt;/code&gt; 注解的方法。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;前置通知&lt;/strong&gt;： &lt;code&gt;@Before(&amp;quot;requestInterceptor()&amp;quot;)&lt;/code&gt; 注解表示 &lt;code&gt;interceptorDo&lt;/code&gt; 方法会在目标方法执行之前执行。它会获取方法的参数和注解，并根据注解的配置决定是否需要进行参数验证。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数验证&lt;/strong&gt;： &lt;code&gt;validateParams&lt;/code&gt; 方法对方法的每个参数进行检查。如果参数上有 &lt;code&gt;@VerifyParam&lt;/code&gt; 注解，则根据注解的规则进行验证。对基本类型的参数直接验证，对对象类型的参数则递归验证其字段。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;对象字段验证&lt;/strong&gt;： &lt;code&gt;checkObjValue&lt;/code&gt; 方法通过反射获取对象的所有字段，并对带有 &lt;code&gt;@VerifyParam&lt;/code&gt; 注解的字段进行验证。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;具体值检查&lt;/strong&gt;： &lt;code&gt;checkValue&lt;/code&gt; 方法进行具体的验证逻辑，检查值是否为空、长度是否符合要求、是否匹配正则表达式。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;对于Spring-Boot项目，在一个类中如何拿到session信息？&quot;&gt;&lt;a href=&quot;#对于Spring-Boot项目，在一个类中如何拿到session信息？&quot; class=&quot;headerlink&quot; title=&quot;对于Spring Boot项目，在一个类中如何拿到session信息？&quot;&gt;&lt;/a&gt;对于Spring Boot项目，在一个类中如何拿到session信息？&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;使用 &lt;code&gt;HttpSession&lt;/code&gt; 注入&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; org.springframework.beans.factory.annotation.Autowired;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; org.springframework.stereotype.Component;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; javax.servlet.http.HttpSession;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@Component&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title class_&quot;&gt;MyService&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;meta&quot;&gt;@Autowired&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; HttpSession session;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title function_&quot;&gt;someMethod&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;comment&quot;&gt;// 获取session属性&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;type&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;attribute&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; session.getAttribute(&lt;span class=&quot;string&quot;&gt;&amp;quot;attributeName&amp;quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;comment&quot;&gt;// 设置session属性&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        session.setAttribute(&lt;span class=&quot;string&quot;&gt;&amp;quot;attributeName&amp;quot;&lt;/span&gt;, attribute);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用 &lt;code&gt;HttpServletRequest&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</summary>
+    
+    
+    
+    <category term="SpringBoot Vue" scheme="https://slowfever01.github.io/categories/SpringBoot-Vue/"/>
+    
+    
+    <category term="项目" scheme="https://slowfever01.github.io/tags/%E9%A1%B9%E7%9B%AE/"/>
+    
+  </entry>
   
   <entry>
     <title>算法</title>
@@ -40,14 +93,41 @@
   </entry>
   
   <entry>
+    <title>hth云盘</title>
+    <link href="https://slowfever01.github.io/2024/04/12/%E4%BA%91%E7%9B%98%E9%A1%B9%E7%9B%AE/"/>
+    <id>https://slowfever01.github.io/2024/04/12/%E4%BA%91%E7%9B%98%E9%A1%B9%E7%9B%AE/</id>
+    <published>2024-04-12T03:49:19.000Z</published>
+    <updated>2024-06-29T03:19:09.383Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;云盘项目&quot;&gt;&lt;a href=&quot;#云盘项目&quot; class=&quot;headerlink&quot; title=&quot;云盘项目&quot;&gt;&lt;/a&gt;云盘项目&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;Easypan 架构图 &lt;a href=&quot;https://docs.qq.com/mind/DY1hlelRXQU10U0hG&quot;&gt;https://docs.qq.com/mind/DY1hlelRXQU10U0hG&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Easypan后端项目构建 &lt;a href=&quot;https://docs.qq.com/doc/DY1JTbU9kSkRPUUVY&quot;&gt;https://docs.qq.com/doc/DY1JTbU9kSkRPUUVY&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Easypan前端程序部署 &lt;a href=&quot;https://docs.qq.com/doc/DY3l1a0ppWFZsWkdS&quot;&gt;https://docs.qq.com/doc/DY3l1a0ppWFZsWkdS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Easypan接口文档 &lt;a href=&quot;https://console-docs.apipost.cn/preview/eb06c2b023fec08c/637c25bea0ba82bb&quot;&gt;https://console-docs.apipost.cn/preview/eb06c2b023fec08c/637c25bea0ba82bb&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Easypan前端资料 &lt;a href=&quot;https://docs.qq.com/doc/DY0VtdnhTVWpVdGxr&quot;&gt;https://docs.qq.com/doc/DY0VtdnhTVWpVdGxr&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;前端需要后端支撑，调用后端的接口&lt;/p&gt;
+&lt;h1 id=&quot;前端-项目搭建&quot;&gt;&lt;a href=&quot;#前端-项目搭建&quot; class=&quot;headerlink&quot; title=&quot;前端-项目搭建&quot;&gt;&lt;/a&gt;前端-项目搭建&lt;/h1&gt;&lt;h2 id=&quot;1-安装nodejs&quot;&gt;&lt;a href=&quot;#1-安装nodejs&quot; class=&quot;headerlink&quot; title=&quot;1.安装nodejs&quot;&gt;&lt;/a&gt;1.安装nodejs&lt;/h2&gt;</summary>
+    
+    
+    
+    <category term="Java SpringBoot Vue" scheme="https://slowfever01.github.io/categories/Java-SpringBoot-Vue/"/>
+    
+    
+    <category term="项目" scheme="https://slowfever01.github.io/tags/%E9%A1%B9%E7%9B%AE/"/>
+    
+  </entry>
+  
+  <entry>
     <title>博客面试题</title>
     <link href="https://slowfever01.github.io/2024/04/08/%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     <id>https://slowfever01.github.io/2024/04/08/%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE%E9%9D%A2%E8%AF%95%E9%A2%98/</id>
     <published>2024-04-08T08:14:32.000Z</published>
-    <updated>2024-04-14T02:26:13.477Z</updated>
+    <updated>2024-06-29T03:23:49.838Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;自我介绍&quot;&gt;&lt;a href=&quot;#自我介绍&quot; class=&quot;headerlink&quot; title=&quot;自我介绍&quot;&gt;&lt;/a&gt;自我介绍&lt;/h1&gt;&lt;p&gt;面试官您好，我是韩腾昊，今年22岁，是计算机科学与技术专业的学生。我对软件开发有着浓厚的兴趣，并且对Java语言非常熟悉，能熟练使用spring boot以及相关技术栈，如Spring Boot、MyBatis-Plus等。熟悉并使用过Linux环境和常用命令，以及版本控制工具Git的使用。我在前后端分离项目的开发中承担了多项核心功能的实现，包括用户登录、认证、文章发布、标签分类、评论列表等。&lt;/p&gt;
+    <summary type="html">&lt;h1 id=&quot;自我介绍&quot;&gt;&lt;a href=&quot;#自我介绍&quot; class=&quot;headerlink&quot; title=&quot;自我介绍&quot;&gt;&lt;/a&gt;自我介绍&lt;/h1&gt;&lt;p&gt;xxx&lt;/p&gt;
 &lt;h1 id=&quot;为什么做这个项目？&quot;&gt;&lt;a href=&quot;#为什么做这个项目？&quot; class=&quot;headerlink&quot; title=&quot;为什么做这个项目？&quot;&gt;&lt;/a&gt;为什么做这个项目？&lt;/h1&gt;&lt;p&gt;当时学习完mybatis、spring、springmvc等知识后，希望去用这些框架整合在一起写一个前后端分离的项目，巩固所学的知识，将所学的这些知识应用到真正的开发中去。&lt;/p&gt;
 &lt;h1 id=&quot;博客内容一般很大，在数据库中用String类型存放不了，怎么处理？&quot;&gt;&lt;a href=&quot;#博客内容一般很大，在数据库中用String类型存放不了，怎么处理？&quot; class=&quot;headerlink&quot; title=&quot;博客内容一般很大，在数据库中用String类型存放不了，怎么处理？&quot;&gt;&lt;/a&gt;博客内容一般很大，在数据库中用String类型存放不了，怎么处理？&lt;/h1&gt;</summary>
     
@@ -170,11 +250,11 @@
   </entry>
   
   <entry>
-    <title>Nacos安装指南</title>
+    <title>Docker安装指南</title>
     <link href="https://slowfever01.github.io/2024/01/20/Centos7%E5%AE%89%E8%A3%85Docker/"/>
     <id>https://slowfever01.github.io/2024/01/20/Centos7%E5%AE%89%E8%A3%85Docker/</id>
     <published>2024-01-20T03:49:19.000Z</published>
-    <updated>2024-01-20T04:33:33.335Z</updated>
+    <updated>2024-06-29T03:19:40.279Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;0-安装Docker&quot;&gt;&lt;a href=&quot;#0-安装Docker&quot; class=&quot;headerlink&quot; title=&quot;0.安装Docker&quot;&gt;&lt;/a&gt;0.安装Docker&lt;/h1&gt;&lt;p&gt;Docker 分为 CE 和 EE 两大版本。CE 即社区版（免费，支持周期 7 个月），EE 即企业版，强调安全，付费使用，支持周期 24 个月。&lt;/p&gt;

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"slowfever01.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="hthPan切面实现原理 切点定义： 切点 requestInterceptor 定义了哪些方法需要被拦截，这里是所有带有 @GlobalInterceptor 注解的方法。 前置通知： @Before(&quot;requestInterceptor()&quot;) 注解表示 interceptorDo 方法会在目标方法执行之前执行。它会获取方法的参数和注解，并根据注解的配置决定是否需要进行参">
+<meta property="og:type" content="article">
+<meta property="og:title" content="云盘项目">
+<meta property="og:url" content="https://slowfever01.github.io/2024/06/02/hthPan/index.html">
+<meta property="og:site_name" content="Smiling">
+<meta property="og:description" content="hthPan切面实现原理 切点定义： 切点 requestInterceptor 定义了哪些方法需要被拦截，这里是所有带有 @GlobalInterceptor 注解的方法。 前置通知： @Before(&quot;requestInterceptor()&quot;) 注解表示 interceptorDo 方法会在目标方法执行之前执行。它会获取方法的参数和注解，并根据注解的配置决定是否需要进行参">
+<meta property="og:locale">
+<meta property="article:published_time" content="2024-06-02T03:20:19.000Z">
+<meta property="article:modified_time" content="2024-06-29T03:20:26.868Z">
+<meta property="article:author" content="SlowFever">
+<meta property="article:tag" content="项目">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://slowfever01.github.io/2024/06/02/hthPan/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"https://slowfever01.github.io/2024/06/02/hthPan/","path":"2024/06/02/hthPan/","title":"云盘项目"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>云盘项目 | Smiling</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Smiling" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  <a target="_blank" rel="noopener" href="https://github.com/SlowFever01" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Smiling</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">8</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">11</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hthPan"><span class="nav-number">1.</span> <span class="nav-text">hthPan</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%87%E9%9D%A2%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-number">1.0.1.</span> <span class="nav-text">切面实现原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8ESpring-Boot%E9%A1%B9%E7%9B%AE%EF%BC%8C%E5%9C%A8%E4%B8%80%E4%B8%AA%E7%B1%BB%E4%B8%AD%E5%A6%82%E4%BD%95%E6%8B%BF%E5%88%B0session%E4%BF%A1%E6%81%AF%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">对于Spring Boot项目，在一个类中如何拿到session信息？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E4%B8%8D%E9%85%8D%E7%BD%AE-RedisTemplate%E4%BC%9A%E6%80%8E%E4%B9%88%E6%A0%B7"><span class="nav-number">1.2.</span> <span class="nav-text">如果不配置 RedisTemplate会怎么样</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%BB%98%E8%AE%A4%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E5%99%A8"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 默认的序列化器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%BD%9C%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 潜在的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%92%E4%BC%A0"><span class="nav-number">1.3.</span> <span class="nav-text">秒传</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E7%9B%B4%E6%8E%A5%E8%B0%83%E7%94%A8transferFile%E6%96%B9%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">为什么不能直接调用transferFile方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8fileInfoService-transferFile%E8%80%8C%E4%B8%8D%E6%98%AF%E7%9B%B4%E6%8E%A5%E8%B0%83%E7%94%A8this-transferFile"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">为什么使用fileInfoService.transferFile而不是直接调用this.transferFile</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E5%BC%82%E6%AD%A5%E6%96%B9%E6%B3%95"><span class="nav-number">1.5.</span> <span class="nav-text">为什么要用异步方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hth%E4%BA%91%E7%9B%98"><span class="nav-number">2.</span> <span class="nav-text">hth云盘</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF"><span class="nav-number">2.1.</span> <span class="nav-text">前端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF"><span class="nav-number">2.2.</span> <span class="nav-text">后端</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF%E9%A1%B9%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">3.</span> <span class="nav-text">后端项目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%94%9F%E6%88%90%E9%AA%8C%E8%AF%81%E7%A0%81%E5%9B%BE%E5%83%8F"><span class="nav-number">3.1.</span> <span class="nav-text">1.生成验证码图像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%8F%91%E9%80%81%E9%82%AE%E7%AE%B1%E9%AA%8C%E8%AF%81%E7%A0%81"><span class="nav-number">3.2.</span> <span class="nav-text">2.发送邮箱验证码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-AOP%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C"><span class="nav-number">3.3.</span> <span class="nav-text">3.AOP参数校验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#checkObjValue%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-number">3.3.1.</span> <span class="nav-text">checkObjValue方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#checkValue%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-number">3.3.2.</span> <span class="nav-text">checkValue方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%BC%E5%90%88%E4%BD%9C%E7%94%A8"><span class="nav-number">3.3.3.</span> <span class="nav-text">综合作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C"><span class="nav-number">3.4.</span> <span class="nav-text">4.用户注册</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95"><span class="nav-number">3.5.</span> <span class="nav-text">5.用户登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%A0%B9%E6%8D%AE%E9%82%AE%E7%AE%B1%E6%89%BE%E5%9B%9E%E5%AF%86%E7%A0%81"><span class="nav-number">3.6.</span> <span class="nav-text">6.根据邮箱找回密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E7%94%A8%E6%88%B7%E5%A4%B4%E5%83%8F"><span class="nav-number">3.7.</span> <span class="nav-text">7. 用户头像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E5%A4%B4%E5%83%8F"><span class="nav-number">3.7.1.</span> <span class="nav-text">获取用户头像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E7%94%A8%E6%88%B7%E5%A4%B4%E5%83%8F"><span class="nav-number">3.7.2.</span> <span class="nav-text">更新用户头像</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81"><span class="nav-number">3.8.</span> <span class="nav-text">8.修改密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86"><span class="nav-number">3.9.</span> <span class="nav-text">9.文件管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E7%BB%93%E6%9E%84"><span class="nav-number">3.9.1.</span> <span class="nav-text">表结构:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">3.9.2.</span> <span class="nav-text">索引的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF"><span class="nav-number">3.9.3.</span> <span class="nav-text">分页查询文件信息</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="SlowFever"
+      src="/images/picture1.jpg">
+  <p class="site-author-name" itemprop="name">SlowFever</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SlowFever01" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SlowFever01" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:gengrujin123@gmail.com" title="E-Mail → mailto:gengrujin123@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/images/QQ.jpg" title="QQ → &#x2F;images&#x2F;QQ.jpg" rel="noopener me"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/images/wechat.png" title="WeChat → &#x2F;images&#x2F;wechat.png" rel="noopener me"><i class="fab fa-weixin fa-fw"></i>WeChat</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://slowfever01.github.io/2024/06/02/hthPan/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/picture1.jpg">
+      <meta itemprop="name" content="SlowFever">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Smiling">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="云盘项目 | Smiling">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          云盘项目
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-06-02 11:20:19" itemprop="dateCreated datePublished" datetime="2024-06-02T11:20:19+08:00">2024-06-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-06-29 11:20:26" itemprop="dateModified" datetime="2024-06-29T11:20:26+08:00">2024-06-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/SpringBoot-Vue/" itemprop="url" rel="index"><span itemprop="name">SpringBoot Vue</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span id="/2024/06/02/hthPan/" class="post-meta-item leancloud_visitors" data-flag-title="云盘项目" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="hthPan"><a href="#hthPan" class="headerlink" title="hthPan"></a>hthPan</h1><h3 id="切面实现原理"><a href="#切面实现原理" class="headerlink" title="切面实现原理"></a>切面实现原理</h3><ol>
+<li><strong>切点定义</strong>： 切点 <code>requestInterceptor</code> 定义了哪些方法需要被拦截，这里是所有带有 <code>@GlobalInterceptor</code> 注解的方法。</li>
+<li><strong>前置通知</strong>： <code>@Before(&quot;requestInterceptor()&quot;)</code> 注解表示 <code>interceptorDo</code> 方法会在目标方法执行之前执行。它会获取方法的参数和注解，并根据注解的配置决定是否需要进行参数验证。</li>
+<li><strong>参数验证</strong>： <code>validateParams</code> 方法对方法的每个参数进行检查。如果参数上有 <code>@VerifyParam</code> 注解，则根据注解的规则进行验证。对基本类型的参数直接验证，对对象类型的参数则递归验证其字段。</li>
+<li><strong>对象字段验证</strong>： <code>checkObjValue</code> 方法通过反射获取对象的所有字段，并对带有 <code>@VerifyParam</code> 注解的字段进行验证。</li>
+<li><strong>具体值检查</strong>： <code>checkValue</code> 方法进行具体的验证逻辑，检查值是否为空、长度是否符合要求、是否匹配正则表达式。</li>
+</ol>
+<h2 id="对于Spring-Boot项目，在一个类中如何拿到session信息？"><a href="#对于Spring-Boot项目，在一个类中如何拿到session信息？" class="headerlink" title="对于Spring Boot项目，在一个类中如何拿到session信息？"></a>对于Spring Boot项目，在一个类中如何拿到session信息？</h2><ol>
+<li><p>使用 <code>HttpSession</code> 注入</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpSession;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> HttpSession session;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">someMethod</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 获取session属性</span></span><br><span class="line">        <span class="type">Object</span> <span class="variable">attribute</span> <span class="operator">=</span> session.getAttribute(<span class="string">&quot;attributeName&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 设置session属性</span></span><br><span class="line">        session.setAttribute(<span class="string">&quot;attributeName&quot;</span>, attribute);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>使用 <code>HttpServletRequest</code></p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpSession;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> HttpServletRequest request;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">someMethod</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">HttpSession</span> <span class="variable">session</span> <span class="operator">=</span> request.getSession();</span><br><span class="line">        <span class="comment">// 获取session属性</span></span><br><span class="line">        <span class="type">Object</span> <span class="variable">attribute</span> <span class="operator">=</span> session.getAttribute(<span class="string">&quot;attributeName&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 设置session属性</span></span><br><span class="line">        session.setAttribute(<span class="string">&quot;attributeName&quot;</span>, attribute);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p> 3.使用 <code>RequestContextHolder</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.context.request.RequestContextHolder;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.context.request.ServletRequestAttributes;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpSession;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">someMethod</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">ServletRequestAttributes</span> <span class="variable">attr</span> <span class="operator">=</span> (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();</span><br><span class="line">        <span class="type">HttpServletRequest</span> <span class="variable">request</span> <span class="operator">=</span> attr.getRequest();</span><br><span class="line">        <span class="type">HttpSession</span> <span class="variable">session</span> <span class="operator">=</span> request.getSession();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 获取session属性</span></span><br><span class="line">        <span class="type">Object</span> <span class="variable">attribute</span> <span class="operator">=</span> session.getAttribute(<span class="string">&quot;attributeName&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 设置session属性</span></span><br><span class="line">        session.setAttribute(<span class="string">&quot;attributeName&quot;</span>, attribute);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="如果不配置-RedisTemplate会怎么样"><a href="#如果不配置-RedisTemplate会怎么样" class="headerlink" title="如果不配置 RedisTemplate会怎么样"></a>如果不配置 <code>RedisTemplate</code>会怎么样</h2><p>如果你不配置 <code>RedisTemplate</code>，Spring Boot 会自动使用默认的配置。这可能导致以下几种情况：</p>
+<h3 id="1-默认的序列化器"><a href="#1-默认的序列化器" class="headerlink" title="1. 默认的序列化器"></a>1. 默认的序列化器</h3><ul>
+<li>键的序列化方式：<ul>
+<li>默认情况下，Spring Boot 使用 <code>JdkSerializationRedisSerializer</code> 对键进行序列化。这意味着键会被序列化为二进制数据，而不是人类可读的字符串。</li>
+</ul>
+</li>
+<li>值的序列化方式：<ul>
+<li>默认情况下，值的序列化器也是 <code>JdkSerializationRedisSerializer</code>，这意味着所有存储在 Redis 中的对象都必须实现 <code>Serializable</code> 接口。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-潜在的问题"><a href="#2-潜在的问题" class="headerlink" title="2. 潜在的问题"></a>2. 潜在的问题</h3><ul>
+<li><strong>可读性差</strong>：<ul>
+<li>使用 <code>JdkSerializationRedisSerializer</code> 序列化后的键和值在 Redis 中是二进制形式的，这对于调试和手动查看数据非常不方便。</li>
+</ul>
+</li>
+<li><strong>兼容性问题</strong>：<ul>
+<li>如果应用程序需要与其他系统共享 Redis 数据，其他系统可能无法理解 <code>JdkSerializationRedisSerializer</code> 的二进制格式。相比之下，使用 <code>StringRedisSerializer</code> 和 <code>JacksonJsonRedisSerializer</code> 更具有通用性。</li>
+</ul>
+</li>
+<li><strong>性能影响</strong>：<ul>
+<li>JDK 序列化的性能通常比字符串和 JSON 序列化差。如果存储和读取大量数据，这种性能差异可能会变得明显。</li>
+</ul>
+</li>
+</ul>
+<h2 id="秒传"><a href="#秒传" class="headerlink" title="秒传"></a>秒传</h2><p>“秒传”是指在文件上传过程中，通过对比文件的唯一标识（通常是文件的哈希值，如MD5），来判断服务器上是否已经存在相同的文件。如果文件已经存在，则无需再次上传文件数据，只需更新或创建相关的元数据记录即可。这种方式可以极大地提高上传速度和效率。</p>
+<h2 id="为什么不能直接调用transferFile方法"><a href="#为什么不能直接调用transferFile方法" class="headerlink" title="为什么不能直接调用transferFile方法"></a>为什么不能直接调用<code>transferFile</code>方法</h2><ol>
+<li><strong>事务一致性</strong>：<ul>
+<li>如果在事务提交之前调用<code>transferFile</code>方法，方法内部所执行的操作将会受到当前事务的影响。若当前事务回滚，<code>transferFile</code>方法的操作也可能需要回滚。但这并不能自动实现，需要复杂的补偿机制。</li>
+<li><code>TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronization() &#123;...&#125;)</code>提供了一个在事务提交后执行代码的机制。这意味着只有在事务成功提交后，才会执行<code>afterCommit()</code>中的代码，确保<code>transferFile</code>方法只在数据一致性保证的情况下执行。</li>
+</ul>
+</li>
+<li><strong>事务状态</strong>：<ul>
+<li>直接调用<code>transferFile</code>方法，方法内部如果尝试进行数据库操作，会在当前事务上下文中执行。这可能导致意外的事务传播行为，尤其是在<code>transferFile</code>方法本身可能也需要事务管理的情况下。</li>
+<li>使用<code>TransactionSynchronization</code>保证了<code>transferFile</code>在一个新的事务上下文中执行，不会受到当前事务的影响，确保事务隔离性。</li>
+</ul>
+</li>
+</ol>
+<h4 id="为什么使用fileInfoService-transferFile而不是直接调用this-transferFile"><a href="#为什么使用fileInfoService-transferFile而不是直接调用this-transferFile" class="headerlink" title="为什么使用fileInfoService.transferFile而不是直接调用this.transferFile"></a>为什么使用<code>fileInfoService.transferFile</code>而不是直接调用<code>this.transferFile</code></h4><ol>
+<li><strong>代理对象</strong>：<ul>
+<li>Spring AOP（面向切面编程）通常通过代理对象实现事务管理。如果直接调用<code>this.transferFile</code>，不会经过Spring AOP代理，事务管理等AOP增强功能无法应用。</li>
+<li>使用<code>fileInfoService.transferFile</code>保证调用的是代理对象的方法，从而确保事务管理等增强功能的正常应用。</li>
+</ul>
+</li>
+<li><strong>延迟加载（Lazy）</strong>：<ul>
+<li><code>@Lazy</code>注解用于防止循环依赖，确保在使用时才进行初始化。使用代理对象进行延迟加载避免了在构造时立即初始化，解决了循环依赖问题。</li>
+<li>延迟加载还可以优化资源利用，只有在需要使用时才创建相关对象。</li>
+</ul>
+</li>
+</ol>
+<h2 id="为什么要用异步方法"><a href="#为什么要用异步方法" class="headerlink" title="为什么要用异步方法"></a>为什么要用异步方法</h2><p><strong>非阻塞调用</strong>：通过异步方法，程序可以在调用该方法后立即返回，而不必等待该方法的执行完成。这意味着主线程在调用异步方法后，不会阻塞等待异步方法执行完成，而是继续执行后续的代码或任务。这样可以避免阻塞调用，提高系统的并发能力和响应速度。</p>
+<p><strong>资源利用</strong>：在文件传输这类耗时的操作中，主线程不必等待文件传输完成，而是可以继续处理其他请求或任务，充分利用系统资源，提高系统的吞吐量和并发性能。</p>
+<p><strong>提高用户体验</strong>：通过异步处理文件传输，用户可以更快地得到响应，降低了等待时间，提高了用户体验。</p>
+<p><strong>降低延迟</strong>：在并发量较高的情况下，采用异步方式处理文件传输可以减少请求的排队等待时间，降低系统的整体延迟。</p>
+<p><strong>避免长时间占用资源</strong>：文件传输通常是耗时的操作，如果在主线程中进行同步处理，会导致主线程长时间被占用，影响系统的响应速度和吞吐量。通过异步方式处理文件传输，可以避免长时间占用主线程资源，提高系统的稳定性和可用性。</p>
+<h1 id="hth云盘"><a href="#hth云盘" class="headerlink" title="hth云盘"></a><strong>hth云盘</strong></h1><h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a><strong>前端</strong></h2><p>项目名称：Easy云盘</p>
+<p>项目描述: 一个仿百度云盘面向C端用户的网盘项目，包括用户注册，QQ快捷登录，文件上传，分片上传，断点续传，秒传，文件在线预览，包括文本，图片，视频，音频，excel，word ，pdf 等文件在线预览，文件分享等功能。</p>
+<p>技术选型：Vue3 +  vite3 + vuex</p>
+<p>负责内容：</p>
+<ul>
+<li>用户注册，登录，QQ快捷登录，发送邮箱验证码，找回密码。</li>
+<li>文件分片上传，断点续传，秒传，上传进度展示，文件预览，新建目录，文件重命名，文件移动，文件分享，删除，下载 等功能。</li>
+<li>文件分享列表，取消分享。</li>
+<li>回收站功能，还原文件，彻底删除。</li>
+<li>设置模块  1、超级管理员可以看到所有用户上传的文件，可以对文件下载，删除。 2、超级管理员可以对用户进行管理，给用户分配空间，禁用、启用用户3、超级管理员可以对系统进行设置，设置邮箱模板，设置用户注册初始化空间大小。</li>
+<li>用户通过分享链接和分享码预览下载其他人分享的文件，同时也可以将文件保存到自己的网盘。</li>
+<li>项目难点：</li>
+<li>为了实现秒传，在文件上传前需要对文件进行MD5，避免文件过大，浏览器内存溢出，采用SparkMD5对文件分片MD5，文件分片上传，使用Promise 完成多文件同时上传，文件开始上传，暂停上传。</li>
+<li>多级目录线性展示，结合路由，刷新后任保持目录层级。</li>
+<li>文件预览，根据不同的文件类型，接受不同的数据类型，包括arraybuffer,blob,json类型的数据。</li>
+<li>文件分享，用户打开链接后需要输入分享码才可以读取文件，输入后，在一个会话内状态一直保持，session会话结束后，需要再次输入分享码。</li>
+</ul>
+<p>项目收获：</p>
+<p>熟悉了第三方登录接入流程，比如QQ登录。云盘项目不是简单的增删改查，对大文件采用递归调用完成分片MD5处理，大文件分片上传，解决了实际项目开发中对大文件的上传处理。根据不同的文件类型，使用不同的插件完成文件的在线预览。比如视频的分片播放，pdf,excel,word 在线预览。通过这个项目让我对vue的相关知识点，比如数据双向绑定，组合式Api,生命周期函数，状态管理，路由，watch，父子组件，组件封装，表单校验，页面布局，css编写等有了更加深刻的认识，此项目将所学的前端知识进行了综合运用。</p>
+<h2 id="后端"><a href="#后端" class="headerlink" title="后端"></a><strong>后端</strong></h2><p>项目名称：Easy云盘</p>
+<p>项目描述: 一个仿百度云盘面向C端用户的网盘项目，包括用户注册，QQ快捷登录，文件上传，分片上传，断点续传，秒传，文件在线预览，包括文本，图片，视频，音频，excel，word ，pdf 等文件在线预览，文件分享等功能。</p>
+<p>技术选型：Springboot + mybatis + mysql+redis+ffmpeg</p>
+<p>负责内容：</p>
+<ul>
+<li>用户注册，登录，QQ快捷登录，发送邮箱验证码，找回密码。</li>
+<li>文件分片上传，秒传，新建目录，预览，文件重命名，文件移动，文件分享，删除，下载 等功能。</li>
+<li>文件分享列表，取消分享。</li>
+<li>回收站功能，还原文件，彻底删除。</li>
+<li>设置模块  （1）超级管理员角色查询所有用户上传的文件，可以对文件下载，删除。 （2）超级管理员可以对用户进行管理，给用户分配空间，禁用、启用用户（3）超级管理员可以对系统进行设置，设置邮箱模板，设置用户注册初始化空间大小。</li>
+<li>用户通过分享链接和分享码预览下载其他人分享的文件，同时也可以将文件保存到自己的网盘。</li>
+<li>项目难点：</li>
+<li>文件分片上传，通过文件MD5实现文件秒传，文件分片上传后，异步对文件进行合并处理，视频文件，调用ffmpeg生成视频缩略图，将文件分片成ts文件。</li>
+<li>通过redis缓存实时计算用户上传过程中空间占用情况。</li>
+<li>多级目录线性展示，通过递归查询，查询目录的所有父级目录。</li>
+<li>用户上传文件，同一级目录重名文件自动重命名，文件移动，同名文件重命名。</li>
+</ul>
+<p>项目收获：</p>
+<p>熟悉了第三方登录接入流程，比如QQ登录。让我熟练使用Springboot，采用spring的aop 的注解方式 实现了不同的接口权限不一样，比如普通用户和超级管理员权限的区别，同时使用aop和java反射实现了后端参数校验。使用redis缓存了一些系统设置，用户上传过程中空间使用实时计算，避免反复查询数据库。项目中解决了如何实现异步调用事务的问题，解决循环依赖的问题，如何调用第三方插件比如ffmpeg来实现对文件的分片处理，合并处理。 云盘项目让我学习到如何从功能点去设计数据库，在数据库设计的时候考虑到后续的扩展，比如文件数据的分表处理，可以根据用户id hash 取模的方式对文件数据进行分表处理，在开发过程中，通过spring的核心 aop来实现与业务的解耦。 该项目让我对java，数据库 所学知识进行了综合运用，让我能够使用java从0开发一个完整的项目。</p>
+<ol>
+<li>分割文件ID字符串并查询对应文件信息。</li>
+<li>查找选中文件的子文件夹及其文件的ID。</li>
+<li>根据用户身份（是否为管理员）批量删除选中的文件及其子文件夹中的文件。</li>
+<li>重新计算并更新用户的已用存储空间。</li>
+<li>更新缓存中的用户空间使用信息。</li>
+</ol>
+<p>该方法通过递归查找子文件夹及其文件，确保所有相关文件都被正确处理，同时区分管理员和普通用户的操作权限。</p>
+<h1 id="后端项目描述"><a href="#后端项目描述" class="headerlink" title="后端项目描述"></a>后端项目描述</h1><p>表结构：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 邮箱验证码 </span></span><br><span class="line"><span class="comment">-- auto-generated definition</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> email_code</span><br><span class="line">(</span><br><span class="line">    email       <span class="type">varchar</span>(<span class="number">150</span>) <span class="keyword">not</span> <span class="keyword">null</span> comment <span class="string">&#x27;邮箱&#x27;</span>,</span><br><span class="line">    code        <span class="type">varchar</span>(<span class="number">5</span>)   <span class="keyword">not</span> <span class="keyword">null</span> comment <span class="string">&#x27;编号&#x27;</span>,</span><br><span class="line">    create_time datetime     <span class="keyword">null</span> comment <span class="string">&#x27;创建时间&#x27;</span>,</span><br><span class="line">    status      tinyint(<span class="number">1</span>)   <span class="keyword">null</span> comment <span class="string">&#x27;0:未使用  1:已使用&#x27;</span>,</span><br><span class="line">    <span class="keyword">primary</span> key (email, code)</span><br><span class="line">)</span><br><span class="line">    comment <span class="string">&#x27;邮箱验证码&#x27;</span>;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="comment">-- 用户信息 </span></span><br><span class="line"><span class="comment">-- auto-generated definition</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> user_info</span><br><span class="line">(</span><br><span class="line">    user_id         <span class="type">varchar</span>(<span class="number">10</span>)      <span class="keyword">not</span> <span class="keyword">null</span> comment <span class="string">&#x27;用户ID&#x27;</span></span><br><span class="line">        <span class="keyword">primary</span> key,</span><br><span class="line">    nick_name       <span class="type">varchar</span>(<span class="number">20</span>)      <span class="keyword">null</span> comment <span class="string">&#x27;昵称&#x27;</span>,</span><br><span class="line">    email           <span class="type">varchar</span>(<span class="number">150</span>)     <span class="keyword">null</span> comment <span class="string">&#x27;邮箱&#x27;</span>,</span><br><span class="line">    qq_open_id      <span class="type">varchar</span>(<span class="number">35</span>)      <span class="keyword">null</span> comment <span class="string">&#x27;qqOpenID&#x27;</span>,</span><br><span class="line">    qq_avatar       <span class="type">varchar</span>(<span class="number">150</span>)     <span class="keyword">null</span> comment <span class="string">&#x27;qq头像&#x27;</span>,</span><br><span class="line">    password        <span class="type">varchar</span>(<span class="number">50</span>)      <span class="keyword">null</span> comment <span class="string">&#x27;密码&#x27;</span>,</span><br><span class="line">    join_time       datetime         <span class="keyword">null</span> comment <span class="string">&#x27;加入时间&#x27;</span>,</span><br><span class="line">    last_login_time datetime         <span class="keyword">null</span> comment <span class="string">&#x27;最后登录时间&#x27;</span>,</span><br><span class="line">    status          tinyint          <span class="keyword">null</span> comment <span class="string">&#x27;0:禁用 1:正常&#x27;</span>,</span><br><span class="line">    use_space       <span class="type">bigint</span> <span class="keyword">default</span> <span class="number">0</span> <span class="keyword">null</span> comment <span class="string">&#x27;使用空间单位byte&#x27;</span>,</span><br><span class="line">    total_space     <span class="type">bigint</span>           <span class="keyword">null</span> comment <span class="string">&#x27;总空间&#x27;</span>,</span><br><span class="line">    <span class="keyword">constraint</span> key_email</span><br><span class="line">        <span class="keyword">unique</span> (email),</span><br><span class="line">    <span class="keyword">constraint</span> key_nick_name</span><br><span class="line">        <span class="keyword">unique</span> (nick_name),</span><br><span class="line">    <span class="keyword">constraint</span> key_qq_open_id</span><br><span class="line">        <span class="keyword">unique</span> (qq_open_id)</span><br><span class="line">)</span><br><span class="line">    comment <span class="string">&#x27;用户信息&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="1-生成验证码图像"><a href="#1-生成验证码图像" class="headerlink" title="1.生成验证码图像"></a>1.生成验证码图像</h2><ol>
+<li><strong>映射请求</strong>：将HTTP请求<code>/checkCode</code>映射到<code>checkCode</code>方法。</li>
+<li><strong>创建验证码对象</strong>：使用<code>CreateImageCode</code>生成指定尺寸和特征的验证码图像。</li>
+<li><strong>设置响应头</strong>：禁止缓存，设置响应内容类型为JPEG图片。</li>
+<li><strong>获取验证码字符串</strong>：从验证码对象中获取生成的验证码字符串。</li>
+<li><strong>存储验证码</strong>：根据<code>type</code>参数的值，将验证码字符串存储在会话中的不同属性中。</li>
+<li><strong>输出验证码图像</strong>：将生成的验证码图像写入HTTP响应的输出流。</li>
+</ol>
+<p>这样，客户端在访问<code>/checkCode</code>时会接收到一张验证码图片，并在会话中保存了对应的验证码字符串以供后续验证。</p>
+<h2 id="2-发送邮箱验证码"><a href="#2-发送邮箱验证码" class="headerlink" title="2.发送邮箱验证码"></a>2.发送邮箱验证码</h2><p>验证用户输入的图形验证码是否正确。</p>
+<p>如果图形验证码正确，控制层调用服务层发送电子邮件验证码。</p>
+<p>验证用户邮箱是否已存在（仅针对注册类型）。如果存在，抛出异常。</p>
+<p>生成随机的电子邮件验证码。</p>
+<p>发送验证码到指定邮箱。</p>
+<p>禁用旧的验证码。</p>
+<p>将新的验证码存储到数据库中。</p>
+<p>移除会话中的图形验证码，确保安全性。</p>
+<p>返回一个成功的响应对象给客户端。</p>
+<h2 id="3-AOP参数校验"><a href="#3-AOP参数校验" class="headerlink" title="3.AOP参数校验"></a>3.AOP参数校验</h2><h3 id="checkObjValue方法："><a href="#checkObjValue方法：" class="headerlink" title="checkObjValue方法："></a>checkObjValue方法：</h3><p>通过反射机制获取对象的所有字段，并根据字段上的 <code>@VerifyParam</code> 注解进行验证。它首先检查字段是否包含 <code>@VerifyParam</code> 注解，然后获取字段的值并进行验证。如果验证失败，会抛出 <code>BusinessException</code> 异常。在整个过程中，如果发生异常，会记录日志并抛出适当的异常。</p>
+<h3 id="checkValue方法："><a href="#checkValue方法：" class="headerlink" title="checkValue方法："></a>checkValue方法：</h3><ol>
+<li>检查值是否为空，并根据 <code>required</code> 属性进行验证。</li>
+<li>检查值的长度是否在 <code>min</code> 和 <code>max</code> 指定的范围内。</li>
+<li>使用正则表达式验证值的格式。</li>
+</ol>
+<p>如果任一验证失败，都会抛出 <code>SystemException</code> 异常</p>
+<p>如果不使用AOP切面注解，然后使用空参数或错参数去请求后端接口，后端拿到的是空对象，在后续的执行中就会导致空指针，使用了AOP注解，再次用非法参数去请求，就不会出现空指针，被AOP层进行了处理</p>
+<h3 id="综合作用"><a href="#综合作用" class="headerlink" title="综合作用"></a>综合作用</h3><ol>
+<li><strong>自动参数验证</strong>：在请求处理之前，参数会根据 <code>@VerifyParam</code> 注解中的规则进行自动验证。如果参数无效，将会抛出异常，阻止请求继续处理。这种机制确保了输入参数的有效性，提高了代码的健壮性和安全性。</li>
+<li><strong>全局拦截</strong>：<code>@GlobalInterceptor</code> 注解启用全局拦截器，可以在方法执行之前进行额外的检查和处理，比如参数验证、日志记录、权限检查等。它将特定的拦截逻辑从业务逻辑中分离出来，使代码更加清晰和模块化。</li>
+</ol>
+<h2 id="4-用户注册"><a href="#4-用户注册" class="headerlink" title="4.用户注册"></a>4.用户注册</h2><p>验证请求参数的有效性。</p>
+<p>验证用户输入的图形验证码是否正确。</p>
+<p>调用用户服务进行注册操作。</p>
+<ul>
+<li>验证邮箱和昵称的唯一性。</li>
+<li>验证邮箱验证码的正确性。</li>
+<li>生成新的用户ID。</li>
+<li>创建新的用户信息并进行初始化设置。</li>
+<li>将用户信息保存到数据库中。</li>
+</ul>
+<p>通过使用事务管理注解，确保方法在执行过程中如果出现任何异常，所有的数据库操作将被回滚，以保证数据的一致性和完整性。</p>
+<p>注册成功后返回成功的响应信息。</p>
+<p>确保会话中的图形验证码在使用后被清除。</p>
+<h2 id="5-用户登录"><a href="#5-用户登录" class="headerlink" title="5.用户登录"></a>5.用户登录</h2><p>验证请求参数的有效性。</p>
+<p>验证用户输入的图形验证码是否正确。</p>
+<p>调用用户服务进行登录操作。</p>
+<ul>
+<li>根据邮箱查询用户信息，验证用户的存在性和密码的正确性。</li>
+<li>检查用户账号状态，防止禁用的账号登录。</li>
+<li>更新用户的最后登录时间。</li>
+<li>创建包含用户信息的会话对象<code>SessionWebUserDto</code>。</li>
+<li>检查用户是否为管理员，并设置相应的属性。</li>
+<li>设置用户的空间使用信息并保存到Redis中。</li>
+<li>返回会话用户对象。</li>
+</ul>
+<p>将用户会话信息存储到Redis中。</p>
+<p>登录成功后返回成功的响应信息。</p>
+<p>确保会话中的图形验证码在使用后被清除。</p>
+<h2 id="6-根据邮箱找回密码"><a href="#6-根据邮箱找回密码" class="headerlink" title="6.根据邮箱找回密码"></a>6.根据邮箱找回密码</h2><p>根据邮箱查询用户信息,  如果用户不存在则抛出 <code>SystemException</code> 异常，提示“邮箱账号不存在”。</p>
+<p>校验邮箱验证码</p>
+<p>更新用户密码 ,使用 <code>MD5</code> 加密密码并更新用户信息到数据库中。</p>
+<h2 id="7-用户头像"><a href="#7-用户头像" class="headerlink" title="7. 用户头像"></a>7. 用户头像</h2><h3 id="获取用户头像"><a href="#获取用户头像" class="headerlink" title="获取用户头像"></a>获取用户头像</h3><p>通过 <code>@RequestMapping(&quot;/getAvatar/&#123;userId&#125;&quot;)</code> 注解标识的 <code>getAvatar</code> 方法，用于获取指定用户的头像。具体步骤如下：</p>
+<ol>
+<li><strong>检查头像文件夹是否存在</strong>：<ul>
+<li>通过 <code>appConfig.getProjectFolder()</code> 获取项目根目录，并结合常量路径构建头像文件夹路径。</li>
+<li>如果文件夹不存在，则创建文件夹。</li>
+</ul>
+</li>
+<li><strong>构建用户头像路径</strong>：<ul>
+<li>使用用户ID构建用户头像的完整路径。</li>
+<li>检查该路径下的文件是否存在。如果不存在，则检查默认头像文件是否存在。</li>
+<li>如果默认头像文件也不存在，调用 <code>printNoDefaultImage</code> 方法返回提示信息。</li>
+</ul>
+</li>
+<li><strong>设置响应内容类型并读取头像文件</strong>：<ul>
+<li>设置响应类型为 <code>image/jpg</code>。</li>
+<li>使用 <code>FileUtils.readFile</code> 方法将头像文件写入响应。</li>
+</ul>
+</li>
+</ol>
+<h3 id="更新用户头像"><a href="#更新用户头像" class="headerlink" title="更新用户头像"></a>更新用户头像</h3><p>通过 <code>@RequestMapping(&quot;/updateUserAvatar&quot;)</code> 注解标识的 <code>updateUserAvatar</code> 方法，用于更新用户的头像。具体步骤如下：</p>
+<ol>
+<li><strong>获取当前会话中的用户信息</strong>：<ul>
+<li>从会话中获取 <code>SessionWebUserDto</code> 对象，该对象包含用户的基本信息。</li>
+</ul>
+</li>
+<li><strong>检查并创建目标文件夹</strong>：<ul>
+<li>构建保存头像的文件夹路径，如果文件夹不存在，则创建文件夹。</li>
+</ul>
+</li>
+<li><strong>保存上传的头像文件</strong>：<ul>
+<li>使用 <code>MultipartFile</code> 对象的 <code>transferTo</code> 方法将上传的头像文件保存到目标路径。</li>
+</ul>
+</li>
+<li><strong>更新用户头像信息</strong>：<ul>
+<li>创建一个新的 <code>UserInfo</code> 对象并清空QQ头像字段。</li>
+<li>调用 <code>userInfoMapper.updateAvatarByUserId</code> 方法更新数据库中的用户头像信息。</li>
+</ul>
+</li>
+<li><strong>更新会话中的用户信息</strong>：<ul>
+<li>将用户的头像信息设置为null。</li>
+<li>更新会话中的用户信息。</li>
+</ul>
+</li>
+<li><strong>返回成功响应</strong>：<ul>
+<li>返回一个成功的响应对象。</li>
+</ul>
+</li>
+</ol>
+<h2 id="8-修改密码"><a href="#8-修改密码" class="headerlink" title="8.修改密码"></a>8.修改密码</h2><p><strong>从会话中获取当前用户信息</strong>。</p>
+<p><strong>验证并获取新的密码</strong>。</p>
+<p><strong>对密码进行加密</strong>。</p>
+<p><strong>更新数据库中的用户密码</strong>。</p>
+<p><strong>返回成功响应</strong>。</p>
+<h2 id="9-文件管理"><a href="#9-文件管理" class="headerlink" title="9.文件管理"></a>9.文件管理</h2><h3 id="表结构"><a href="#表结构" class="headerlink" title="表结构:"></a>表结构:</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> file_info</span><br><span class="line">(</span><br><span class="line">    file_id          <span class="type">varchar</span>(<span class="number">10</span>)          <span class="keyword">not</span> <span class="keyword">null</span> comment <span class="string">&#x27;文件ID&#x27;</span>,</span><br><span class="line">    user_id          <span class="type">varchar</span>(<span class="number">10</span>)          <span class="keyword">not</span> <span class="keyword">null</span> comment <span class="string">&#x27;用户ID&#x27;</span>,</span><br><span class="line">    file_md5         <span class="type">varchar</span>(<span class="number">32</span>)          <span class="keyword">null</span> comment <span class="string">&#x27;md5值，第一次上传记录&#x27;</span>,</span><br><span class="line">    file_pid         <span class="type">varchar</span>(<span class="number">10</span>)          <span class="keyword">null</span> comment <span class="string">&#x27;父级ID&#x27;</span>,</span><br><span class="line">    file_size        <span class="type">bigint</span>               <span class="keyword">null</span> comment <span class="string">&#x27;文件大小&#x27;</span>,</span><br><span class="line">    file_name        <span class="type">varchar</span>(<span class="number">200</span>)         <span class="keyword">null</span> comment <span class="string">&#x27;文件名称&#x27;</span>,</span><br><span class="line">    file_cover       <span class="type">varchar</span>(<span class="number">100</span>)         <span class="keyword">null</span> comment <span class="string">&#x27;封面&#x27;</span>,</span><br><span class="line">    file_path        <span class="type">varchar</span>(<span class="number">100</span>)         <span class="keyword">null</span> comment <span class="string">&#x27;文件路径&#x27;</span>,</span><br><span class="line">    create_time      datetime             <span class="keyword">null</span> comment <span class="string">&#x27;创建时间&#x27;</span>,</span><br><span class="line">    last_update_time datetime             <span class="keyword">null</span> comment <span class="string">&#x27;最后更新时间&#x27;</span>,</span><br><span class="line">    folder_type      tinyint(<span class="number">1</span>)           <span class="keyword">null</span> comment <span class="string">&#x27;0:文件 1:目录&#x27;</span>,</span><br><span class="line">    file_category    tinyint(<span class="number">1</span>)           <span class="keyword">null</span> comment <span class="string">&#x27;1:视频 2:音频  3:图片 4:文档 5:其他&#x27;</span>,</span><br><span class="line">    file_type        tinyint(<span class="number">1</span>)           <span class="keyword">null</span> comment <span class="string">&#x27;1:视频 2:音频  3:图片 4:pdf 5:doc 6:excel 7:txt 8:code 9:zip 10:其他&#x27;</span>,</span><br><span class="line">    status           tinyint(<span class="number">1</span>)           <span class="keyword">null</span> comment <span class="string">&#x27;0:转码中 1:转码失败 2:转码成功&#x27;</span>,</span><br><span class="line">    recovery_time    datetime             <span class="keyword">null</span> comment <span class="string">&#x27;回收站时间&#x27;</span>,</span><br><span class="line">    del_flag         tinyint(<span class="number">1</span>) <span class="keyword">default</span> <span class="number">2</span> <span class="keyword">null</span> comment <span class="string">&#x27;删除标记 0:删除  1:回收站  2:正常&#x27;</span>,</span><br><span class="line">    <span class="keyword">primary</span> key (file_id, user_id)</span><br><span class="line">)</span><br><span class="line">comment <span class="string">&#x27;文件信息&#x27;</span>;</span><br><span class="line"></span><br><span class="line">索引:</span><br><span class="line"><span class="keyword">create</span> index idx_create_time</span><br><span class="line">    <span class="keyword">on</span> file_info (create_time);</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> index idx_del_flag</span><br><span class="line">    <span class="keyword">on</span> file_info (del_flag);</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> index idx_file_pid</span><br><span class="line">    <span class="keyword">on</span> file_info (file_pid);</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> index idx_md5</span><br><span class="line">    <span class="keyword">on</span> file_info (file_md5);</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> index idx_recovery_time</span><br><span class="line">    <span class="keyword">on</span> file_info (recovery_time);</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> index idx_user_id</span><br><span class="line">    <span class="keyword">on</span> file_info (user_id);</span><br><span class="line">索引解释:</span><br><span class="line">idx_create_time：在 create_time 列上创建索引，便于按创建时间查询和排序。</span><br><span class="line">idx_del_flag：在 del_flag 列上创建索引，便于按删除状态查询。</span><br><span class="line">idx_file_pid：在 file_pid 列上创建索引，便于按父级ID查询，支持文件夹结构的快速查找。</span><br><span class="line">idx_md5：在 file_md5 列上创建索引，便于通过MD5值快速查找文件，防止重复上传。</span><br><span class="line">idx_recovery_time：在 recovery_time 列上创建索引，便于按回收站时间查询和管理。</span><br><span class="line">idx_user_id：在 user_id 列上创建索引，便于按用户ID查询文件。</span><br></pre></td></tr></table></figure>
+
+<h3 id="索引的作用"><a href="#索引的作用" class="headerlink" title="索引的作用"></a>索引的作用</h3><p>索引主要用于加速查询。数据库在查询数据时，如果查询条件涉及到了索引字段，数据库引擎会自动使用索引来查找数据，从而减少数据扫描的范围，提高查询速度。例如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> file_info <span class="keyword">WHERE</span> user_id <span class="operator">=</span> <span class="string">&#x27;12345&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>如果 <code>user_id</code> 字段上有索引，数据库引擎会使用这个索引来快速定位 <code>user_id</code> 为 <code>12345</code> 的记录，而不是扫描整个表。</p>
+<h3 id="分页查询文件信息"><a href="#分页查询文件信息" class="headerlink" title="分页查询文件信息"></a>分页查询文件信息</h3><p>包含一个控制器方法<code>loadDataList</code>和一个分页查询方法<code>findListByPage</code></p>
+<p><code>loadDataList</code>：</p>
+<p>用于处理HTTP请求，通过会话获取用户信息。</p>
+<p><code>findListByPage</code>：</p>
+<p>实现分页查询的逻辑，包括计算记录总数、设置分页信息、查询数据以及返回结果。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="SlowFever WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag"># 项目</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/04/12/%E7%AE%97%E6%B3%95/" rel="prev" title="算法">
+                  <i class="fa fa-angle-left"></i> 算法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/06/20/SpringBoot+Vue3%20+Element%20Plus%20%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/" rel="next" title="分布式存储系统">
+                  分布式存储系统 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="valine-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">SlowFever</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<script class="next-config" data-name="valine" type="application/json">{"enable":true,"appId":"3Mp1pYKOZuGEBQlAIKWEvL9P-gzGzoHsz","appKey":"UwzoWdwdPDVOb0jQL6cvf0Zx","serverURLs":"https://3mp1pyko.lc-cn-n1-shared.com","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-cn","visitor":true,"comment_count":true,"recordIP":true,"enableQQ":true,"requiredFields":[],"el":"#valine-comments","path":"/2024/06/02/hthPan/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.valine.el)
+    .then(() => NexT.utils.getScript(
+      'https://fastly.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js',
+      { condition: window.Valine }
+    ))
+    .then(() => {
+      new Valine(CONFIG.valine);
+    });
+});
+</script>
+
+</body>
+</html>
